@@ -3,3 +3,5 @@
 strange_quark_env/
 .vscode
 .env
+__pycache__/
+/__pycache__
