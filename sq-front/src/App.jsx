@@ -13,14 +13,15 @@ function App() {
         <a href='/' className="navbar-brand">
           Resume
         </a>
-        <Link exact to={'/add'} className="nav-link">
+        <Link to={'/add'} className="nav-link">
           Add
         </Link>
       </nav>
       <Routes>
-        <Route exact path={["/", "/resume"]} element={< ResumeList />} />
-        <Route exact path={["add"]} element={< AddResumeItem />} />
-        <Route path="/resume/:id/update/" component={< UpdateResume/>} />
+        <Route exact path="/" element={< ResumeList />} />
+        <Route exact path="/resume" element={< ResumeList />} />
+        <Route exact path="/add/" element={< AddResumeItem />} />
+        <Route exact path="/resume/:id/update/" element={< UpdateResume/>} />
       </Routes>
     </>
   )
