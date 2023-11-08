@@ -23,3 +23,14 @@ export const deleteResumeItem = (id, callback) => {
       console.error(e);
     });
 };
+
+export const createResumeItem = (data, callback) => {
+  axios
+    .post(`${baseURL}/resume/`, data)
+    .then((response) => {
+      callback(response);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+};

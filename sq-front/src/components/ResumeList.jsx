@@ -8,11 +8,11 @@ export const ResumeList = () => {
   const history = useNavigate();
   const countRef = useRef(0);
 
-  const retrieveResponse = (response) => {
+  const populateFromResponse = (response) => {
     setResumeItems(response.data)
   }
   useEffect(() => {
-    retrieveAllResumeItems(retrieveResponse);
+    retrieveAllResumeItems(populateFromResponse);
   }, [countRef])
 
   const handleUpdateClick = (id) => {
@@ -21,7 +21,7 @@ export const ResumeList = () => {
   const handleDeleteClick = (id) => {
     deleteResumeItem(id, () => {
       setDeleted(true);
-      retrieveAllResumeItems(retrieveResponse);
+      retrieveAllResumeItems(populateFromResponse);
     })
   }
   return (
@@ -32,7 +32,7 @@ export const ResumeList = () => {
                 className=""
                 role="alert"
               >
-                Menu deleted!
+                Resume Item deleted!
                 <button
                   type="button"
                   className="close"
@@ -43,12 +43,13 @@ export const ResumeList = () => {
                 </button>
               </div>
             )}
-            {resumeItems &&
+            {resumeItems ?
               resumeItems.map((resumeItem) => (
                 <article key={resumeItem.id} className="resume-list-item">
                   <div className="resume-item-info">
                     <h2 >{resumeItem.title}</h2>
                     <h4 >{resumeItem.employer}</h4>
+                    <p >{resumeItem.description}</p>
                     <p >{resumeItem.start_date}</p>
                     <p >{resumeItem.end_date}</p>
                   </div>
@@ -66,7 +67,9 @@ export const ResumeList = () => {
                         </button>
                   </div>
                 </article>
-              ))}
+              )) : 
+                <p>No Resume Items</p>
+              }
 
         </section>
 
