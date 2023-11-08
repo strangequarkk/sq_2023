@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
 import { createResumeItem } from "../services/resume.service";
+import { Modal } from "./Modal";
 
 export const AddResumeItem = () => {
   const initialState = {
@@ -41,27 +42,13 @@ export const AddResumeItem = () => {
     e.preventDefault();
   }
 
-  const closeAlert = (e) => {
-    e.target.closest('dialog').removeAttribute('open');
-  }
+
 
   return (
-    <>
       <form onSubmit={preventFormRefresh}> 
         {submitted ? (
           <div>
-            <dialog role="alert" open>
-              Resume Item added!
-              <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                  onClick={closeAlert}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </dialog>
+            <Modal message="Resume Item Added!" />
             <button onClick={newItem}>
               Add new
             </button>
@@ -115,6 +102,6 @@ export const AddResumeItem = () => {
             </>
       ) }
       </form>
-    </>
+
   );
 };

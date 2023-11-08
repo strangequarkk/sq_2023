@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { retrieveAllResumeItems, deleteResumeItem } from "./../services/resume.service"
+import { Modal } from "./Modal"
 
 export const ResumeList = () => {
   const [resumeItems, setResumeItems] = useState([]);
@@ -28,20 +29,7 @@ export const ResumeList = () => {
 <section>
 
             {deleted && (
-              <div
-                className=""
-                role="alert"
-              >
-                Resume Item deleted!
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+              <Modal message="Resume Item Deleted!"/>
             )}
             {resumeItems ?
               resumeItems.map((resumeItem) => (
