@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createResumeItem } from "../services/resume.service";
-import { Modal } from "./Modal";
+import { createResumeItem } from "../../services/resume.service";
+import { Modal } from "../ui/Modal";
 
 export const AddResumeItem = () => {
   const initialState = {

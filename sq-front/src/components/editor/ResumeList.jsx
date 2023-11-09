@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
-import { retrieveAllResumeItems, deleteResumeItem } from "./../services/resume.service"
-import { Modal } from "./Modal"
+import { retrieveAllResumeItems, deleteResumeItem } from "../../services/resume.service"
+import { Modal } from "../ui/Modal"
 
 export const ResumeList = () => {
   const [resumeItems, setResumeItems] = useState([]);

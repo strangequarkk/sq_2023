@@ -1,7 +1,14 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import { AddResumeItem } from './components/AddResumeItem'
-import { ResumeList } from './components/ResumeList'
-import { UpdateResume } from './components/UpdateResume'
+import { Routes, Route} from 'react-router-dom'
+import { AddResumeItem } from './components/editor/AddResumeItem'
+import { ResumeList } from './components/editor/ResumeList'
+import { UpdateResume } from './components/editor/UpdateResume'
+import { Navbar } from './components/ui/Navbar'
+import { Intro } from './components/Intro'
+import { About } from './components/About'
+import { Skills } from './components/Skills'
+import { Experience } from './components/Experience'
+import { Portfolio } from './components/Portfolio'
+
 import './App.css'
 
 function App() {
@@ -9,20 +16,30 @@ function App() {
 
   return (
     <>
-      <nav className="navbar">
-        <a href='/' className="navbar-brand">
-          Resume
-        </a>
-        <Link to={'/add'} className="nav-link">
-          Add
-        </Link>
-      </nav>
+      <header>
+        <Navbar/>
+      </header>
+      <main>
       <Routes>
-        <Route exact path="/" element={< ResumeList />} />
-        <Route exact path="/resume" element={< ResumeList />} />
-        <Route exact path="/add/" element={< AddResumeItem />} />
-        <Route exact path="/resume/:id/update/" element={< UpdateResume/>} />
-      </Routes>
+          <Route exact path="/" element={
+            <>
+              < Intro />
+              < About />
+              < Skills />
+              < Experience />
+              < Portfolio />
+            </>
+            
+          } />
+          <Route exact path="/about" element={< About />} />
+          <Route exact path="/skills" element={< Skills />} />
+          <Route exact path="/experience" element={<Experience />} />
+          <Route exact path="/portfolio" element={<Portfolio/>}/>
+        <Route exact path="/edit/resume" element={< ResumeList />} />
+        <Route exact path="/edit/resume/add/" element={< AddResumeItem />} />
+        <Route exact path="/edit/resume/:id/update/" element={< UpdateResume/>} />
+        </Routes>
+        </main>
     </>
   )
 }
