@@ -2,7 +2,7 @@ import { HashLink } from 'react-router-hash-link';
 
 export const Navbar = () => {
     return (
-        <nav className="navbar">
+        <nav className="navbar font-nav flex place-content-around py-2 mx-auto">
             <HashLink smooth to='/#about' className="nav-link">
                 About
             </HashLink>

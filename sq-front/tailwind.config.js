@@ -1,8 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        default: ["Sintony", "sans"],
+        heading: ["Days One", "sans"],
+        nav: ["Days One", "sans"],
+        fancy: ["Zen Tokyo Zoo", "sans"],
+      },
+    },
   },
   plugins: [],
 };

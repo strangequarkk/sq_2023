@@ -17,9 +17,10 @@ function App() {
   return (
     <>
       <header>
-        <Navbar/>
+        <Navbar />
       </header>
       <main>
+      <img id="logo" src="src/assets/strange-quark-logo-blackhole-light.svg" alt=""/>
       <Routes>
           <Route exact path="/" element={
             <>
