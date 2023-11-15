@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <header>
+      <header className="fixed w-screen left-0 z-10 bg-white/50">
         <Navbar />
       </header>
       <main>

@@ -10,6 +10,12 @@ export default {
         nav: ["Days One", "sans"],
         fancy: ["Zen Tokyo Zoo", "sans"],
       },
+      colors: {
+        default: "#D6F8F1",
+      },
+      backgroundImage: {
+        "bubble-trails": "url('/src/assets/bubble-bg.jpg')",
+      },
     },
   },
   plugins: [],

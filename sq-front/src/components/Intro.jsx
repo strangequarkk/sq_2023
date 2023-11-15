@@ -1,8 +1,12 @@
 export const Intro = () => {
     return (
-        <section id="intro" className="font-heading h-screen">
-            <h1 className="text-4xl">Kae<br />Unterseher</h1>
-            <h2 className="text-right text-3xl">Full-Stack <br/> Developer <br/> <span className="font-fancy text-6xl">&amp;</span><br/>Tutor</h2>
+        <section id="intro" className="relative h-screen">
+
+            <h1 className="font-heading text-5xl absolute top-44">Kae<br /><span className="font-heading block">Unterseher</span></h1>
+            <h2 className="font-heading text-right text-4xl absolute top-96 right-0">Full-Stack <br /> <span className="font-heading block">Developer</span>
+                <span className="font-fancy text-7xl leading-[0rem]">&amp;</span>
+                    <span className="font-heading block">Tutor</span></h2>
+
         </section>
     )
 }
