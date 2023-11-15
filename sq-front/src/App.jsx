@@ -1,8 +1,9 @@
 import { Routes, Route} from 'react-router-dom'
-import { AddResumeItem } from './components/editor/AddResumeItem'
-import { ResumeList } from './components/editor/ResumeList'
-import { UpdateResume } from './components/editor/UpdateResume'
+// import { AddResumeItem } from './components/editor/AddResumeItem'
+// import { ResumeList } from './components/editor/ResumeList'
+// import { UpdateResume } from './components/editor/UpdateResume'
 import { Navbar } from './components/ui/Navbar'
+import { SpinningLogo } from './components/ui/SpinningLogo'
 import { Intro } from './components/Intro'
 import { About } from './components/About'
 import { Skills } from './components/Skills'
@@ -20,7 +21,7 @@ function App() {
         <Navbar />
       </header>
       <main>
-      <img id="logo" src="src/assets/strange-quark-logo-blackhole-light.svg" alt=""/>
+      <SpinningLogo/>
       <Routes>
           <Route exact path="/" element={
             <>
@@ -36,9 +37,9 @@ function App() {
           <Route exact path="/skills" element={< Skills />} />
           <Route exact path="/experience" element={<Experience />} />
           <Route exact path="/portfolio" element={<Portfolio/>}/>
-        <Route exact path="/edit/resume" element={< ResumeList />} />
+        {/* <Route exact path="/edit/resume" element={< ResumeList />} />
         <Route exact path="/edit/resume/add/" element={< AddResumeItem />} />
-        <Route exact path="/edit/resume/:id/update/" element={< UpdateResume/>} />
+        <Route exact path="/edit/resume/:id/update/" element={< UpdateResume/>} /> */}
         </Routes>
         </main>
     </>
