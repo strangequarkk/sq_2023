@@ -3,6 +3,16 @@ body, html {
   width: 100vw;
 }
 
+ body {
+  height: 100vh;
+  background: #ebfcf8;
+  /* background-image: url('/src/assets/bubble-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen;
+  background-attachment: fixed; */
+} 
+
 main {
   z-index: 1;
 }

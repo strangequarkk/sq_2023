@@ -8,8 +8,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Days+One&family=Monoton&family=Sintony:wght@400;700&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kae</title>
+    <style>
+      #root {
+        visibility:hidden;
+      }
+      body {
+        background: #ebfcf8;
+      }
+      .fade {
+        backdrop-filter: blur(0);
+        opacity:0;
+        transition: 0.6s all;
+      }
+    </style>
+    <script type="text/javascript">
+      const clearLoader = () => {
+        document.querySelector('#loadBlur').remove();
+      }
+      window.onload = () =>{
+        document.querySelector('#root').setAttribute('style', 'visibility:visible');
+        document.querySelector('#loadBlur').classList.add('fade');
+        document.querySelector('body').classList.add('bg-default')
+        let loadTimer = window.setTimeout(clearLoader, 600)
+      }
+    </script>
   </head>
-  <body class="h-screen bg-default bg-bubble-trails bg-cover bg-center bg-blend-screen bg-fixed">
+  <body class="h-screen  bg-bubble-trails bg-cover bg-center bg-blend-screen bg-fixed">
+    <div id="loadBlur" style="backdrop-filter: blur(20px);z-index:100;position:absolute;top:0;bottom:0;left:0;right:0"></div>
     <div id="root" class="font-sans px-4"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

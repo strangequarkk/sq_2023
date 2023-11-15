@@ -1,16 +1,14 @@
 import { useEffect } from "react"
 
-export default function useWindowScroll(handleScroll) {
-    const onScroll = () => { 
-        handleScroll(window.scrollY);
-    }
-    
+export const useWindowScroll = (handleScroll) => {
+
     useEffect(() => {
-  
-        // clean up code
+        const onScroll = () => { 
+            handleScroll(window.scrollY);
+        }
+        // ensure only one (of this type) of event listener attached at a time
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     })
-    return [onScroll]
  }

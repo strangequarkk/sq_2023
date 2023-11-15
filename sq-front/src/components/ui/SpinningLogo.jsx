@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react"
+import { useWindowScroll } from "../../utils/useWindowScroll"
+//import { retrieveAllResumeItems } from "../../services/resume.service"
 
 export const SpinningLogo = () => {
     const [rotation, setRotation] = useState(360);
    const [rotationStyle, setRotationStyle] = useState({transform:"rotate("+rotation+"deg)"})
 
-    useEffect(() => {
-        const onScroll = () => { 
-            //if (window.scrollY % 3 === 0) {
-                setRotation(rotation-1)
-           // }
-        }
-        // clean up code
-        window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
+    useWindowScroll(() => {
+        let nextRotation = rotation == 0 ? 359.5 : rotation - 0.5;
+        setRotation(nextRotation)
+
     })
 
     useEffect(() => {
