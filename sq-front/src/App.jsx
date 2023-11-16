@@ -9,6 +9,7 @@ import { About } from './components/About'
 import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
 import { Portfolio } from './components/Portfolio'
+import { ShiftBG } from './components/ui/ShiftBG'
 
 import './App.css'
 
@@ -17,11 +18,12 @@ function App() {
 
   return (
     <>
+      <ShiftBG defaultColor={ "#D6F8F1"} />
       <header className="fixed w-screen left-0 z-10 bg-white/50">
         <Navbar />
       </header>
       <main>
-      <SpinningLogo/>
+        <SpinningLogo speed={0.5} image={"../src/assets/strange-quark-logo-blackhole-light.svg"} />
       <Routes>
           <Route exact path="/" element={
             <>

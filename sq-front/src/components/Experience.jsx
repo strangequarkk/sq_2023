@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import { retrieveAllResumeItems } from "../services/resume.service"
 
+/*
+* Experience page: pulls resume items from API and displays them as articles
+*/
 export const Experience = () => { 
     const [resumeItems, setResumeItems] = useState([]);
     const populateFromResponse = (response) => {
@@ -10,8 +13,9 @@ export const Experience = () => {
         retrieveAllResumeItems(populateFromResponse);
       }, [])
     
+    //padding-top to ensure scrollto doens't cover title with nav bar
     return (
-        <section id="experience">
+        <section id="experience" className="pt-8">
             <h2 className="font-heading text-3xl">Experience</h2>
             {resumeItems ? 
                 resumeItems.map((resumeItem) => (

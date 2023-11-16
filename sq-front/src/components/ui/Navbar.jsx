@@ -1,5 +1,7 @@
 import { HashLink } from 'react-router-hash-link';
-
+/*
+* Navigation for single page application, using HashLink to scroll smoothly between sections
+*/
 export const Navbar = () => {
     return (
         <nav className="navbar font-nav flex place-content-between py-2 px-4">
@@ -9,10 +11,10 @@ export const Navbar = () => {
             <HashLink smooth to={'/#skills'} className="nav-link">
                 Skills
             </HashLink>
-            <HashLink to={'/#experience'} className="nav-link">
+            <HashLink smooth to={'/#experience'} className="nav-link">
                 Experience
             </HashLink>
-            <HashLink to={'/#portfolio'} className="nav-link">
+            <HashLink smooth to={'/#portfolio'} className="nav-link">
                 Portfolio
             </HashLink>
       </nav>
