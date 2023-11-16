@@ -19,10 +19,10 @@ function App() {
   return (
     <>
       <ShiftBG defaultColor={ "#D6F8F1"} />
-      <header className="fixed w-screen left-0 z-10 bg-white/50">
+      <header className="fixed w-screen left-0 z-10 bg-white/50 px-4">
         <Navbar />
       </header>
-      <main>
+      <main className="px-4">
         <SpinningLogo speed={0.5} image={"../src/assets/strange-quark-logo-blackhole-light.svg"} />
       <Routes>
           <Route exact path="/" element={

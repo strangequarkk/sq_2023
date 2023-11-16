@@ -27,7 +27,7 @@ export const ShiftBG = ({ defaultColor }) => {
 
     return (
         <div
-            className="h-screen -z-10 fixed top-0 left-0 bottom-0 right-0 bg-default bg-bubble-trails bg-cover bg-center bg-blend-screen bg-fixed"
+            className="min-h-100 -z-10 fixed top-0 left-0 bottom-0 right-0 bg-default bg-bubble-trails bg-cover bg-center bg-blend-screen"
             style={colorCSS}
         ></div>
     )
