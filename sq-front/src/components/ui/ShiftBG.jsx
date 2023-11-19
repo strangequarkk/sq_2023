@@ -1,7 +1,7 @@
 import { useWindowScroll } from "../../utils/useWindowScroll"
 import { useState, useRef } from "react"
 import PropTypes from 'prop-types'
-import { toHSL, toRGBString } from '../../utils/colorToHSL'
+import { toHSL, toRGBAString } from '../../utils/colorToHSL'
 
 
 /*
@@ -13,23 +13,32 @@ import { toHSL, toRGBString } from '../../utils/colorToHSL'
 */
 export const ShiftBG = ({ defaultColor }) => {
     const defaultHSL = useRef(toHSL(defaultColor));
-    const [colorCSS, setColorCSS] = useState({ backgroundColor: toRGBString(defaultHSL.current) });
+    const [shadowCSS, setShadowCSS] = useState({ backgroundImage:`linear-gradient(${toRGBAString(defaultHSL.current)}, transparent)`})
+    const [colorCSS, setColorCSS] = useState({ backgroundColor: toRGBAString(defaultHSL.current) });
 
     //base shift on distance from original hue; h value constrained to range 0-360
     useWindowScroll((scrollY) => {
         let modColor = Math.floor(defaultHSL.current.h - (scrollY / 20)) % 360;
         //have to convert color to rgb because react doesn't do inline hsl apparently
-        const rgbStr = toRGBString(modColor, defaultHSL.current.s, defaultHSL.current.l)
+        const rgbaStr = toRGBAString(modColor, defaultHSL.current.s, defaultHSL.current.l, 1)
+        const transparentRGBA = toRGBAString(modColor, defaultHSL.current.s, defaultHSL.current.l, 0)
+        setShadowCSS({backgroundImage: `linear-gradient(180deg, ${rgbaStr} 50%, ${transparentRGBA} 100%)`})
+        //setRGBString(rgbStr);
         setColorCSS({
-            backgroundColor: rgbStr
+            backgroundColor: rgbaStr
         })
     })
 
     return (
+        <>
         <div
             className="min-h-100 -z-10 fixed top-0 left-0 bottom-0 right-0 bg-default bg-bubble-trails bg-cover bg-center bg-blend-screen"
             style={colorCSS}
-        ></div>
+        >
+            
+            </div>
+            <div id="nav-bg-shifter" style={shadowCSS} className={`z-10 bg fixed top-0 left-0 right-0 h-16 bg-gradient-to-b from-default from-50% to transparent `}></div>
+            </>
     )
 }
 /*

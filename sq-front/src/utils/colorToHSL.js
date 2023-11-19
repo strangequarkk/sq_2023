@@ -61,3 +61,13 @@ export const toRGBString = (hVal, sVal, lVal) => {
   const [r, g, b] = convert.hsl.rgb(hVal, sVal, lVal);
   return `rgb(${r},${g},${b})`;
 };
+
+//make css rbg string from h, s, and l values
+export const toRGBAString = (hVal, sVal, lVal, opacity) => {
+  const [r, g, b] = convert.hsl.rgb(hVal, sVal, lVal);
+  return `rgba(${r},${g},${b}, ${opacity})`;
+};
+
+export const toHex = (hVal, sVal, lVal) => {
+  return "#" + convert.hsl.hex(hVal, sVal, lVal);
+};

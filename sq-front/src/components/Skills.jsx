@@ -1,10 +1,10 @@
 export const Skills = () => { 
     //padding-top to ensure scrollto doens't cover title with nav bar
     return (
-        <section id="skills" className="pt-8">
+        <section id="skills" className="pt-12">
             <h2 className="font-heading text-3xl">Skills</h2>
             <article>
-                <h3 className="font-nav">Languages, libraries, &amp frameworks:</h3>
+                <h3 className="font-nav">Languages, libraries, &amp; frameworks:</h3>
                 <ul>
                     <li><h4 className="font-bold">HTML</h4></li>
                     <li><h4 className="font-bold">CSS</h4>

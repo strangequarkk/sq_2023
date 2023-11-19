@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <ShiftBG defaultColor={ "#D6F8F1"} />
-      <header className="fixed w-screen left-0 z-10 bg-white/50 px-4">
+      <header className="fixed w-screen top-0 left-0 z-10 pb-8  px-4">
         <Navbar />
       </header>
       <main className="px-4">

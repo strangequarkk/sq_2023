@@ -1,7 +1,7 @@
 export const About = () => {
     //padding-top to ensure scrollto doens't cover title with nav bar
     return (
-        <section id="about" className="pt-8">
+        <section id="about" className="pt-12">
             <h2 className="font-heading text-3xl">About</h2>
             <p className="mb-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Risus nec feugiat in fermentum posuere urna. Pretium fusce id velit ut tortor pretium. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Non odio euismod lacinia at quis risus sed vulputate. </p>

@@ -15,7 +15,7 @@ export const Experience = () => {
     
     //padding-top to ensure scrollto doens't cover title with nav bar
     return (
-        <section id="experience" className="pt-8">
+        <section id="experience" className="pt-12">
             <h2 className="font-heading text-3xl">Experience</h2>
             {resumeItems ? 
                 resumeItems.map((resumeItem) => (
