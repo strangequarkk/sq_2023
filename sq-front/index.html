@@ -24,18 +24,22 @@
     <script type="text/javascript">
       const clearLoader = () => {
         document.querySelector('#loadBlur').remove();
+        console.log("loader screen removed");
       }
       window.onload = () =>{
+        console.log("window onload");
         document.querySelector('#root').setAttribute('style', 'visibility:visible');
         document.querySelector('#loadBlur').classList.add('fade');
         document.querySelector('body').classList.add('bg-default')
-        let loadTimer = window.setTimeout(clearLoader, 600)
+        let loadTimer = window.setTimeout(clearLoader, 200)
       }
+      document.addEventListener("scroll", () => {console.log("go scroll go")}) 
+
     </script>
   </head>
-  <body class="h-100">
+  <body class="h-100 overflow-y-scroll">
     <div id="loadBlur" style="backdrop-filter: blur(20px);z-index:100;position:absolute;top:0;bottom:0;left:0;right:0"></div>
-    <div id="root" class="font-sans absolute top-0 overflow-y-scroll"></div>
+    <div id="root" class="font-sans absolute top-0 "></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

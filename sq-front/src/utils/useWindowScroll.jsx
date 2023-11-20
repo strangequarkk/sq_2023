@@ -8,7 +8,7 @@ export const useWindowScroll = (handleScroll) => {
         }
         // ensure only one (of this type) of event listener attached at a time
         window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
     })
  }
