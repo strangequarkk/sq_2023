@@ -1,1 +1,1 @@
-web: gunicorn portfolio2023.wsgi
+web: gunicorn strange_quark.wsgi
