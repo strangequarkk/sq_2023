@@ -1,2 +1,1 @@
-python==3.11.4
-gunicorn==21.2.0
+gunicorn=21.2.0
