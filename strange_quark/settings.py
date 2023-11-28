@@ -35,6 +35,11 @@ ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
 
+print("/**************")
+print("CORS_ALLOWED_ORIGINS:")
+print("**************/")
+print(CORS_ALLOWED_ORIGINS)
+
 # Application definition
 
 INSTALLED_APPS = [
