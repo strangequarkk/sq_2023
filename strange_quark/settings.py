@@ -31,9 +31,9 @@ SECRET_KEY = env["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get("DEBUG_STATUS", False)
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
-CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
+ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
 
 print("/**************")
 print("CORS_ALLOWED_ORIGINS:")
