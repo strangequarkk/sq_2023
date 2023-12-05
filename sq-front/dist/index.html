@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/strange-quark-logo-blackhole-dark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Days+One&family=Monoton&family=Sintony:wght@400;700&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <title>Kae</title>
+    <style>
+      #root {
+        visibility:hidden;
+      }
+      body {
+        background: #ebfcf8;
+      }
+      .fade {
+        -webkit-backdrop-filter: blur(0);
+                backdrop-filter: blur(0);
+        opacity:0;
+        transition: 0.6s all;
+      }
+    </style>
+    <script type="text/javascript">
+      const clearLoader = () => {
+        document.querySelector('#loadBlur').remove();
+      }
+      window.onload = () =>{
+        document.querySelector('#root').setAttribute('style', 'visibility:visible');
+        document.querySelector('#loadBlur').classList.add('fade');
+        document.querySelector('body').classList.add('bg-default')
+        let loadTimer = window.setTimeout(clearLoader, 200)
+      }
+    </script>
+    <!-- <script type="text/javascript" src="/scrap.js" ></script> -->
+    <script type="module" crossorigin src="/assets/index-eee5c7b1.js"></script>
+    <link rel="stylesheet" href="/assets/index-34c96e05.css">
+  </head>
+  <body class="h-100 overflow-y-scroll">
+    <div id="loadBlur" style="backdrop-filter: blur(20px);z-index:100;position:absolute;top:0;bottom:0;left:0;right:0"></div>
+    <div id="root" class="font-sans absolute top-0 "></div>
+    
+  </body>
+</html>
