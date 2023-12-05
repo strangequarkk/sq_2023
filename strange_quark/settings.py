@@ -26,6 +26,7 @@ FRONTEND_DIR = str(
     BASE_DIR / "sq-front/dist"
 )  # os.path.join(BASE_DIR, "sq-front/dist")
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 

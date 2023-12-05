@@ -1,1 +1,1 @@
-web: gunicorn strange_quark.wsgi
+web: gunicorn strange_quark.wsgi; cd /sq-front; npm run build;
