@@ -21,6 +21,10 @@ env = os.environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+BACKEND_DIR = BASE_DIR
+FRONTEND_DIR = str(
+    BASE_DIR / "sq-front/dist"
+)  # os.path.join(BASE_DIR, "sq-front/dist")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -34,11 +38,6 @@ DEBUG = env.get("DEBUG_STATUS", False)
 # ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
-
-print("/**************")
-print("CORS_ALLOWED_ORIGINS:")
-print("**************/")
-print(CORS_ALLOWED_ORIGINS)
 
 # Application definition
 
@@ -57,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -70,7 +70,7 @@ ROOT_URLCONF = "strange_quark.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [FRONTEND_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -131,7 +131,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/assets/"
+STATICFILES_DIRS = FRONTEND_DIR  # / "assets"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BACKEND_DIR / "static"
+WHITENOISE_ROOT = FRONTEND_DIR  # / "assets"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

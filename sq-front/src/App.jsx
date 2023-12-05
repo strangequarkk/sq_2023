@@ -10,6 +10,7 @@ import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
 import { Portfolio } from './components/Portfolio'
 import { ShiftBG } from './components/ui/ShiftBG'
+import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 
 import './App.css'
 
@@ -23,7 +24,7 @@ function App() {
         <Navbar />
       </header>
       <main className="px-4">
-        <SpinningLogo speed={0.5} image={"../src/assets/strange-quark-logo-blackhole-light.svg"} />
+        <SpinningLogo speed={0.5} image={LogoBright} />
       <Routes>
           <Route exact path="/" element={
             <>
