@@ -14,8 +14,12 @@ import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 
 import './App.css'
 
-function App() {
+const favicon = new URL('../src/assets/strange-quark-logo-blackhole-dark.svg', import.meta.url).href
+console.log(document.querySelector("link[rel='icon']"))
+document.querySelector("link[rel='icon']").href = favicon;
 
+function App() {
+  
 
   return (
     <>
