@@ -15,7 +15,6 @@ import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 import './App.css'
 
 const favicon = new URL('../src/assets/strange-quark-logo-blackhole-dark.svg', import.meta.url).href
-console.log(document.querySelector("link[rel='icon']"))
 document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
       <header className="fixed w-screen top-0 left-0 z-10 pb-8  px-4">
         <Navbar />
       </header>
-      <main className="px-4">
+      <main className="px-4 max-w-100">
         <SpinningLogo speed={0.5} image={LogoBright} />
       <Routes>
           <Route exact path="/" element={

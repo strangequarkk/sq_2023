@@ -3,10 +3,10 @@ import { SkillItem } from "./ui/SkillItem"
 export const Skills = () => { 
     //padding-top to ensure scrollto doens't cover title with nav bar
     return (
-        <section id="skills" className="pt-12">
-            <h2 className="font-heading text-3xl">Skills</h2>
+        <section id="skills" className="pt-12 max-w-100">
+            <h2 className="font-heading text-3xl pb-3">Skills</h2>
             <article className="pb-4">
-                <h3 className="font-nav">Languages, libraries, &amp; frameworks:</h3>
+                <h3 className="font-nav pb-3">Languages, libraries, &amp; frameworks:</h3>
                 <ul className="pl-4">
                     <SkillItem skill="HTML" />
                     <SkillItem skill="CSS"

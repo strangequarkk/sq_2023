@@ -36,9 +36,12 @@ SECRET_KEY = env["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get("DEBUG_STATUS", False)
 
+
 # ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
+# ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
+
+CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
 
 # Application definition
 
@@ -133,7 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/assets/"
-STATICFILES_DIRS = FRONTEND_DIR  # / "assets"
+STATICFILES_DIRS = [FRONTEND_DIR]  # / "assets"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = BACKEND_DIR / "static"
