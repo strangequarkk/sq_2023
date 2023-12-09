@@ -1,37 +1,71 @@
 import PropTypes from 'prop-types'
-import { useState} from 'react'
+import { useState, useEffect} from 'react'
 
 
 const SubItem = ({ skill, builtWith }) => {
-    const [infoClass, setInfoClass] = useState("hidden")
-    const [toolTipWidth, setToolTipWidth] = useState(" w-0 ")
-    const sparkleClasses = " after:content-['✧'] after:text-purple-400 before:content-['✧'] before:text-purple-400 block "
-    const toolTipClasses = " absolute -top-2/3 whitespace-nowrap rounded-full overflow-hidden left-2/3 text-sm transition-all duration-200 p-1 pr-1.5 " + sparkleClasses 
-    
-    const commonClasses = " border border-solid rounded-full py-1 px-2 text-center inline-block "
+    const [isShown, setisShown] = useState(false)
+
+    //breaking up the tailwind classes for legibility
+    const [toolTipStyles, setToolTipStyles] = useState({
+        position: "absolute -top-2/3 left-2/3",
+        animation: "transition-all duration-200",
+        decoration: "after:content-['✧'] after:text-purple-400 before:content-['✧'] before:text-purple-400 block",
+        text: "whitespace-nowrap text-sm",
+        border: "border border-solid border-purple-400 rounded-full",
+        background: "bg-white",
+        padding: "p-1 pr-1.5",
+        overflow: "overflow-hidden",
+        width: "w-0",
+        opacity: "opacity-0",
+        shadow: "",
+        zIndex: "",
+    })
+
+    const buildClassString = (styleObj) => {
+        return Object.values(styleObj).join(" ")
+    }
+
+    //toolTipClasses = toolTipStyles object collapsed into a string
+    const[toolTipClasses, setToolTipClasses] = useState(buildClassString(toolTipStyles))
+    const pClasses = "border border-solid rounded-full py-1 px-2 text-center inline-block"
 
 
     const handleClick = () => {
-        const toggledClass = infoClass === "invisible" ?
-            " visible border border-solid border-purple-400 shadow-xl bg-white z-10 " 
-            : "invisible";
-        const toggledWidth = infoClass === "invisible" ? " w-60  " : " w-0 " ;
-        setToolTipWidth(toggledWidth)
-        setInfoClass(toggledClass)
+        const shownStyles = {
+            width: "w-60",
+            shadow: "shadow-xl",
+            zIndex: "z-10",
+            opacity: "opacity-100"
+        }
+
+        const hiddenStyles = {
+            width: "w-0",
+            opacity: "opacity-0",
+            shadow: "",
+            zIndex: "",
+        }
+
+        const toggledStyle = isShown ? hiddenStyles : shownStyles;
+
+        setToolTipStyles({...toolTipStyles, ...toggledStyle})
+        setisShown(!isShown)
     }
 
- 
+    useEffect(()=>{ setToolTipClasses(buildClassString(toolTipStyles))}, [toolTipStyles])
+
     
-    
-    const defaultItem = <li className=" grow " >
-        <p className={commonClasses + " border-teal-200"}>{skill}</p>
+    const defaultItem = <li className= "grow" >
+        <p className={pClasses + " border-teal-200"}>{skill}</p>
     </li>;
-    const specialItem = <li className="grow">
-        <p className={commonClasses + " border-purple-400 relative cursor-pointer"} onClick={handleClick}>{skill}
-            <span className={ infoClass + toolTipClasses + toolTipWidth}>This site was built with {skill}!</span>
+
+    const specialItem = <li className= "grow">
+        <p className={pClasses + " border-purple-400 relative cursor-pointer"} onClick={handleClick}>{skill}
+            <span className={ toolTipClasses}>This site was built with {skill}!</span>
             </p>
     </li>;
+
     const displayedItem = builtWith ? specialItem : defaultItem;
+
     return (
         <>{displayedItem}</>
         
@@ -47,7 +81,7 @@ export const SkillItem = ({ skill, subItems }) => {
     const subComponents = subItems.length ? subItems.map((item) => {
         return(<SubItem key={item.skill} {...item} />)
     }) : [];
-    const subList = subItems.length ? <ul className="flex flex-row flex-wrap justify-around gap-2 px-4">
+    const subList = subItems.length ? <ul className="flex flex-row text-sm font flex-wrap justify-around gap-2 px-4">
         {subComponents}
     </ul> : "";
     const styleClasses = subItems.length ? "font-bold mb-2" : "font-bold"

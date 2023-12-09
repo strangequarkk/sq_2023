@@ -11,17 +11,8 @@ main {
   font-family: "Monoton", Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#interpersonal-skills ul li {
+  list-style-type: '✧';
+  padding-left:1em;
+  margin-bottom:0.8em;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-} */
