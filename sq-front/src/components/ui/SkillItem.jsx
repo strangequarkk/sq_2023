@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 
 const SubItem = ({ skill, builtWith }) => {
     const [isShown, setisShown] = useState(false)
+    const tTipFullWidth = useRef("");
+    const hasRendered = useRef(false);
 
     //breaking up the tailwind classes for legibility
     const [toolTipStyles, setToolTipStyles] = useState({
-        position: "absolute -top-2/3 left-2/3",
+        position: "absolute -top-2/3",
+        leftPos: "left-2/3",
         animation: "transition-all duration-200",
         decoration: "after:content-['✧'] after:text-purple-400 before:content-['✧'] before:text-purple-400 block",
         text: "whitespace-nowrap text-sm",
@@ -15,7 +18,7 @@ const SubItem = ({ skill, builtWith }) => {
         background: "bg-white",
         padding: "p-1 pr-1.5",
         overflow: "overflow-hidden",
-        width: "w-0",
+        width: "",
         opacity: "opacity-0",
         shadow: "",
         zIndex: "",
@@ -29,24 +32,54 @@ const SubItem = ({ skill, builtWith }) => {
     const[toolTipClasses, setToolTipClasses] = useState(buildClassString(toolTipStyles))
     const pClasses = "border border-solid rounded-full py-1 px-2 text-center inline-block"
 
+    const shiftElementLeft = (rightBound, el) => {
+        if (rightBound > window.innerWidth) {
+            const overflowX = rightBound - window.innerWidth;
+            // element's current position minus how far it overflowed off the viewport
+            const newLeftPos = (parseInt(window.getComputedStyle(el).left) - overflowX)
+            el.style.left = `${parseInt(newLeftPos)}px`;
+        }
+    }
 
-    const handleClick = () => {
+    //tooltip starts at full width so it can be measured & adjusted
+    const setUpToolTip = (el) => {
+        if (el && !hasRendered.current) {
+
+            const boundingRect = el.getBoundingClientRect()
+            //save full width of tooltip to toggle from 0 later
+            tTipFullWidth.current = parseInt(boundingRect.width) + "px";
+
+            //adjust left position to prevent overflow if needed
+            shiftElementLeft( boundingRect.right, el )
+ 
+            //reset tooltip width to 0 for animation
+            setToolTipStyles({ ...toolTipStyles, width: "w-0" });
+
+            //only need to do this once
+            hasRendered.current = true;
+        }
+
+    }
+
+
+    const handleClick = (e) => {
         const shownStyles = {
-            width: "w-60",
             shadow: "shadow-xl",
             zIndex: "z-10",
             opacity: "opacity-100"
         }
 
         const hiddenStyles = {
-            width: "w-0",
             opacity: "opacity-0",
             shadow: "",
             zIndex: "",
         }
 
+        const toggledWidth = isShown ? "0px" : tTipFullWidth.current;
         const toggledStyle = isShown ? hiddenStyles : shownStyles;
+        const spanElement = e.target.querySelector('span');
 
+        spanElement.style.width = toggledWidth;
         setToolTipStyles({...toolTipStyles, ...toggledStyle})
         setisShown(!isShown)
     }
@@ -60,7 +93,7 @@ const SubItem = ({ skill, builtWith }) => {
 
     const specialItem = <li className= "grow">
         <p className={pClasses + " border-purple-400 relative cursor-pointer"} onClick={handleClick}>{skill}
-            <span className={ toolTipClasses}>This site was built with {skill}!</span>
+            <span ref={setUpToolTip} className={ toolTipClasses}>This site was built with {skill}!</span>
             </p>
     </li>;
 
