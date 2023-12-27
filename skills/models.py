@@ -9,6 +9,9 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ("display_order",)
+
 
 class SubSkill(models.Model):
     name = models.CharField(max_length=30)
@@ -18,3 +21,6 @@ class SubSkill(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ("display_order",)
