@@ -28,10 +28,10 @@ const SubItem = ({ skill, builtWith }) => {
         return Object.values(styleObj).join(" ")
     }
 
-    //toolTipClasses = toolTipStyles object collapsed into a string
     const[toolTipClasses, setToolTipClasses] = useState(buildClassString(toolTipStyles))
     const pClasses = "border border-solid rounded-full py-1 px-2 text-center inline-block"
 
+    //adjust left position to prevent overflow if needed
     const shiftElementLeft = (rightBound, el) => {
         if (rightBound > window.innerWidth) {
             const overflowX = rightBound - window.innerWidth;
@@ -84,6 +84,7 @@ const SubItem = ({ skill, builtWith }) => {
         setisShown(!isShown)
     }
 
+    //turn the new styles into class string every time they change
     useEffect(()=>{ setToolTipClasses(buildClassString(toolTipStyles))}, [toolTipStyles])
 
     
@@ -114,13 +115,16 @@ export const SkillItem = ({ skill, subItems }) => {
     const subComponents = subItems.length ? subItems.map((item) => {
         return(<SubItem key={item.skill} {...item} />)
     }) : [];
+
     const subList = subItems.length ? <ul className="flex flex-row text-sm font flex-wrap justify-around gap-2 px-4">
         {subComponents}
     </ul> : "";
-    const styleClasses = subItems.length ? "font-bold mb-2" : "font-bold"
+
+    const styleClasses = subItems.length ? "mb-2" : "";
+
     return (
         <li className="bg-white/60 mb-1 p-2 rounded-lg">
-            <h4 className={styleClasses}>{skill}</h4>
+            <h4 className={"font-bold " + styleClasses}>{skill}</h4>
             {subList}
         </li>
     )
