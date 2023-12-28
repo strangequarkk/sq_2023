@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const baseURL = "http://localhost:8000/api";
 
-export const retrieveAllResumeItems = (callback) => {
+export const retrieveAllSkills = (callback) => {
   axios
-    .get(`${baseURL}/resume/`)
+    .get(`${baseURL}/skills/`)
     .then((response) => {
       callback(response.data);
     })
@@ -13,9 +13,9 @@ export const retrieveAllResumeItems = (callback) => {
     });
 };
 
-export const deleteResumeItem = (id, callback) => {
+export const deleteSkill = (id, callback) => {
   axios
-    .delete(`${baseURL}/resume/${id}/`)
+    .delete(`${baseURL}/skills/${id}/`)
     .then((response) => {
       callback(response.data);
     })
@@ -24,9 +24,9 @@ export const deleteResumeItem = (id, callback) => {
     });
 };
 
-export const createResumeItem = (data, callback) => {
+export const createSkill = (data, callback) => {
   axios
-    .post(`${baseURL}/resume/`, data)
+    .post(`${baseURL}/skills/`, data)
     .then((response) => {
       callback(response.data);
     })

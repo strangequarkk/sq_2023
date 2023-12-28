@@ -6,11 +6,9 @@ import { retrieveAllResumeItems } from "../services/resume.service"
 */
 export const Experience = () => { 
     const [resumeItems, setResumeItems] = useState([]);
-    const populateFromResponse = (response) => {
-        setResumeItems(response.data)
-      }
+
       useEffect(() => {
-        retrieveAllResumeItems(populateFromResponse);
+        retrieveAllResumeItems(setResumeItems);
       }, [])
     
     //padding-top to ensure scrollto doens't cover title with nav bar
