@@ -44,7 +44,6 @@ const SubItem = ({ skill, builtWith }) => {
     //tooltip starts at full width so it can be measured & adjusted
     const setUpToolTip = (el) => {
         if (el && !hasRendered.current) {
-
             const boundingRect = el.getBoundingClientRect()
             //save full width of tooltip to toggle from 0 later
             tTipFullWidth.current = parseInt(boundingRect.width) + "px";

@@ -9,6 +9,7 @@ import { About } from './components/About'
 import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
 import { Portfolio } from './components/Portfolio'
+import { Reviews } from './components/Reviews'
 import { ShiftBG } from './components/ui/ShiftBG'
 import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 
@@ -35,6 +36,7 @@ function App() {
               < About />
               < Skills />
               < Experience />
+              < Reviews />
               < Portfolio />
             </>
             
