@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 */
 export const Navbar = () => {
     return (
-        <nav className="navbar font-nav flex place-content-between py-2">
+        <nav className="navbar font-nav flex place-content-between text-xs py-2">
             <HashLink smooth to='/#about' className="nav-link">
                 About
             </HashLink>
@@ -13,6 +13,9 @@ export const Navbar = () => {
             </HashLink>
             <HashLink smooth to={'/#experience'} className="nav-link">
                 Experience
+            </HashLink>
+            <HashLink smooth to={'/#reviews'} className="nav-link">
+                Reviews
             </HashLink>
             <HashLink smooth to={'/#portfolio'} className="nav-link">
                 Portfolio

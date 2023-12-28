@@ -18,7 +18,7 @@ export const Reviews = () => {
     }) :
         <p>no reviews found</p>
     return (
-        <section id="experience" className="pt-12">
+        <section id="reviews" className="pt-12">
         <h2 className="font-heading text-3xl">Reviews</h2>
             {reviewCards}
         </section>
