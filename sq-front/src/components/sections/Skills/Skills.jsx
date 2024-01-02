@@ -1,5 +1,5 @@
-import { SkillItem } from "./ui/SkillItem"
-import { retrieveAllSkills } from "../services/skills.service"
+import { SkillItem } from "./SkillItem"
+import { retrieveAllSkills } from "../../../services/skills.service"
 import { useEffect, useState } from "react"
 
 export const Skills = () => { 
