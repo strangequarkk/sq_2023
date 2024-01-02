@@ -1,0 +1,25 @@
+/*  reviews carousel */
+.carousel__next-button, .carousel__back-button {
+    transition: all 0.3s;
+  }
+  
+  .carousel__next-button:disabled, .carousel__back-button:disabled {
+    opacity:0
+  }
+  
+  button.carousel__dot--selected {
+    font-weight:bold;
+    font-size:1.3em;
+    
+    background:white;
+  }
+  
+  .carousel__dot {
+    text-align:center;
+    vertical-align:middle;
+    width: 3rem;
+    height: 1.5rem;
+    padding: 0 0.2rem;
+    border-radius: 5em;
+    transition: all 0.3s;
+  }
