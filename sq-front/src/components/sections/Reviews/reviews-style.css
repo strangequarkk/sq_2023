@@ -36,3 +36,17 @@
     width: calc(100vw - 3rem);
     max-width: 400px;
   }
+
+  /* carousel buttons */
+  .carouselButton::before {
+    content: ' ';
+    background-color: rgb(255 255 255 / 0.75);
+    border-radius:100%;
+    position:absolute;
+    z-index: 0;
+    padding:6rem;
+    height:1px;
+    top:0;
+    bottom: 0;
+    margin:auto;
+  }

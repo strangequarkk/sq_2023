@@ -53,13 +53,13 @@ export const Reviews = () => {
             >
                 <DotGroup dotNumbers={true} className="flex justify-around align-middle w-3/4 mx-auto text-sm my-2" />
                 <div className="relative">
-                    <ButtonBack className="absolute -left-8 top-0 bottom-0 z-40">
-                    <span className=" before:content-[' '] before:bg-white/75 before:rounded-full before:p-24 before:absolute before:top-[20%] before:right-[10%] before:z-0">
+                    <ButtonBack className="  absolute -left-8 top-0 bottom-0 z-40">
+                    <span className=" carouselButton before:right-[10%]">
                             <img className="h-14 z-10 relative text-neutral-700" src={LeftArrow} alt="Back" />
                             </span>
                     </ButtonBack>
-                    <ButtonNext className="absolute -right-8 top-0 bottom-0 z-40">
-                        <span className=" before:content-[' '] before:bg-white/75 before:rounded-full before:p-24 before:absolute before:top-[20%] before:left-[10%] before:z-0">
+                    <ButtonNext className=" absolute -right-8 top-0 bottom-0 z-40">
+                        <span className=" carouselButton before:left-[10%] ">
                             <img className="h-14 z-10 relative" src={RightArrow} alt="Next" />
                         </span>
                     </ButtonNext>
