@@ -23,3 +23,16 @@
     border-radius: 5em;
     transition: all 0.3s;
   }
+
+  div.slideInner___2mfX9 {
+    height:auto;
+    position:relative;
+    width: calc(100vw - 3rem);
+    max-width: 400px;
+  }
+
+  div.slide___3-Nqo {
+    height:auto;
+    width: calc(100vw - 3rem);
+    max-width: 400px;
+  }

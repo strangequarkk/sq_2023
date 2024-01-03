@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 export const ReviewCard = ({ title, student, message, lessons}) => {
 
     return (
-        <blockquote className=" p-3 flex flex-col justify-between">
+        <blockquote className=" p-3 flex flex-col justify-between border-2 border-solid border-neutral-700 mx-2">
             <div>
             <h4 className="font-bold pb-2">{title}</h4>
                 <p>{message}</p>
