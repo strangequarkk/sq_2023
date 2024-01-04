@@ -11,6 +11,7 @@ import { Experience } from './components/sections/Experience/Experience'
 import { Portfolio } from './components/sections/Portfolio/Portfolio'
 import { Reviews } from './components/sections/Reviews/Reviews'
 import { ShiftBG } from './components/ui/ShiftBG'
+import { HireMe } from './components/ui/HireMe'
 import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 
 import './App.css'
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/edit/resume/add/" element={< AddResumeItem />} />
         <Route exact path="/edit/resume/:id/update/" element={< UpdateResume/>} /> */}
         </Routes>
+        <HireMe />
         </main>
     </>
   )
