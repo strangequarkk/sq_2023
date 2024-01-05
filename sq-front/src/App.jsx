@@ -11,7 +11,7 @@ import { Experience } from './components/sections/Experience/Experience'
 import { Portfolio } from './components/sections/Portfolio/Portfolio'
 import { Reviews } from './components/sections/Reviews/Reviews'
 import { ShiftBG } from './components/ui/ShiftBG'
-import { HireMe } from './components/ui/HireMe'
+import { HireMe } from './components/ui/HireMe/HireMe'
 import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
 
 import './App.css'
