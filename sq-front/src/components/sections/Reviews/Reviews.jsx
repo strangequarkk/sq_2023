@@ -17,26 +17,20 @@ export const Reviews = () => {
     useEffect(() => {
         retrieveAllReviews(setReviews);
     }, [])
-    
-    useEffect(() => {
-        console.log('reviews');
-        console.log(reviews);
-    }, [reviews])
 
     useEffect(() => { 
         setVisibleCards(calcVisible)
     }, [winWidth, calcVisible])
 
-    console.log("window?", window.innerWidth )
- 
-    console.log('visible slides:', visibleCards)
-
     const reviewCards = reviews.length > 0 ? reviews.map((review) => {
-        return (<Slide key={review.title}
-            className=" flex"
-        innerClassName="flex">
-            <ReviewCard  {...review} />
-        </Slide>)
+        return (
+            <Slide key={review.title}
+                className=" flex"
+                innerClassName="flex"
+            >
+                <ReviewCard  {...review} />
+            </Slide>
+        )
     }) :
         <p>no reviews found</p>
     return (
@@ -45,28 +39,28 @@ export const Reviews = () => {
             <br />
             
             <CarouselProvider
-        naturalSlideWidth={0}
-        naturalSlideHeight={0}
+                naturalSlideWidth={0}
+                naturalSlideHeight={0}
                 totalSlides={reviews.length}
                 visibleSlides={visibleCards}
                 
             >
                 <DotGroup dotNumbers={true} className="flex justify-around align-middle w-3/4 mx-auto text-sm my-2" />
                 <div className="relative">
-                    <ButtonBack className="  absolute -left-8 top-0 bottom-0 z-40">
-                    <span className=" carouselButton before:right-[10%]">
+                    <ButtonBack className="absolute -left-8 top-0 bottom-0 z-40">
+                        <span className="carouselButton before:right-[10%]">
                             <img className="h-14 z-10 relative text-neutral-700" src={LeftArrow} alt="Back" />
-                            </span>
+                        </span>
                     </ButtonBack>
                     <ButtonNext className=" absolute -right-8 top-0 bottom-0 z-40">
                         <span className=" carouselButton before:left-[10%] ">
                             <img className="h-14 z-10 relative" src={RightArrow} alt="Next" />
                         </span>
                     </ButtonNext>
-                <Slider classNameTray="flex">
-                {reviewCards}
+                    <Slider classNameTray="flex">
+                    {reviewCards}
                     </Slider>
-                    </div>
+                </div>
                 
       </CarouselProvider> 
             <a href="wyzant.com/Tutors/KaeTutorsCS" className="text-sm text-center block w-3/4 mx-auto underline pt-3">Check out my Wyzant profile for more student reviews!</a>

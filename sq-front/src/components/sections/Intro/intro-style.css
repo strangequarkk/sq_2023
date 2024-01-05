@@ -1,0 +1,10 @@
+#intro .title-wrap {
+    position: absolute;
+    top:2rem;
+    height: calc(100vh - 22rem);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    vertical-align: middle;
+  
+  }

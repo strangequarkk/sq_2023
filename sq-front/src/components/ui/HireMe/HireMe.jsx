@@ -15,11 +15,9 @@ export const HireMe = () => {
         //if (openAttr) {
         setIsClosing(true);
         
-        console.log("!!!DONT WAVE")
         removeWaveAnimation();
             const preventExtraWave = setTimeout(() => {
                 setIsClosing(false);
-                console.log('wave ok now')
                 clearTimeout(preventExtraWave);
             }, 200)
         //}
@@ -28,13 +26,11 @@ export const HireMe = () => {
 
     const startWaveAnimation = () => {
         if (!wave && !isClosing) {
-            console.log("activate wave")
             setWave("waveActive")
         }
     }
     const removeWaveAnimation = () => {
         if (wave) {
-            console.log("remove wave")
             setWave("")
         }
     }
@@ -42,12 +38,10 @@ export const HireMe = () => {
     useWindowScroll((scrollY) => {
         const pageEndHeight = document.documentElement.scrollHeight - document.body.scrollHeight;
   
-        if (scrollY >= pageEndHeight - 10) {
-            console.log("pagebottom wave active")
+        if (scrollY === pageEndHeight) {
             setWave("waveActive")
         }
         else if (wave) {
-            console.log("end pagebottom wave")
             setWave("");
         }
     })
@@ -56,25 +50,25 @@ export const HireMe = () => {
         : " bottom-1 right-1 py-1 px-2 rounded-full "+ wave+"-parent"
 
     return (
-        <aside className={"transition-all bg-white duration-200 fixed text-sm leading-7 z-50" + bgClasses}>
+        <aside className={"transition-all bg-white duration-200 fixed text-sm leading-[1.7rem] z-50" + bgClasses}>
             {openAttr ? 
                 <>
-          <h2 className="text-lg font-bold">Hire me!</h2>
-                    <p><a className="underline" href="mailto:kae.unterseher@gmail.com">kae.unterseher@gmail.com</a></p>
-                    <p>(509) 308-5094</p>
-          <p>Bluesky: <a className="underline" href="bsky.app/untercurrent">@untercurrent</a></p>
+                <h2 className="text-lg font-bold">Hire me!</h2>
+                <p><a className="underline" href="mailto:kae.unterseher@gmail.com">kae.unterseher@gmail.com</a></p>
+                <p>(509) 308-5094</p>
+                <p>Bluesky: <a className="underline" href="bsky.app/untercurrent">@untercurrent</a></p>
             
-            <button
+                <button
                   type="button"
                   className="close absolute top-1 left-1 "
                   aria-label="Close"
                   onClick={handleClose}
-            >
-                <svg viewBox="0 0 24 24" width="30px" className="absolute -top-3 -left-3">
-                    <use xlinkHref={closeIcon+"#icon"}></use>
-                </svg>
-                    </button>
-                    </>
+                >
+                    <svg viewBox="0 0 24 24" width="30px" className="absolute -top-3 -left-3">
+                        <use xlinkHref={closeIcon+"#icon"}></use>
+                    </svg>
+                </button>
+                </>
                 :
 
                 <button
@@ -83,9 +77,11 @@ export const HireMe = () => {
                     onClick={handleClose}
                     onMouseEnter={startWaveAnimation}
                     onMouseLeave={removeWaveAnimation}
-            ><svg viewBox="0 0 128 128" width="50px" className={wave}>
-            <use xlinkHref={handWave+"#hand"}></use>
-        </svg> </button>
+                >
+                    <svg viewBox="0 0 128 128" width="50px" className={wave}>
+                        <use xlinkHref={handWave+"#hand"}></use>
+                    </svg>
+                </button>
                 
             }
         </aside>
