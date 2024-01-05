@@ -1,0 +1,7 @@
+
+/* tailwind does not allow custom breakpoints */
+@media screen and (max-width: 340px) {
+    nav a {
+        font-size: 0.6rem;
+    }
+}

@@ -8,3 +8,13 @@
     vertical-align: middle;
   
   }
+
+  @media screen and (max-width: 340px) {
+    #intro h1{
+        font-size: 2.5rem;
+    }
+    #intro h2 {
+        font-size: 1.8rem;
+    }
+
+  }

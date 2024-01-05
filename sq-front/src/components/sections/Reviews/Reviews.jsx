@@ -7,6 +7,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import LeftArrow from '../../../assets/arrow-chevron-left.svg'
 import RightArrow from '../../../assets/arrow-chevron-right.svg'
 import './reviews-style.css';
+//css file contains style overrides and button styling for the carousel
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState({})

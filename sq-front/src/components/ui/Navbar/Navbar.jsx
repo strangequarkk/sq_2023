@@ -1,4 +1,7 @@
 import { HashLink } from 'react-router-hash-link';
+import './navbar-style.css';
+// external css adjust size for a smaller breakpoint than tailwind can handle
+
 /*
 * Navigation for single page application, using HashLink to scroll smoothly between sections
 */

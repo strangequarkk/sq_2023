@@ -1,4 +1,5 @@
 import './intro-style.css'
+// external css file adjusts font size at a smaller breakpoint, and places the h1 with a calculated height
 
 export const Intro = () => {
     return (
