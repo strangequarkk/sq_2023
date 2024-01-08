@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "resume",
     "skills",
     "reviews",
+    "tinymce",
 ]
 
 MIDDLEWARE = [

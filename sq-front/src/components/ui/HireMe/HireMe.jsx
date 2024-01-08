@@ -38,7 +38,7 @@ export const HireMe = () => {
     useWindowScroll((scrollY) => {
         const pageEndHeight = document.documentElement.scrollHeight - document.body.scrollHeight;
   
-        if (scrollY === pageEndHeight) {
+        if (scrollY >= pageEndHeight - 5) {
             setWave("waveActive")
         }
         else if (wave) {
@@ -54,7 +54,7 @@ export const HireMe = () => {
             {openAttr ? 
                 <>
                 <h2 className="text-lg font-bold">Hire me!</h2>
-                <p><a className="underline" href="mailto:kae.unterseher@gmail.com">kae.unterseher@gmail.com</a></p>
+                <p><a className="underline" href="mailto:kae.unterseher@gmail.com?subject=Let's Work Together!">kae.unterseher@gmail.com</a></p>
                 <p>(509) 308-5094</p>
                 <p>Bluesky: <a className="underline" href="bsky.app/untercurrent">@untercurrent</a></p>
             
@@ -78,7 +78,7 @@ export const HireMe = () => {
                     onMouseEnter={startWaveAnimation}
                     onMouseLeave={removeWaveAnimation}
                 >
-                    <svg viewBox="0 0 128 128" width="50px" className={wave}>
+                    <svg viewBox="0 0 131 131" width="50px" className={wave}>
                         <use xlinkHref={handWave+"#hand"}></use>
                     </svg>
                 </button>
