@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "skills",
     "reviews",
     "tinymce",
+    "projects",
 ]
 
 MIDDLEWARE = [
