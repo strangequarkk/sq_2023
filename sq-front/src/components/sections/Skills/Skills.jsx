@@ -4,9 +4,7 @@ import { useEffect, useState } from "react"
 
 export const Skills = () => { 
     const [skills, setSkills] = useState([]);
-    // const populateFromResponse = (response) => {
-    //     setSkills(response.data)
-    //   }
+
       useEffect(() => {
         retrieveAllSkills(setSkills);
       }, [])
@@ -18,7 +16,7 @@ export const Skills = () => {
         )} />
     ) : <p>no items to show</p>
     
-    //padding-top to ensure scrollto doens't cover title with nav bar
+    
     return (
         <section id="skills" className="pt-12 max-w-100">
             <h2 className="font-heading text-3xl pb-3">Skills</h2>

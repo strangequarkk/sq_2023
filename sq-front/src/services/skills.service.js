@@ -13,24 +13,24 @@ export const retrieveAllSkills = (callback) => {
     });
 };
 
-export const deleteSkill = (id, callback) => {
-  axios
-    .delete(`${baseURL}/skills/${id}/`)
-    .then((response) => {
-      callback(response.data);
-    })
-    .catch((e) => {
-      console.error(e);
-    });
-};
+// export const deleteSkill = (id, callback) => {
+//   axios
+//     .delete(`${baseURL}/skills/${id}/`)
+//     .then((response) => {
+//       callback(response.data);
+//     })
+//     .catch((e) => {
+//       console.error(e);
+//     });
+// };
 
-export const createSkill = (data, callback) => {
-  axios
-    .post(`${baseURL}/skills/`, data)
-    .then((response) => {
-      callback(response.data);
-    })
-    .catch((e) => {
-      console.error(e);
-    });
-};
+// export const createSkill = (data, callback) => {
+//   axios
+//     .post(`${baseURL}/skills/`, data)
+//     .then((response) => {
+//       callback(response.data);
+//     })
+//     .catch((e) => {
+//       console.error(e);
+//     });
+// };
