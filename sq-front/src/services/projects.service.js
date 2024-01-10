@@ -1,4 +1,5 @@
 import axios from "axios";
+import DOMPurify from "dompurify";
 
 export const baseURL = "http://localhost:8000/api";
 
@@ -6,7 +7,14 @@ export const retrieveAllProjects = (callback) => {
   axios
     .get(`${baseURL}/projects/`)
     .then((response) => {
-      callback(response.data);
+      const sanitizedData = response.data.map((project) => {
+        return {
+          ...project,
+          description: DOMPurify.sanitize(project.description),
+        };
+      });
+      console.log(sanitizedData);
+      callback(sanitizedData);
     })
     .catch((e) => {
       console.error(e);

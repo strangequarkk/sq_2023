@@ -7,7 +7,7 @@ export const Portfolio = () => {
     useEffect(() => {
         retrieveAllProjects(setProjects);
       }, [])
-      const projectCards = projects ? 
+      const projectCards = projects.length > 0 ? 
           projects.map((project) => {
             
               //make an object full of defaults so react doesn't freak out if something is null
