@@ -23,5 +23,6 @@ urlpatterns = [
     path("tinkering/", admin.site.urls),
     path("", TemplateView.as_view(template_name="index.html")),
     path("api/", include((router.urls, "strange_quark"), namespace="strange_quark")),
-    path("tinymce/", include("tinymce.urls")),
+    # path("tinymce/", include("tinymce.urls")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]

@@ -1,13 +1,14 @@
 from django.db import models
-from tinymce.models import HTMLField
 
+# from tinymce.models import HTMLField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 upload_dest = "sq-front/src/assets"
 
 
 class Project(models.Model):
     title = models.CharField(max_length=30)
-    description = HTMLField()
+    description = RichTextUploadingField()
     link = models.CharField(max_length=30)
     cover_image = models.ImageField(upload_to=upload_dest, blank=True)
     cover_video = models.FileField(upload_to=upload_dest, blank=True)

@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     "skills",
     "reviews",
     "tinymce",
+    "ckeditor",
+    "ckeditor_uploader",
     "projects",
 ]
 
@@ -142,10 +144,13 @@ USE_TZ = True
 STATIC_URL = "/assets/"
 STATICFILES_DIRS = [FRONTEND_DIR]  # / "assets"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = BACKEND_DIR / "static"
 WHITENOISE_ROOT = FRONTEND_DIR  # / "assets"
 
+CKEDITOR_UPLOAD_PATH = "sq-front/src/assets"
+MEDIA_ROOT = ""
+MEDIA_URL = "/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
