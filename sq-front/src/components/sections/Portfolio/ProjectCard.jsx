@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 export const ProjectCard = ({ title, link, description, cover_image, cover_video, project_skills, gallery_images }) => {
-    const cover_path = cover_image.length ? cover_image.split('/sq-front')[1] :""
+    const cover_path = cover_image.length ? cover_image.split('/src')[1] :""
     console.log("cover path", cover_path)
     const cover = cover_image.length ?
         <img src={cover_path}  />

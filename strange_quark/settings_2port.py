@@ -22,7 +22,9 @@ env = os.environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 BACKEND_DIR = BASE_DIR
-FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
+FRONTEND_DIR = str(
+    BASE_DIR / "sq-front/dist"
+)  # os.path.join(BASE_DIR, "sq-front/dist")
 
 
 # Quick-start development settings - unsuitable for production
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     "resume",
     "skills",
     "reviews",
+    "tinymce",
     "ckeditor",
     "ckeditor_uploader",
     "projects",
@@ -138,17 +141,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/src/"
+STATIC_URL = "/assets/"
 STATICFILES_DIRS = [FRONTEND_DIR]  # / "assets"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = BACKEND_DIR / "static"
 WHITENOISE_ROOT = FRONTEND_DIR  # / "assets"
 
-CKEDITOR_UPLOAD_PATH = "./"
-# CKEDITOR_STORAGE_BACKEND = str(BASE_DIR / "sq-front/src/assets")
-MEDIA_ROOT = "./sq-front/public/assets"
-MEDIA_URL = "/assets/"
+CKEDITOR_UPLOAD_PATH = "sq-front/src/assets"
+MEDIA_ROOT = ""
+MEDIA_URL = "/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
