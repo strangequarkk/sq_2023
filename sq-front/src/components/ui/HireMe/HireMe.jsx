@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useWindowScroll } from "../../../utils/useWindowScroll"
-import handWave from "../../../assets/handwave.svg#hand"
+import handWave from "../../../assets/handwave.svg"
 import closeIcon from "../../../assets/icon-close-circle.svg"
 import "./hireMe-style.css" //tailwind is unwieldy for custom animations
 
