@@ -1,4 +1,5 @@
 from django.db import models
+from common.utils import build_and_collect
 
 # from tinymce.models import HTMLField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -15,6 +16,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        super(Project, self).save(*args, **kwargs)
+        build_and_collect()
 
 
 class GalleryImage(models.Model):
