@@ -37,7 +37,7 @@ DEBUG = env.get("DEBUG_STATUS", False)
 
 # ALLOWED_HOSTS = []
 
-# ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
+ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
 
 CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
 
