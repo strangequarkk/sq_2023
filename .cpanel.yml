@@ -15,3 +15,4 @@ deployment:
     - /bin/cp manage.py $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
     - /bin/cp routers.py $DEPLOYPATH
+    - gunicorn strange_quark.wsgi
