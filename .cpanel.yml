@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/example/public_html/
+    - export DEPLOYPATH=/home/strangeq/public_html/
     - /bin/cp -R common $DEPLOYPATH
     - /bin/cp -R projects $DEPLOYPATH
     - /bin/cp -R resume $DEPLOYPATH
@@ -15,4 +15,3 @@ deployment:
     - /bin/cp manage.py $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
     - /bin/cp routers.py $DEPLOYPATH
-    - gunicorn strange_quark.wsgi
