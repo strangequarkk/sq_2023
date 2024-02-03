@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/example/public_html/
+    - /bin/cp -R common $DEPLOYPATH
+    - /bin/cp -R projects $DEPLOYPATH
+    - /bin/cp -R resume $DEPLOYPATH
+    - /bin/cp -R reviews $DEPLOYPATH
+    - /bin/cp -R skills $DEPLOYPATH
+    - /bin/cp -R sq-front $DEPLOYPATH
+    - /bin/cp -R static $DEPLOYPATH
+    - /bin/cp -R strange_quark $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp db.sqlite3 $DEPLOYPATH
+    - /bin/cp manage.py $DEPLOYPATH
+    - /bin/cp requirements.txt $DEPLOYPATH
+    - /bin/cp routers.py $DEPLOYPATH
+    - gunicorn strange_quark.wsgi

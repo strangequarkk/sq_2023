@@ -35,7 +35,7 @@ export const Reviews = () => {
     }) :
         <p>no reviews found</p>
     return (
-        <section id="reviews" className="pt-12 relative overflow-x-hidden max-w-[100vw]">
+        <section id="reviews" className="pt-12 relative">
             <h2 className="font-heading text-3xl mb-3">Reviews</h2>
             <br />
             
