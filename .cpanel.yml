@@ -15,5 +15,5 @@ deployment:
     - /bin/cp manage.py $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
     - /bin/cp routers.py $DEPLOYPATH
-    - /bin/cd /home/strangeq/public_html && /usr/bin/pip install --user -r requirements.txt
-    - gunicorn strange_quark.wsgi
+    - /bin/cd $DEPLOYPATH && /usr/bin/pip install --user -r requirements.txt
+    - /bin/gunicorn strange_quark.wsgi
