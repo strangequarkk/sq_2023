@@ -1,5 +1,4 @@
 .DS_Store
-/manage.py
 strange_quark_env/
 .vscode
 .env
