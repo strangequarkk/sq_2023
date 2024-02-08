@@ -9,11 +9,11 @@ deployment:
     - /bin/cp -R skills $DEPLOYPATH
     - /bin/cp -R sq-front $DEPLOYPATH
     - /bin/cp -R static $DEPLOYPATH
-    - /bin/cp -R strange_quark $DEPLOYPATH
+    - /bin/cp -R strange-quark $DEPLOYPATH
     - /bin/cp .gitignore $DEPLOYPATH
     - /bin/cp db.sqlite3 $DEPLOYPATH
     - /bin/cp manage.py $DEPLOYPATH
     - /bin/cp requirements.txt $DEPLOYPATH
     - /bin/cp routers.py $DEPLOYPATH
     - /bin/cd $DEPLOYPATH && /usr/bin/pip install --user -r requirements.txt
-    - /bin/gunicorn strange_quark.wsgi
+    - /bin/gunicorn strange-quark.wsgi

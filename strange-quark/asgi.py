@@ -1,5 +1,5 @@
 """
-ASGI config for strange_quark project.
+ASGI config for strange-quark project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'strange_quark.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "strange-quark.settings")
 
 application = get_asgi_application()
