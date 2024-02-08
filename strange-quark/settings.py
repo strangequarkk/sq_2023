@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     "projects",
+    "strange_quark",
 ]
 
 MIDDLEWARE = [
