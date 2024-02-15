@@ -1,7 +1,6 @@
 import axios from "axios";
 import DOMPurify from "dompurify";
-
-export const baseURL = "http://localhost:8000/api";
+import { baseURL } from "baseUrl";
 
 export const retrieveAllProjects = (callback) => {
   axios

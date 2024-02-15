@@ -1,6 +1,5 @@
 import axios from "axios";
-
-export const baseURL = "http://localhost:8000/api";
+import { baseURL } from "baseUrl";
 
 export const retrieveAllSkills = (callback) => {
   axios

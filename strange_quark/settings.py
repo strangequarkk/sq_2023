@@ -40,6 +40,8 @@ DEBUG = env.get("DEBUG_STATUS", False)
 ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = env.get("ALLOWED_ORIGINS").split(" ")
 
 CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
+print("allowed access:")
+print(CORS_ALLOWED_ORIGINS)
 
 # Application definition
 
