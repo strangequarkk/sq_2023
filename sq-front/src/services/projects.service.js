@@ -1,6 +1,6 @@
 import axios from "axios";
 import DOMPurify from "dompurify";
-import { baseURL } from "baseUrl";
+import { baseURL } from "./baseUrl";
 
 export const retrieveAllProjects = (callback) => {
   axios
