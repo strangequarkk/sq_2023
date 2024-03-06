@@ -2,14 +2,14 @@ import PropTypes from 'prop-types'
 
 export const ProjectCard = ({ title, link, description, cover_image, cover_video, project_skills, gallery_images }) => {
     const cover_path = cover_image.length ? cover_image.split('/src')[1] :""
-    console.log("cover path", cover_path)
+    
     const cover = cover_image.length ?
         <img src={cover_path}  />
         : "";
 
-
     const skills = project_skills.length ? project_skills.map((skillObj) => { 
-        return <span className =" border-teal-200 bg-white/60 border border-solid rounded-full py-1 px-2 text-center inline-block mr-3" key={skillObj.skill}>{skillObj.skill} </span>
+        return <span className=" border-teal-200 bg-white/60 border border-solid rounded-full py-1 px-2 text-center inline-block mr-3"
+            key={skillObj.skill}>{skillObj.skill} </span>
     }) : ""
 
     const video = cover_video.length ? <video src={cover_video}></video> : ""
@@ -18,6 +18,7 @@ export const ProjectCard = ({ title, link, description, cover_image, cover_video
         return <img key={imgObj.image}  src={imgObj.image} />
     }) : ""
 
+    //'description' comes from the django rich text editor; use __html: keyword to force react to insert it w/o escaping html characters
     const descriptionObj = {__html:description}
         
     return (
