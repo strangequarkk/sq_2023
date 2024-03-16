@@ -1,11 +1,27 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { detectClickOut } from '../../../utils/detectClickout'
+import {shiftElementLeft} from '../../../utils/shiftElementLeft'
 
 
 const SubItem = ({ skill, builtWith }) => {
-    const [isShown, setisShown] = useState(false)
+    const [showTTip, setShowTTip] = useState(false)
     const tTipFullWidth = useRef("");
     const hasRendered = useRef(false);
+    const tTipElement = useRef()
+    const skillElement = useRef()
+
+    const shownStyles = useRef({
+        shadow: "shadow-xl",
+        zIndex: "z-10",
+        opacity: "opacity-100"
+    })
+
+    const hiddenStyles = useRef({
+        opacity: "opacity-0",
+        shadow: "",
+        zIndex: "",
+    })
 
     //breaking up the tailwind classes for legibility
     const [toolTipStyles, setToolTipStyles] = useState({
@@ -22,6 +38,7 @@ const SubItem = ({ skill, builtWith }) => {
         opacity: "opacity-0",
         shadow: "",
         zIndex: "",
+        className: "tooltip"
     })
 
     const buildClassString = (styleObj) => {
@@ -31,57 +48,54 @@ const SubItem = ({ skill, builtWith }) => {
     const[toolTipClasses, setToolTipClasses] = useState(buildClassString(toolTipStyles))
     const pClasses = "border border-solid rounded-full py-1 px-2 text-center inline-block"
 
-    //adjust left position to prevent overflow if needed
-    const shiftElementLeft = (rightBound, el) => {
-        if (rightBound > window.innerWidth) {
-            const overflowX = rightBound - window.innerWidth;
-            // element's current position minus how far it overflowed off the viewport
-            const newLeftPos = (parseInt(window.getComputedStyle(el).left) - overflowX)
-            el.style.left = `${parseInt(newLeftPos)}px`;
-        }
-    }
 
-    //tooltip starts at full width so it can be measured & adjusted
-    const setUpToolTip = (el) => {
-        if (el && !hasRendered.current) {
-            const boundingRect = el.getBoundingClientRect()
+
+    const changeTTipState = useCallback((tTipVisibility) => {
+
+        const toggledWidth = tTipVisibility ? "0px" : tTipFullWidth.current;
+        const toggledStyle = tTipVisibility ? hiddenStyles.current : shownStyles.current;
+        //have to handle width style separately bc it's calculated dynamically in shiftElementLeft; 
+        //tailwind can't build a custom style for it by the time we know what size we want
+        tTipElement.current.style.width = toggledWidth;
+        setToolTipStyles({ ...toolTipStyles, ...toggledStyle })
+    }, [tTipFullWidth, hiddenStyles, shownStyles,toolTipStyles, tTipElement]);
+    
+    const handleClickOut = useCallback(() => {
+        changeTTipState(true)
+        setShowTTip(false)
+    }, [changeTTipState]);
+
+    const handleClick = () => {
+        console.log("skillitem: handleclick")
+        console.log("showTTip:", showTTip)
+        changeTTipState(showTTip)
+        setShowTTip(!showTTip)
+    };
+
+    useEffect(() => {
+
+
+        if (tTipElement.current && !hasRendered.current) {
+            console.log(tTipElement)
+            const boundingRect = tTipElement.current.getBoundingClientRect()
             //save full width of tooltip to toggle from 0 later
             tTipFullWidth.current = parseInt(boundingRect.width) + "px";
 
             //adjust left position to prevent overflow if needed
-            shiftElementLeft( boundingRect.right, el )
+            shiftElementLeft( boundingRect.right, tTipElement.current )
  
             //reset tooltip width to 0 for animation
             setToolTipStyles({ ...toolTipStyles, width: "w-0" });
+
+            //clicking on the parent element toggles the tooltip visibility;
+            //clicking on anything else makes the tooltip go away
+            detectClickOut(skillElement.current, handleClickOut);
 
             //only need to do this once
             hasRendered.current = true;
         }
 
-    }
-
-
-    const handleClick = (e) => {
-        const shownStyles = {
-            shadow: "shadow-xl",
-            zIndex: "z-10",
-            opacity: "opacity-100"
-        }
-
-        const hiddenStyles = {
-            opacity: "opacity-0",
-            shadow: "",
-            zIndex: "",
-        }
-
-        const toggledWidth = isShown ? "0px" : tTipFullWidth.current;
-        const toggledStyle = isShown ? hiddenStyles : shownStyles;
-        const spanElement = e.target.querySelector('span');
-
-        spanElement.style.width = toggledWidth;
-        setToolTipStyles({...toolTipStyles, ...toggledStyle})
-        setisShown(!isShown)
-    }
+    }, [tTipElement, skillElement, hasRendered, toolTipStyles, changeTTipState, showTTip, handleClickOut ])
 
     //turn the new styles into class string every time they change
     useEffect(()=>{ setToolTipClasses(buildClassString(toolTipStyles))}, [toolTipStyles])
@@ -92,9 +106,9 @@ const SubItem = ({ skill, builtWith }) => {
     </li>;
 
     const specialItem = <li className= "grow">
-        <p className={pClasses + " border-purple-400 relative cursor-pointer"} onClick={handleClick}>{skill}
-            <span ref={setUpToolTip} className={ toolTipClasses}>This site was built with {skill}!</span>
-            </p>
+        <p ref={skillElement} onClick={handleClick} className={pClasses + " border-purple-400 relative cursor-pointer"} >{skill}
+            <span ref={tTipElement} className={ toolTipClasses}>This site was built with {skill}!</span>
+        </p>
     </li>;
 
     const displayedItem = builtWith ? specialItem : defaultItem;
