@@ -13,7 +13,6 @@ export const retrieveAllProjects = (callback) => {
           description: DOMPurify.sanitize(project.description),
         };
       });
-      console.log(sanitizedData);
       callback(sanitizedData);
     })
     .catch((e) => {

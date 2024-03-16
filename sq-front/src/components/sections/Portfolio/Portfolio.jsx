@@ -15,7 +15,7 @@ export const Portfolio = () => {
               Object.keys(project).forEach((prop) => {
                   defaultProjectProps[prop] = project[prop] ? project[prop] : ""
               })
-              console.log(defaultProjectProps);
+
               
               return <ProjectCard key={project.title}{...defaultProjectProps} />
           }) : 

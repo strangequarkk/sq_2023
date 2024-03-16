@@ -66,8 +66,6 @@ const SubItem = ({ skill, builtWith }) => {
     }, [changeTTipState]);
 
     const handleClick = () => {
-        console.log("skillitem: handleclick")
-        console.log("showTTip:", showTTip)
         changeTTipState(showTTip)
         setShowTTip(!showTTip)
     };
@@ -76,7 +74,6 @@ const SubItem = ({ skill, builtWith }) => {
 
 
         if (tTipElement.current && !hasRendered.current) {
-            console.log(tTipElement)
             const boundingRect = tTipElement.current.getBoundingClientRect()
             //save full width of tooltip to toggle from 0 later
             tTipFullWidth.current = parseInt(boundingRect.width) + "px";
