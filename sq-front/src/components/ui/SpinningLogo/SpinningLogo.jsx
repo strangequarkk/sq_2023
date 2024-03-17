@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useWindowScroll } from "../../utils/useWindowScroll";
+import { useWindowScroll } from "../../../utils/useWindowScroll";
+import "./logo-style.css";
 
 /*
  * Semi-transparent background logo that spins counterclockwise as the user scrolls

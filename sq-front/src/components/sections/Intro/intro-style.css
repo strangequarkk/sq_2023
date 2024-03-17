@@ -1,20 +1,33 @@
 #intro .title-wrap {
-    position: absolute;
-    top:2rem;
-    height: calc(100vh - 22rem);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    vertical-align: middle;
-  
+  position: absolute;
+  top: 2rem;
+  height: calc(100vh - 22rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 340px) {
+  #intro h1 {
+    font-size: 2.5rem;
+  }
+  #intro h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 1210px) {
+  #intro h1 {
+    right: auto;
+    left: 0;
+  }
+  section#intro {
+    margin: 0 !important;
+    padding: 0 3rem;
   }
 
-  @media screen and (max-width: 340px) {
-    #intro h1{
-        font-size: 2.5rem;
-    }
-    #intro h2 {
-        font-size: 1.8rem;
-    }
-
+  #intro h2 {
+    right: 3rem;
   }
+}

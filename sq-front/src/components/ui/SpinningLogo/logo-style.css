@@ -1,0 +1,7 @@
+@media screen and (min-width: 1210px) {
+  #logo {
+    width: 500px;
+    right: auto;
+    left: calc(20% - 250px);
+  }
+}

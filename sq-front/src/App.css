@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   height: 100vh;
   width: 100vw;
 }
@@ -7,9 +8,41 @@ main {
   z-index: 1;
 }
 
-.font-heading::first-letter{
+.font-heading::first-letter {
   font-family: "Monoton", Verdana, Geneva, Tahoma, sans-serif;
 }
 
+@media screen and (min-width: 1210px) {
+  :root {
+    --l-col-width: 40%;
+    --nav-width: 10%;
+  }
+  main {
+    padding: 0;
+  }
+  .content-all {
+    display: grid;
+    grid-template-columns: var(--l-col-width) 50%;
+    gap: var(--nav-width);
+  }
 
+  .scrolling-content {
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding-left: 1rem;
+  }
 
+  header {
+    width: var(--nav-width) !important;
+    left: var(--l-col-width) !important;
+    height: 100vh !important;
+    padding: 0 !important;
+  }
+
+  nav {
+    flex-direction: column;
+    height: 100%;
+
+    place-content: space-around !important;
+  }
+}
