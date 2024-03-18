@@ -22,8 +22,6 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
     positionToRGBStrings(0, defaultHSL.current)
   );
 
-  console.log("gradient rotation: ", gradientRotation);
-
   const [navCSS, setNavCSS] = useState({
     backgroundImage: `linear-gradient( ${gradientRotation}, ${toRGBAString(
       defaultHSL.current
@@ -37,7 +35,7 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
   useContainerScroll((scrollY) => {
     const newColorStrings = positionToRGBStrings(scrollY, defaultHSL.current);
     setColorStrings(newColorStrings);
-    //TODO: change direction of gradient based on window size
+
     //solid color fade behind navigation, so nav items don't get cluttered while scrolling
     setNavCSS({
       backgroundImage: `linear-gradient(${gradientRotation}, ${newColorStrings[0]} 50%, ${newColorStrings[1]} 100%)`,

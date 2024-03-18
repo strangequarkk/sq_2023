@@ -11,7 +11,7 @@ export const HireMe = ({ refContainer }) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
-    setIsClosing(true);
+    setIsClosing(true); //prevents hover-induced extra wave animation
 
     removeWaveAnimation();
     const preventExtraWave = setTimeout(() => {
@@ -49,15 +49,12 @@ export const HireMe = ({ refContainer }) => {
   }, refContainer);
 
   const bgClasses = openAttr
-    ? " bottom-0 right-0 rounded-tl-3xl opacity-100 p-4 pl-6 "
-    : " bottom-1 right-1 py-1 px-2 rounded-full " + wave + "-parent";
+    ? " opacity-100 " + openAttr
+    : " " + wave + "-parent";
 
   return (
     <aside
-      className={
-        "transition-all bg-white duration-200 fixed text-sm leading-[1.7rem] z-50" +
-        bgClasses
-      }
+      className={" bg-white fixed text-sm leading-[1.4rem] z-50" + bgClasses}
     >
       {openAttr ? (
         <>
@@ -80,7 +77,7 @@ export const HireMe = ({ refContainer }) => {
 
           <button
             type='button'
-            className='close absolute top-1 left-1 '
+            className='close absolute top-1 left-1 closeBtn '
             aria-label='Close'
             onClick={handleClose}
           >
