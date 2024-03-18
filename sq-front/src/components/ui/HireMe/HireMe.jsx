@@ -40,11 +40,7 @@ export const HireMe = ({ refContainer }) => {
         refContainer.firstChild.getBoundingClientRect().top -
         refContainer.getBoundingClientRect().height
       : document.documentElement.scrollHeight - document.body.scrollHeight;
-    console.log(
-      refContainer.scrollHeight +
-        refContainer.firstChild.getBoundingClientRect().top -
-        refContainer.getBoundingClientRect().height
-    );
+
     if (scrollY >= pageEndHeight - 5) {
       setWave("waveActive");
     } else if (wave) {

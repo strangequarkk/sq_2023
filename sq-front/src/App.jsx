@@ -33,10 +33,15 @@ function App() {
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
   const [effectController, setEffectController] = useState(undefined);
 
+  const [containerWidth, setContainerWidth] = useState(winWidth);
+
+  //update container and its width if the window resizes
   useEffect(() => {
     const container =
       winWidth >= minDesktopSize ? scrollableDiv.current : undefined;
+    const newWidth = container ? container.clientWidth : winWidth;
     setEffectController(container);
+    setContainerWidth(newWidth);
   }, [winWidth]);
 
   return (
@@ -65,7 +70,7 @@ function App() {
                   <About />
                   <Skills />
                   <Experience />
-                  <Reviews refContainer={effectController} />
+                  <Reviews containerWidth={containerWidth} />
                   <Portfolio />
                 </div>
               </div>

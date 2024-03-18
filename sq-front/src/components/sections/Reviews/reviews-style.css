@@ -1,52 +1,68 @@
 /*  reviews carousel */
-.carousel__next-button, .carousel__back-button {
-    transition: all 0.3s;
-  }
-  
-  .carousel__next-button:disabled, .carousel__back-button:disabled {
-    opacity:0
-  }
-  
-  button.carousel__dot--selected {
-    font-weight:bold;
-    font-size:1.3em;
-    
-    background:white;
-  }
-  
-  .carousel__dot {
-    text-align:center;
-    vertical-align:middle;
-    width: 3rem;
-    height: 1.5rem;
-    padding: 0 0.2rem;
-    border-radius: 5em;
-    transition: all 0.3s;
+.carousel__next-button,
+.carousel__back-button {
+  transition: all 0.3s;
+}
+
+.carousel__next-button:disabled,
+.carousel__back-button:disabled {
+  opacity: 0;
+}
+
+button.carousel__dot--selected {
+  font-weight: bold;
+  font-size: 1.3em;
+
+  background: white;
+}
+
+.carousel__dot {
+  text-align: center;
+  vertical-align: middle;
+  width: 3rem;
+  height: 1.5rem;
+  padding: 0 0.2rem;
+  border-radius: 5em;
+  transition: all 0.3s;
+}
+
+div.slideInner___2mfX9 {
+  height: auto;
+  position: relative;
+  width: calc(100vw - 3rem);
+  max-width: 400px;
+}
+
+div.slide___3-Nqo {
+  height: auto;
+  width: calc(100vw - 3rem);
+  max-width: 400px;
+}
+
+/* carousel buttons */
+.carouselButton::before {
+  content: " ";
+  background-color: rgb(255 255 255 / 0.75);
+  border-radius: 100%;
+  position: absolute;
+  z-index: 0;
+  padding: 6rem;
+  height: 1px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@media screen and (min-width: 1210px) {
+  .carousel__next-button {
+    right: -1rem !important;
   }
 
   div.slideInner___2mfX9 {
-    height:auto;
-    position:relative;
-    width: calc(100vw - 3rem);
-    max-width: 400px;
+    width: calc(50vw - 3rem);
   }
 
   div.slide___3-Nqo {
-    height:auto;
-    width: calc(100vw - 3rem);
-    max-width: 400px;
+    width: calc(50vw - 3rem);
   }
-
-  /* carousel buttons */
-  .carouselButton::before {
-    content: ' ';
-    background-color: rgb(255 255 255 / 0.75);
-    border-radius:100%;
-    position:absolute;
-    z-index: 0;
-    padding:6rem;
-    height:1px;
-    top:0;
-    bottom: 0;
-    margin:auto;
-  }
+}

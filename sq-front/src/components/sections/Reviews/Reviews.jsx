@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { retrieveAllReviews } from "../../../services/review.service";
-import { useContainerSize } from "../../../utils/useContainerSize";
 import { ReviewCard } from "./ReviewCard";
 import {
   CarouselProvider,
@@ -16,13 +16,16 @@ import RightArrow from "../../../assets/arrow-chevron-right.svg";
 import "./reviews-style.css";
 //css file contains style overrides and button styling for the carousel
 
-export const Reviews = () => {
+export const Reviews = ({ containerWidth }) => {
   const [reviews, setReviews] = useState({});
-  const winWidth = useContainerSize()[0];
+  //const refWidth = useContainerSize(refContainer)[0];
 
+  //const winWidth = refContainer ? refWidth : containerWidth;
+  console.log("reviews: container width?", containerWidth);
   //calculate how many cards to show in the viewport, based on viewport width
-  const numCards = winWidth / 400 < 1 ? 1 : winWidth / 400;
+  const numCards = containerWidth / 400 < 1 ? 1 : containerWidth / 400;
   const [visibleCards, setVisibleCards] = useState(numCards);
+  console.log(numCards, "num cards");
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
@@ -30,7 +33,7 @@ export const Reviews = () => {
 
   useEffect(() => {
     setVisibleCards(numCards);
-  }, [winWidth, numCards]);
+  }, [containerWidth, numCards]);
 
   const reviewCards =
     reviews.length > 0 ? (
@@ -87,4 +90,7 @@ export const Reviews = () => {
       </a>
     </section>
   );
+};
+Reviews.propTypes = {
+  containerWidth: PropTypes.number,
 };
