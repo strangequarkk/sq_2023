@@ -13,6 +13,8 @@ import { Reviews } from "./components/sections/Reviews/Reviews";
 import { HueChangeBG } from "./components/ui/HueChangeBG/HueChangeBG";
 import { HireMe } from "./components/ui/HireMe/HireMe";
 import LogoBright from "../src/assets/strange-quark-logo-blackhole-light.svg";
+import { useContainerSize } from "./utils/useContainerSize";
+import { useRef, useEffect, useState } from "react";
 
 import "./App.css";
 
@@ -23,14 +25,35 @@ const favicon = new URL(
 document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
+  const scrollableDiv = useRef();
+  const defaultColor = "#D6F8F1";
+  const minDesktopSize = 1210;
+  const winWidth = useContainerSize()[0];
+
+  //scroll and resize effects will refer either to the window or the scrollable div depending on size
+  const [effectController, setEffectController] = useState(undefined);
+
+  useEffect(() => {
+    const container =
+      winWidth >= minDesktopSize ? scrollableDiv.current : undefined;
+    setEffectController(container);
+  }, [winWidth]);
+
   return (
     <>
-      <HueChangeBG defaultColor={"#D6F8F1"} />
+      <HueChangeBG
+        defaultColor={defaultColor}
+        refContainer={effectController}
+      />
       <header className='fixed w-screen top-0 left-0 z-10 pb-8  px-4'>
         <Navbar />
       </header>
       <main className='px-4 max-w-100'>
-        <SpinningLogo speed={0.5} image={LogoBright} />
+        <SpinningLogo
+          speed={0.5}
+          image={LogoBright}
+          refContainer={effectController}
+        />
         <Routes>
           <Route
             exact
@@ -38,11 +61,11 @@ function App() {
             element={
               <div className='content-all'>
                 <Intro />
-                <div className='scrolling-content'>
+                <div className='scrolling-content' ref={scrollableDiv}>
                   <About />
                   <Skills />
                   <Experience />
-                  <Reviews />
+                  <Reviews refContainer={effectController} />
                   <Portfolio />
                 </div>
               </div>
@@ -53,7 +76,7 @@ function App() {
           <Route exact path='/experience' element={<Experience />} />
           <Route exact path='/portfolio' element={<Portfolio />} /> */}
         </Routes>
-        <HireMe />
+        <HireMe refContainer={effectController} />
       </main>
     </>
   );

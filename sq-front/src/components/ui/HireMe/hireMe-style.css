@@ -1,28 +1,33 @@
 @keyframes wavehand {
-
-    0% {
-        transform: rotate(0deg);
-    }
-     33% {
-        transform: rotate(25deg);
-     }
-     100% {
-        transform: rotate(-15deg);
-     }
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
 }
 
-
-  
+aside.open {
+  border-radius: 100%;
+  width: 20rem;
+  height: 20rem;
+  padding: 4rem;
+  bottom: -6rem;
+  right: -4rem;
+}
 
 .waveActive {
-    animation: wavehand 0.25s;
-    animation-iteration-count: 2;
-    opacity:1;
+  animation: wavehand 0.25s;
+  animation-iteration-count: 2;
+  opacity: 1;
 }
 
 .waveActive-parent {
-    opacity:1;
+  opacity: 1;
 }
 .-parent {
-    opacity:0.5
+  opacity: 0.5;
 }

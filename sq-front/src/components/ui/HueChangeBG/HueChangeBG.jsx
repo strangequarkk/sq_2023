@@ -1,4 +1,4 @@
-import { useWindowScroll } from "../../../utils/useWindowScroll";
+import { useContainerScroll } from "../../../utils/useContainerScroll";
 import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { toHSL, toRGBAString } from "../../../utils/colorToHSL";
@@ -11,7 +11,7 @@ import "./huechange-style.css";
  *   defaultHSL - object with numeric h,s,l values
  *   colorCSS - rgb string formatted for CSS
  */
-export const HueChangeBG = ({ defaultColor }) => {
+export const HueChangeBG = ({ defaultColor, refContainer }) => {
   const defaultHSL = useRef(toHSL(defaultColor));
   const [navCSS, setNavCSS] = useState({
     backgroundImage: `linear-gradient(${toRGBAString(
@@ -21,9 +21,10 @@ export const HueChangeBG = ({ defaultColor }) => {
   const [colorCSS, setColorCSS] = useState({
     backgroundColor: toRGBAString(defaultHSL.current),
   });
+  const gradientRotation = refContainer ? "270deg" : "90deg";
 
   //base shift on distance from original hue; h value constrained to range 0-360
-  useWindowScroll((scrollY) => {
+  useContainerScroll((scrollY) => {
     let modColor = Math.floor(defaultHSL.current.h - scrollY / 20) % 360;
     //have to convert color to rgb because react doesn't do inline hsl apparently
     const rgbaStr = toRGBAString(
@@ -38,14 +39,16 @@ export const HueChangeBG = ({ defaultColor }) => {
       defaultHSL.current.l,
       0
     );
+
+    //TODO: change direction of gradient based on window size
     //solid color fade behind navigation, so nav items don't get cluttered while scrolling
     setNavCSS({
-      backgroundImage: `linear-gradient(180deg, ${rgbaStr} 50%, ${transparentRGBA} 100%)`,
+      backgroundImage: `linear-gradient(${gradientRotation}, ${rgbaStr} 50%, ${transparentRGBA} 100%)`,
     });
     setColorCSS({
       backgroundColor: rgbaStr,
     });
-  });
+  }, refContainer);
 
   return (
     <>
@@ -67,4 +70,5 @@ export const HueChangeBG = ({ defaultColor }) => {
  */
 HueChangeBG.propTypes = {
   defaultColor: PropTypes.string,
+  refContainer: PropTypes.object,
 };

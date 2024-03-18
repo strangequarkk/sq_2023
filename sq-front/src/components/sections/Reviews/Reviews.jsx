@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { retrieveAllReviews } from "../../../services/review.service";
-import { useWindowSize } from "../../../utils/useWindowSize";
+import { useContainerSize } from "../../../utils/useContainerSize";
 import { ReviewCard } from "./ReviewCard";
 import {
   CarouselProvider,
@@ -18,17 +18,19 @@ import "./reviews-style.css";
 
 export const Reviews = () => {
   const [reviews, setReviews] = useState({});
-  const winWidth = useWindowSize()[0];
-  const calcVisible = winWidth / 400 < 1 ? 1 : winWidth / 400;
-  const [visibleCards, setVisibleCards] = useState(calcVisible);
+  const winWidth = useContainerSize()[0];
+
+  //calculate how many cards to show in the viewport, based on viewport width
+  const numCards = winWidth / 400 < 1 ? 1 : winWidth / 400;
+  const [visibleCards, setVisibleCards] = useState(numCards);
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
   }, []);
 
   useEffect(() => {
-    setVisibleCards(calcVisible);
-  }, [winWidth, calcVisible]);
+    setVisibleCards(numCards);
+  }, [winWidth, numCards]);
 
   const reviewCards =
     reviews.length > 0 ? (
