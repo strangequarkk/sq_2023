@@ -18,14 +18,10 @@ import "./reviews-style.css";
 
 export const Reviews = ({ containerWidth }) => {
   const [reviews, setReviews] = useState({});
-  //const refWidth = useContainerSize(refContainer)[0];
 
-  //const winWidth = refContainer ? refWidth : containerWidth;
-  console.log("reviews: container width?", containerWidth);
   //calculate how many cards to show in the viewport, based on viewport width
   const numCards = containerWidth / 400 < 1 ? 1 : containerWidth / 400;
   const [visibleCards, setVisibleCards] = useState(numCards);
-  console.log(numCards, "num cards");
 
   useEffect(() => {
     retrieveAllReviews(setReviews);

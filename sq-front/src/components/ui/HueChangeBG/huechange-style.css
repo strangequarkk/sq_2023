@@ -1,3 +1,10 @@
+#nav-bg-shifter {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(214, 248, 241) 50%,
+    rgba(214, 248, 241, 0)
+  );
+}
 @media screen and (min-width: 1210px) {
   #nav-bg-shifter {
     width: 7%;

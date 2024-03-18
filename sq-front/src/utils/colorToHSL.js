@@ -71,3 +71,12 @@ export const toRGBAString = (hVal, sVal, lVal, opacity) => {
 export const toHex = (hVal, sVal, lVal) => {
   return "#" + convert.hsl.hex(hVal, sVal, lVal);
 };
+
+export const positionToRGBStrings = (scrollY, baseColor) => {
+  let modColor = Math.floor(baseColor.h - scrollY / 20) % 360;
+  //have to convert color to rgb because react doesn't do inline hsl apparently
+  const rgbaStr = toRGBAString(modColor, baseColor.s, baseColor.l, 1);
+  const transparentRGBA = toRGBAString(modColor, baseColor.s, baseColor.l, 0);
+
+  return [rgbaStr, transparentRGBA];
+};

@@ -11,7 +11,6 @@ export const HireMe = ({ refContainer }) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
-    //if (openAttr) {
     setIsClosing(true);
 
     removeWaveAnimation();
@@ -19,7 +18,7 @@ export const HireMe = ({ refContainer }) => {
       setIsClosing(false);
       clearTimeout(preventExtraWave);
     }, 200);
-    //}
+
     openAttr ? setOpen("") : setOpen("open");
   };
 
@@ -38,7 +37,8 @@ export const HireMe = ({ refContainer }) => {
     const pageEndHeight = refContainer
       ? refContainer.scrollHeight +
         refContainer.firstChild.getBoundingClientRect().top -
-        refContainer.getBoundingClientRect().height
+        refContainer.getBoundingClientRect().height -
+        refContainer.firstChild.getBoundingClientRect().top
       : document.documentElement.scrollHeight - document.body.scrollHeight;
 
     if (scrollY >= pageEndHeight - 5) {
@@ -94,17 +94,20 @@ export const HireMe = ({ refContainer }) => {
           </button>
         </>
       ) : (
-        <button
-          type='button'
-          aria-label='Open'
-          onClick={handleClose}
-          onMouseEnter={startWaveAnimation}
-          onMouseLeave={removeWaveAnimation}
-        >
-          <svg viewBox='0 0 131 131' width='50px' className={wave}>
-            <use xlinkHref={handWave + "#hand"}></use>
-          </svg>
-        </button>
+        <>
+          <p className='cta'>Contact me!</p>
+          <button
+            type='button'
+            aria-label='Open'
+            onClick={handleClose}
+            onMouseEnter={startWaveAnimation}
+            onMouseLeave={removeWaveAnimation}
+          >
+            <svg viewBox='0 0 131 131' width='50px' className={wave}>
+              <use xlinkHref={handWave + "#hand"}></use>
+            </svg>
+          </button>
+        </>
       )}
     </aside>
   );

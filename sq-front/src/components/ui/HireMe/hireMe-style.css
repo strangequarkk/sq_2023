@@ -31,3 +31,18 @@ aside.open {
 .-parent {
   opacity: 0.5;
 }
+
+.cta {
+  display: none;
+  position: absolute;
+  top: -2rem;
+  left: -4rem;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  padding: 0.3rem 0.5rem;
+}
+
+.waveActive-parent .cta {
+  display: block;
+}
