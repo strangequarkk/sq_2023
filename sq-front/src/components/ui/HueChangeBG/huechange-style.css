@@ -27,6 +27,11 @@
   background-blend-mode: screen;
 }
 
+#main-bg-shifter.dark {
+  background-blend-mode: multiply;
+  background-color: #23332f;
+}
+
 @media screen and (min-width: 1210px) {
   #nav-bg-shifter {
     width: 7%;

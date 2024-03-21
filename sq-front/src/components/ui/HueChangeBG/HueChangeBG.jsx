@@ -15,7 +15,7 @@ import "./huechange-style.css";
  *   defaultHSL - object with numeric h,s,l values
  *   colorCSS - rgb string formatted for CSS
  */
-export const HueChangeBG = ({ defaultColor, refContainer }) => {
+export const HueChangeBG = ({ defaultColor, refContainer, themeClass }) => {
   const defaultHSL = useRef(toHSL(defaultColor));
   const gradientRotation = refContainer ? "270deg" : "to bottom";
   const [colorStrings, setColorStrings] = useState(
@@ -54,8 +54,8 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
   }, [refContainer, colorStrings]);
   return (
     <>
-      <div id='main-bg-shifter' style={colorCSS}></div>
-      <div id='nav-bg-shifter' style={navCSS}></div>
+      <div id='main-bg-shifter' className={themeClass} style={colorCSS}></div>
+      <div id='nav-bg-shifter' className={themeClass} style={navCSS}></div>
     </>
   );
 };
@@ -65,4 +65,5 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
 HueChangeBG.propTypes = {
   defaultColor: PropTypes.string,
   refContainer: PropTypes.object,
+  themeClass: PropTypes.string,
 };

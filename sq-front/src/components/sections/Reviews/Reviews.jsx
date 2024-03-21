@@ -13,15 +13,19 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import LeftArrow from "../../../assets/arrow-chevron-left.svg";
 import RightArrow from "../../../assets/arrow-chevron-right.svg";
+import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
+import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
 import "./reviews-style.css";
 //css file contains style overrides and button styling for the carousel
 
-export const Reviews = ({ containerWidth }) => {
+export const Reviews = ({ containerWidth, themeIsDark }) => {
   const [reviews, setReviews] = useState({});
 
   //calculate how many cards to show in the viewport, based on viewport width
   const numCards = containerWidth / 400 < 1 ? 1 : containerWidth / 400;
   const [visibleCards, setVisibleCards] = useState(numCards);
+  const lArrow = themeIsDark ? LeftArrowLight : LeftArrow;
+  const rArrow = themeIsDark ? RightArrowLight : RightArrow;
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
@@ -58,12 +62,12 @@ export const Reviews = ({ containerWidth }) => {
         <div className='relative'>
           <ButtonBack>
             <span className='carouselButton'>
-              <img src={LeftArrow} alt='Back' />
+              <img src={lArrow} alt='Back' />
             </span>
           </ButtonBack>
           <ButtonNext>
             <span className='carouselButton'>
-              <img src={RightArrow} alt='Next' />
+              <img src={rArrow} alt='Next' />
             </span>
           </ButtonNext>
           <Slider classNameTray='flex'>{reviewCards}</Slider>
@@ -77,4 +81,5 @@ export const Reviews = ({ containerWidth }) => {
 };
 Reviews.propTypes = {
   containerWidth: PropTypes.number,
+  themeIsDark: PropTypes.bool,
 };

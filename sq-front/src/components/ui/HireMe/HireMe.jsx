@@ -2,13 +2,18 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useContainerScroll } from "../../../utils/useContainerScroll";
 import handWave from "../../../assets/handwave.svg";
+import handWaveLight from "../../../assets/handwave-light.svg";
 import closeIcon from "../../../assets/icon-close-circle.svg";
+import closeIconLight from "../../../assets/icon-close-circle-light.svg";
 import "./hireMe-style.css"; //tailwind is unwieldy for custom animations
 
-export const HireMe = ({ refContainer }) => {
+export const HireMe = ({ refContainer, themeIsDark }) => {
   const [openAttr, setOpen] = useState("open");
   const [wave, setWave] = useState("");
   const [isClosing, setIsClosing] = useState(false);
+
+  const closeButton = themeIsDark ? closeIconLight : closeIcon;
+  const hand = themeIsDark ? handWaveLight : handWave;
 
   const handleClose = () => {
     setIsClosing(true); //prevents hover-induced extra wave animation
@@ -50,7 +55,7 @@ export const HireMe = ({ refContainer }) => {
 
   const buttonContent = openAttr ? (
     <svg viewBox='0 0 24 24' width='30px'>
-      <use xlinkHref={closeIcon + "#icon"}></use>
+      <use xlinkHref={closeButton + "#icon"}></use>
     </svg>
   ) : (
     "Let's get in touch!"
@@ -89,7 +94,7 @@ export const HireMe = ({ refContainer }) => {
             onMouseLeave={removeWaveAnimation}
           >
             <svg viewBox='0 0 131 131' width='50px' className={wave}>
-              <use xlinkHref={handWave + "#hand"}></use>
+              <use xlinkHref={hand + "#hand"}></use>
             </svg>
           </button>
         </>
@@ -108,4 +113,5 @@ export const HireMe = ({ refContainer }) => {
 
 HireMe.propTypes = {
   refContainer: PropTypes.object,
+  themeIsDark: PropTypes.bool,
 };

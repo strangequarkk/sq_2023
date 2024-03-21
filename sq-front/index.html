@@ -20,7 +20,7 @@
         visibility: hidden;
       }
       body {
-        background: #ebfcf8;
+        background: "#75968f";
       }
       .fade {
         backdrop-filter: blur(0);
@@ -32,18 +32,36 @@
       const clearLoader = () => {
         document.querySelector("#loadBlur").remove();
       };
+
+      const setColor = () => {
+        console.log("setcolor??");
+        const preferDarkMode = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          : false;
+        const bodyEl = document.querySelector("body");
+        if (preferDarkMode) {
+          bodyEl.style.backgroundColor = "#23332f";
+        } else {
+          bodyEl.style.backgroundColor = "#D6F8F1";
+        }
+      };
+
       window.onload = () => {
         document
           .querySelector("#root")
           .setAttribute("style", "visibility:visible");
         document.querySelector("#loadBlur").classList.add("fade");
-        document.querySelector("body").classList.add("bg-default");
+        setColor();
+        //document.querySelector("body").classList.add("bg-default");
         let loadTimer = window.setTimeout(clearLoader, 200);
       };
     </script>
     <!-- <script type="text/javascript" src="/scrap.js" ></script> -->
   </head>
-  <body class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]">
+  <body
+    style="background: #75968f"
+    class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]"
+  >
     <div
       id="loadBlur"
       style="

@@ -13,6 +13,7 @@ import { Reviews } from "./components/sections/Reviews/Reviews";
 import { HueChangeBG } from "./components/ui/HueChangeBG/HueChangeBG";
 import { HireMe } from "./components/ui/HireMe/HireMe";
 import LogoBright from "../src/assets/strange-quark-logo-blackhole-light.svg";
+import LogoDark from "../src/assets/strange-quark-logo-blackhole-dark.svg";
 import { useContainerSize } from "./utils/useContainerSize";
 import { useRef, useEffect, useState } from "react";
 
@@ -26,9 +27,21 @@ document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
   const scrollableDiv = useRef();
-  const defaultColor = "#D6F8F1";
+
   const minDesktopSize = 1210;
   const winWidth = useContainerSize()[0];
+  const themeIsDark = useState(
+    window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+  console.log(themeIsDark);
+  const themeClass = themeIsDark ? "dark" : "light";
+
+  const lightColor = "#D6F8F1";
+  const darkColor = "#23332f";
+  const defaultColor = themeIsDark ? darkColor : lightColor;
+  console.log("default color:", defaultColor);
+  const logoImg = themeIsDark[0] ? LogoDark : LogoBright;
 
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
   const [effectController, setEffectController] = useState(undefined);
@@ -49,14 +62,15 @@ function App() {
       <HueChangeBG
         defaultColor={defaultColor}
         refContainer={effectController}
+        themeClass={themeClass}
       />
-      <header className='fixed w-screen top-0 left-0 z-10 pb-8  px-4'>
+      <header className={themeClass}>
         <Navbar />
       </header>
-      <main className='px-4 max-w-100'>
+      <main className={themeClass}>
         <SpinningLogo
           speed={0.5}
-          image={LogoBright}
+          image={logoImg}
           refContainer={effectController}
         />
         <Routes>
@@ -70,7 +84,10 @@ function App() {
                   <About />
                   <Skills />
                   <Experience />
-                  <Reviews containerWidth={containerWidth} />
+                  <Reviews
+                    containerWidth={containerWidth}
+                    themeIsDark={themeIsDark[0]}
+                  />
                   <Portfolio />
                 </div>
               </div>
@@ -81,7 +98,7 @@ function App() {
           <Route exact path='/experience' element={<Experience />} />
           <Route exact path='/portfolio' element={<Portfolio />} /> */}
         </Routes>
-        <HireMe refContainer={effectController} />
+        <HireMe themeIsDark={themeIsDark[0]} refContainer={effectController} />
       </main>
     </>
   );

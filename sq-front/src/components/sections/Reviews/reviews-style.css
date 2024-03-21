@@ -38,8 +38,11 @@
 button.carousel__dot--selected {
   font-weight: bold;
   font-size: 1.3em;
-
   background: white;
+}
+
+.dark button.carousel__dot--selected {
+  background: black;
 }
 
 .carousel__dot {
@@ -79,11 +82,14 @@ div.slide___3-Nqo {
   margin: auto;
 }
 
+.dark .carouselButton::before {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
 .carouselButton img {
   height: 3.5rem;
   z-index: 10;
   position: relative;
-  color: rgb(64, 64, 64);
 }
 
 .carousel__back-button {
@@ -128,6 +134,10 @@ div.slide___3-Nqo {
   justify-content: space-between;
   border: solid 2px rgb(64, 64, 64);
   margin-left: 1rem;
+}
+
+.dark .review-card {
+  border-color: rgb(180, 180, 180);
 }
 
 .review-card h4 {

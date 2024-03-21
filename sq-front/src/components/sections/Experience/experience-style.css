@@ -33,3 +33,7 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+
+.dark .resume-list-item p.description {
+  background-color: rgba(0, 0, 0, 0.5);
+}

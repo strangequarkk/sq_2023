@@ -5,6 +5,10 @@
   border-radius: 0.5rem;
 }
 
+.dark .skill {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
 .skill h4 {
   font-weight: bold;
 }

@@ -17,6 +17,10 @@
   margin-right: 0.75rem;
 }
 
+.dark #portfolio .skill {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 #portfolio p {
   font-size: 0.875rem;
   line-height: 1.25rem;

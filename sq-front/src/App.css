@@ -4,10 +4,24 @@ html {
   width: 100vw;
 }
 
+header {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 0 1rem 2rem;
+}
+
 main {
   z-index: 1;
   width: 100vw;
   max-width: 1300px;
+  padding: 0 1rem;
+}
+
+.dark {
+  color: white;
 }
 
 .font-heading::first-letter {
