@@ -5,7 +5,7 @@ import handWave from "../../../assets/handwave.svg";
 import handWaveLight from "../../../assets/handwave-light.svg";
 import closeIcon from "../../../assets/icon-close-circle.svg";
 import closeIconLight from "../../../assets/icon-close-circle-light.svg";
-import "./hireMe-style.css"; //tailwind is unwieldy for custom animations
+import "./hireMe-style.css";
 
 export const HireMe = ({ refContainer, themeIsDark }) => {
   const [openAttr, setOpen] = useState("open");

@@ -12,10 +12,11 @@ import { Portfolio } from "./components/sections/Portfolio/Portfolio";
 import { Reviews } from "./components/sections/Reviews/Reviews";
 import { HueChangeBG } from "./components/ui/HueChangeBG/HueChangeBG";
 import { HireMe } from "./components/ui/HireMe/HireMe";
-import LogoBright from "../src/assets/strange-quark-logo-blackhole-light.svg";
-import LogoDark from "../src/assets/strange-quark-logo-blackhole-dark.svg";
+
 import { useContainerSize } from "./utils/useContainerSize";
+import { useDarkModePrefChange } from "./utils/useDarkModePrefChange";
 import { useRef, useEffect, useState } from "react";
+import { DarkModeSwitch } from "./components/ui/DarkModeSwitch/DarkModeSwitch";
 
 import "./App.css";
 
@@ -29,49 +30,53 @@ function App() {
   const scrollableDiv = useRef();
 
   const minDesktopSize = 1210;
-  const winWidth = useContainerSize()[0];
-  const themeIsDark = useState(
-    window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
-  console.log(themeIsDark);
-  const themeClass = themeIsDark ? "dark" : "light";
-
-  const lightColor = "#D6F8F1";
-  const darkColor = "#23332f";
-  const defaultColor = themeIsDark ? darkColor : lightColor;
-  console.log("default color:", defaultColor);
-  const logoImg = themeIsDark[0] ? LogoDark : LogoBright;
+  const containerSize = useContainerSize()[0];
+  const [containerWidth, setContainerWidth] = useState(containerSize);
 
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
-  const [effectController, setEffectController] = useState(undefined);
+  const [emittingElement, setEmittingElement] = useState(undefined);
 
-  const [containerWidth, setContainerWidth] = useState(winWidth);
+  const matchDarkMode = window.matchMedia
+    ? window.matchMedia("(prefers-color-scheme: dark)").matches
+    : false;
+
+  const [themeIsDark, setThemeIsDark] = useState(matchDarkMode);
+
+  const toggleDarkMode = () => {
+    setThemeIsDark(!themeIsDark);
+  };
+  useDarkModePrefChange(toggleDarkMode);
+  const themeClass = themeIsDark ? "dark" : "light";
 
   //update container and its width if the window resizes
   useEffect(() => {
     const container =
-      winWidth >= minDesktopSize ? scrollableDiv.current : undefined;
-    const newWidth = container ? container.clientWidth : winWidth;
-    setEffectController(container);
+      containerSize >= minDesktopSize ? scrollableDiv.current : undefined;
+
+    const newWidth = container ? container.clientWidth : containerSize;
+    setEmittingElement(container);
     setContainerWidth(newWidth);
-  }, [winWidth]);
+  }, [containerSize]);
 
   return (
     <>
       <HueChangeBG
-        defaultColor={defaultColor}
-        refContainer={effectController}
+        themeIsDark={themeIsDark}
+        refContainer={emittingElement}
         themeClass={themeClass}
       />
       <header className={themeClass}>
         <Navbar />
       </header>
       <main className={themeClass}>
+        <DarkModeSwitch
+          themeIsDark={themeIsDark}
+          toggleDarkMode={toggleDarkMode}
+        />
         <SpinningLogo
           speed={0.5}
-          image={logoImg}
-          refContainer={effectController}
+          themeIsDark={themeIsDark}
+          refContainer={emittingElement}
         />
         <Routes>
           <Route
@@ -86,7 +91,7 @@ function App() {
                   <Experience />
                   <Reviews
                     containerWidth={containerWidth}
-                    themeIsDark={themeIsDark[0]}
+                    themeIsDark={themeIsDark}
                   />
                   <Portfolio />
                 </div>
@@ -98,7 +103,7 @@ function App() {
           <Route exact path='/experience' element={<Experience />} />
           <Route exact path='/portfolio' element={<Portfolio />} /> */}
         </Routes>
-        <HireMe themeIsDark={themeIsDark[0]} refContainer={effectController} />
+        <HireMe themeIsDark={themeIsDark} refContainer={emittingElement} />
       </main>
     </>
   );

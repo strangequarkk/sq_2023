@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useContainerScroll } from "../../../utils/useContainerScroll";
+import LogoBright from "../../../assets/strange-quark-logo-blackhole-light.svg";
+import LogoDark from "../../..//assets/strange-quark-logo-blackhole-dark.svg";
 import "./logo-style.css";
 
 /*
@@ -11,11 +13,12 @@ import "./logo-style.css";
  * rotation - number (def 360), used to calculate degree value
  * rotationStyle - CSS object that uses rotation value in transform property
  */
-export const SpinningLogo = ({ speed, image, refContainer }) => {
+export const SpinningLogo = ({ speed, themeIsDark, refContainer }) => {
   const [rotation, setRotation] = useState(360);
   const [rotationStyle, setRotationStyle] = useState({
     transform: "rotate(" + rotation + "deg)",
   });
+  const image = themeIsDark ? LogoDark : LogoBright;
 
   // make sure spinning doesn't stop when rotation value hits zero
   useContainerScroll(() => {
@@ -38,6 +41,6 @@ export const SpinningLogo = ({ speed, image, refContainer }) => {
  */
 SpinningLogo.propTypes = {
   speed: PropTypes.number,
-  image: PropTypes.string,
+  themeIsDark: PropTypes.bool,
   refContainer: PropTypes.object,
 };

@@ -1,5 +1,5 @@
 import { useContainerScroll } from "../../../utils/useContainerScroll";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   toHSL,
@@ -15,31 +15,47 @@ import "./huechange-style.css";
  *   defaultHSL - object with numeric h,s,l values
  *   colorCSS - rgb string formatted for CSS
  */
-export const HueChangeBG = ({ defaultColor, refContainer, themeClass }) => {
-  const defaultHSL = useRef(toHSL(defaultColor));
+export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
+  const chooseBaseColor = useCallback(() => {
+    const lightColor = "#D6F8F1";
+    const darkColor = "#23332f";
+    return toHSL(themeIsDark ? darkColor : lightColor);
+  }, [themeIsDark]);
+
+  const [defaultHSL, setDefaultHSL] = useState(chooseBaseColor());
+
   const gradientRotation = refContainer ? "270deg" : "to bottom";
   const [colorStrings, setColorStrings] = useState(
-    positionToRGBStrings(0, defaultHSL.current)
+    positionToRGBStrings(0, defaultHSL)
   );
 
+  const buildGradientString = (newRotation, newColor) => {
+    return `linear-gradient( ${newRotation}, ${newColor} 40%, transparent)`;
+  };
+
   const [navCSS, setNavCSS] = useState({
-    backgroundImage: `linear-gradient( ${gradientRotation}, ${toRGBAString(
-      defaultHSL.current
-    )}, transparent)`,
+    backgroundImage: buildGradientString(
+      gradientRotation,
+      toRGBAString(defaultHSL)
+    ),
   });
   const [colorCSS, setColorCSS] = useState({
-    backgroundColor: toRGBAString(defaultHSL.current),
+    backgroundColor: toRGBAString(defaultHSL),
   });
 
   //base shift on distance from original hue; h value constrained to range 0-360
   useContainerScroll((scrollY) => {
-    const newColorStrings = positionToRGBStrings(scrollY, defaultHSL.current);
+    const newColorStrings = positionToRGBStrings(scrollY, defaultHSL);
     setColorStrings(newColorStrings);
 
     //solid color fade behind navigation, so nav items don't get cluttered while scrolling
     setNavCSS({
-      backgroundImage: `linear-gradient(${gradientRotation}, ${newColorStrings[0]} 50%, ${newColorStrings[1]} 100%)`,
+      backgroundImage: buildGradientString(
+        gradientRotation,
+        newColorStrings[0]
+      ),
     });
+    console.log("scroll: set nav css ", newColorStrings);
     setColorCSS({
       backgroundColor: newColorStrings[0],
     });
@@ -49,9 +65,28 @@ export const HueChangeBG = ({ defaultColor, refContainer, themeClass }) => {
   useEffect(() => {
     const newRotation = refContainer ? "270deg" : "to bottom";
     setNavCSS({
-      backgroundImage: `linear-gradient(${newRotation}, ${colorStrings[0]} 50%, ${colorStrings[1]} 100%)`,
+      backgroundImage: buildGradientString(newRotation, colorStrings[0]),
     });
+    console.log("colorStrings changed! reset nav css", colorStrings);
   }, [refContainer, colorStrings]);
+
+  useEffect(() => {
+    const newHSL = chooseBaseColor();
+    setDefaultHSL(newHSL);
+    const newColorStrings = positionToRGBStrings(scrollY, newHSL);
+    setColorStrings(newColorStrings);
+    setNavCSS({
+      backgroundImage: buildGradientString(
+        gradientRotation,
+        newColorStrings[0]
+      ),
+    });
+    console.log("themeisdark useffect: set nav css ", newColorStrings);
+    setColorCSS({
+      backgroundColor: newColorStrings[0],
+    });
+  }, [themeIsDark, chooseBaseColor, gradientRotation]);
+
   return (
     <>
       <div id='main-bg-shifter' className={themeClass} style={colorCSS}></div>
@@ -63,7 +98,7 @@ export const HueChangeBG = ({ defaultColor, refContainer, themeClass }) => {
  * Props: defaultColor: starting color of background, a string containing a color value in RGB, Hex, or HSL
  */
 HueChangeBG.propTypes = {
-  defaultColor: PropTypes.string,
+  themeIsDark: PropTypes.bool,
   refContainer: PropTypes.object,
   themeClass: PropTypes.string,
 };

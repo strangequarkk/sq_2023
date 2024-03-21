@@ -4,7 +4,7 @@ export const useContainerScroll = (handleScroll, container = window) => {
   useEffect(() => {
     const onScroll = () => {
       const yPosition =
-        container.scrollY || container.scrollY === 0 //non-winow els dont have scrolly
+        container.scrollY || container.scrollY === 0 //non-window els dont have scrolly
           ? container.scrollY
           : -container.firstChild.getBoundingClientRect().top;
       handleScroll(yPosition);

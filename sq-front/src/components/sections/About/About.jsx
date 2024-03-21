@@ -11,7 +11,7 @@ export const About = () => {
         mauris pellentesque pulvinar pellentesque habitant morbi. Risus nec
         feugiat in fermentum posuere urna. Pretium fusce id velit ut tortor
         pretium. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
-        dignissim. Non odio euismod lacinia at quis risus sed vulputate.{" "}
+        dignissim. Non odio euismod lacinia at quis risus sed vulputate.
       </p>
       <h3>Contact:</h3>
       <p>
