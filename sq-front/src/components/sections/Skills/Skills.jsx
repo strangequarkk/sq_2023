@@ -1,6 +1,7 @@
 import { SkillItem } from "./SkillItem";
 import { retrieveAllSkills } from "../../../services/skills.service";
 import { useEffect, useState } from "react";
+import "./skills-style.css";
 
 export const Skills = () => {
   const [skills, setSkills] = useState([]);

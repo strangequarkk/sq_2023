@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/ui/Navbar/Navbar";
 import { SpinningLogo } from "./components/ui/SpinningLogo/SpinningLogo";
 import { Intro } from "./components/sections/Intro/Intro";
-import { About } from "./components/sections/About";
+import { About } from "./components/sections/About/About";
 import { Skills } from "./components/sections/Skills/Skills";
 import { Experience } from "./components/sections/Experience/Experience";
 import { Portfolio } from "./components/sections/Portfolio/Portfolio";

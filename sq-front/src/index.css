@@ -32,24 +32,6 @@
   font-weight: normal;
 }
 
-@media screen and (min-width: 650px) {
-  :root {
-    --vert-tablet-width: 650px;
-  }
-
-  /* #root, */
-  .navbar {
-    max-width: var(--vert-tablet-width);
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .navbar a {
-    font-size: 1.2rem;
-  }
-}
-
 @media screen and (min-width: 1210px) {
   #root {
     max-width: 1300px;

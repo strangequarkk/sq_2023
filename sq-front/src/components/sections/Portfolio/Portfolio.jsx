@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { retrieveAllProjects } from "../../../services/projects.service";
 import { ProjectCard } from "./ProjectCard";
+import "./portfolio-style.css";
 
 export const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -23,8 +24,8 @@ export const Portfolio = () => {
     );
 
   return (
-    <section id='portfolio' className='pt-12 max-w-[650px] mx-auto'>
-      <h2 className='font-heading text-3xl'>Portfolio</h2>
+    <section id='portfolio'>
+      <h2 className='font-heading'>Portfolio</h2>
       {projectCards}
     </section>
   );

@@ -28,15 +28,7 @@ export const SpinningLogo = ({ speed, image, refContainer }) => {
     setRotationStyle({ transform: "rotate(" + rotation + "deg)" });
   }, [rotation]);
 
-  return (
-    <img
-      id='logo'
-      className='fixed top-0 left-0 right-0 bottom-0 w-[90vw] max-w-[620px] m-auto -z-10 opacity-60'
-      src={image}
-      style={rotationStyle}
-      alt=''
-    />
-  );
+  return <img id='logo' src={image} style={rotationStyle} alt='' />;
 };
 
 /*

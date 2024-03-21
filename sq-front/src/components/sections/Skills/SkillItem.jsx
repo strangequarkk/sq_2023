@@ -9,68 +9,25 @@ const SubItem = ({ skill, builtWith }) => {
   const hasRendered = useRef(false);
   const tTipElement = useRef();
   const skillElement = useRef();
-
-  const shownStyles = useRef({
-    shadow: "shadow-xl",
-    zIndex: "z-10",
-    opacity: "opacity-100",
-  });
-
-  const hiddenStyles = useRef({
-    opacity: "opacity-0",
-    shadow: "",
-    zIndex: "",
-  });
-
-  //breaking up the tailwind classes for legibility
-  const [toolTipStyles, setToolTipStyles] = useState({
-    position: "absolute -top-2/3",
-    leftPos: "left-2/3",
-    animation: "transition-all duration-200",
-    decoration:
-      "after:content-['✧'] after:text-purple-400 before:content-['✧'] before:text-purple-400 block",
-    text: "whitespace-nowrap text-sm",
-    border: "border border-solid border-purple-400 rounded-full",
-    background: "bg-white",
-    padding: "p-1 pr-1.5",
-    overflow: "overflow-hidden",
-    width: "",
-    opacity: "opacity-0",
-    shadow: "",
-    zIndex: "",
-    className: "tooltip",
-  });
-
-  const buildClassString = (styleObj) => {
-    return Object.values(styleObj).join(" ");
-  };
-
-  const [toolTipClasses, setToolTipClasses] = useState(
-    buildClassString(toolTipStyles)
-  );
-  const pClasses =
-    "border border-solid rounded-full py-1 px-2 text-center inline-block";
+  const [toolTipClasses, setToolTipClasses] = useState("");
 
   const changeTTipState = useCallback(
     (tTipVisibility) => {
       const toggledWidth = tTipVisibility ? "0px" : tTipFullWidth.current;
-      const toggledStyle = tTipVisibility
-        ? hiddenStyles.current
-        : shownStyles.current;
-      //have to handle width style separately bc it's calculated dynamically in shiftElementLeft;
-      //tailwind can't build a custom style for it by the time we know what size we want
+      const toggledStyle = tTipVisibility ? "hidden" : "shown";
+      //have to handle width style manually bc it's calculated dynamically on first render
       tTipElement.current.style.width = toggledWidth;
-      setToolTipStyles({ ...toolTipStyles, ...toggledStyle });
+      setToolTipClasses(toggledStyle);
     },
-    [tTipFullWidth, hiddenStyles, shownStyles, toolTipStyles, tTipElement]
+    [tTipFullWidth, tTipElement]
   );
 
-  const handleClickOut = useCallback(() => {
+  const handleExit = useCallback(() => {
     changeTTipState(true);
     setShowTTip(false);
   }, [changeTTipState]);
 
-  const handleClick = () => {
+  const handleOpen = () => {
     changeTTipState(showTTip);
     setShowTTip(!showTTip);
   };
@@ -85,47 +42,41 @@ const SubItem = ({ skill, builtWith }) => {
       shiftElementLeft(boundingRect.right, tTipElement.current);
 
       //reset tooltip width to 0 for animation
-      setToolTipStyles({ ...toolTipStyles, width: "w-0" });
+      setToolTipClasses("hidden");
 
       //clicking on the parent element toggles the tooltip visibility;
       //clicking on anything else makes the tooltip go away
-      detectClickOut(skillElement.current, handleClickOut);
+      detectClickOut(skillElement.current, handleExit);
 
-      //only need to do this once
+      //only need to do this once, but react convention does not allow empty dependency array in this case
       hasRendered.current = true;
     }
   }, [
     tTipElement,
     skillElement,
     hasRendered,
-    toolTipStyles,
+    toolTipClasses,
     changeTTipState,
     showTTip,
-    handleClickOut,
+    handleExit,
   ]);
 
-  //turn the new styles into class string every time they change
-  useEffect(() => {
-    setToolTipClasses(buildClassString(toolTipStyles));
-  }, [toolTipStyles]);
-
   const defaultItem = (
-    <li className='grow'>
-      <p className={pClasses + " border-teal-200"}>{skill}</p>
+    <li className='skill-item'>
+      <p>{skill}</p>
     </li>
   );
 
   const specialItem = (
-    <li className='grow'>
+    <li className='skill-item special'>
       <p
         ref={skillElement}
-        onClick={handleClick}
-        onMouseEnter={handleClick}
-        onMouseLeave={handleClickOut}
-        className={pClasses + " border-purple-400 relative cursor-pointer"}
+        onClick={handleOpen}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleExit}
       >
         {skill}
-        <span ref={tTipElement} className={toolTipClasses}>
+        <span ref={tTipElement} className={toolTipClasses + " tooltip"}>
           This site was built with {skill}!
         </span>
       </p>
@@ -141,6 +92,9 @@ SubItem.propTypes = {
   builtWith: PropTypes.bool,
 };
 
+/*
+ * Primary skill (language etc)
+ */
 export const SkillItem = ({ skill, subItems }) => {
   const subComponents = subItems.length
     ? subItems.map((item) => {
@@ -149,18 +103,16 @@ export const SkillItem = ({ skill, subItems }) => {
     : [];
 
   const subList = subItems.length ? (
-    <ul className='flex flex-row text-sm font flex-wrap justify-around gap-2 px-4'>
-      {subComponents}
-    </ul>
+    <ul className='subskill-list'>{subComponents}</ul>
   ) : (
     ""
   );
 
-  const styleClasses = subItems.length ? "mb-2" : "";
+  const populatedStyle = subItems.length ? "has-subs" : "";
 
   return (
-    <li className='bg-white/60 mb-1 p-2 rounded-lg'>
-      <h4 className={"font-bold " + styleClasses}>{skill}</h4>
+    <li className={" skill " + populatedStyle}>
+      <h4>{skill}</h4>
       {subList}
     </li>
   );

@@ -45,6 +45,7 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
     });
   }, refContainer);
 
+  //check if colors or device width have changed
   useEffect(() => {
     const newRotation = refContainer ? "270deg" : "to bottom";
     setNavCSS({
@@ -53,16 +54,8 @@ export const HueChangeBG = ({ defaultColor, refContainer }) => {
   }, [refContainer, colorStrings]);
   return (
     <>
-      <div
-        id='main-bg-shifter'
-        className='min-h-100 -z-10 fixed top-0 left-0 bottom-0 right-0 bg-default bg-bubble-trails bg-cover bg-center bg-blend-screen'
-        style={colorCSS}
-      ></div>
-      <div
-        id='nav-bg-shifter'
-        style={navCSS}
-        className={`z-10 bg fixed top-0 left-0 right-0 h-16 bg-gradient-to-b from-default from-50% to transparent `}
-      ></div>
+      <div id='main-bg-shifter' style={colorCSS}></div>
+      <div id='nav-bg-shifter' style={navCSS}></div>
     </>
   );
 };

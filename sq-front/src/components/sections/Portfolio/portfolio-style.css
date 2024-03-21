@@ -1,0 +1,49 @@
+#portfolio {
+  padding-top: 3rem;
+}
+
+#portfolio article {
+  padding: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+#portfolio .skill {
+  border: 1px solid rgb(153, 246, 228);
+  border-radius: 3em;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  display: inline-block;
+  margin-right: 0.75rem;
+}
+
+#portfolio p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#portfolio .cover-image {
+  text-align: center;
+  margin: auto;
+  max-height: 18rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#portfolio h3 {
+  font-size: 1.25rem /* 20px */;
+  line-height: 1.75rem;
+  font-weight: bold;
+  margin: 0.75rem;
+  text-align: center;
+}
+
+#portfolio h4 {
+  font-weight: bold;
+}
+
+#portfolio .project-skills {
+  margin-bottom: 1rem;
+}

@@ -6,10 +6,22 @@ html {
 
 main {
   z-index: 1;
+  width: 100vw;
+  max-width: 1300px;
 }
 
 .font-heading::first-letter {
   font-family: "Monoton", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.scrolling-content section h2.font-heading {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+section {
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 1210px) {
@@ -38,12 +50,5 @@ main {
     left: var(--l-col-width) !important;
     height: 100vh !important;
     padding: 0 !important;
-  }
-
-  nav {
-    flex-direction: column;
-    height: 100%;
-
-    place-content: space-around !important;
   }
 }

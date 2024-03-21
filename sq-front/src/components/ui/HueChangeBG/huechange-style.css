@@ -4,7 +4,29 @@
     rgb(214, 248, 241) 50%,
     rgba(214, 248, 241, 0)
   );
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  height: 4rem;
+  right: 0;
+  left: 0;
 }
+
+#main-bg-shifter {
+  min-height: 100vh;
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-size: cover;
+  background-color: rgb(214, 248, 241);
+  background-image: url("/src/assets/bubble-bg.jpg");
+  background-position: center;
+  background-blend-mode: screen;
+}
+
 @media screen and (min-width: 1210px) {
   #nav-bg-shifter {
     width: 7%;

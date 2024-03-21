@@ -48,17 +48,21 @@ export const HireMe = ({ refContainer }) => {
     }
   }, refContainer);
 
-  const bgClasses = openAttr
-    ? " opacity-100 " + openAttr
-    : " " + wave + "-parent";
+  const buttonContent = openAttr ? (
+    <svg viewBox='0 0 24 24' width='30px'>
+      <use xlinkHref={closeIcon + "#icon"}></use>
+    </svg>
+  ) : (
+    "Let's get in touch!"
+  );
+
+  const buttonClass = openAttr ? "close" : "cta";
 
   return (
-    <aside
-      className={" bg-white fixed text-sm leading-[1.4rem] z-50" + bgClasses}
-    >
+    <aside id='hire' className={openAttr + " " + wave + "-parent"}>
       {openAttr ? (
         <>
-          <h2 className='text-lg font-bold'>Hire me!</h2>
+          <h2>Hire me!</h2>
           <p>
             <a
               className='underline'
@@ -74,25 +78,9 @@ export const HireMe = ({ refContainer }) => {
               @untercurrent
             </a>
           </p>
-
-          <button
-            type='button'
-            className='close absolute top-1 left-1 closeBtn '
-            aria-label='Close'
-            onClick={handleClose}
-          >
-            <svg
-              viewBox='0 0 24 24'
-              width='30px'
-              className='absolute -top-3 -left-3'
-            >
-              <use xlinkHref={closeIcon + "#icon"}></use>
-            </svg>
-          </button>
         </>
       ) : (
         <>
-          <p className='cta'>Contact me!</p>
           <button
             type='button'
             aria-label='Open'
@@ -106,6 +94,14 @@ export const HireMe = ({ refContainer }) => {
           </button>
         </>
       )}
+      <button
+        type='button'
+        className={buttonClass}
+        aria-label='Close'
+        onClick={handleClose}
+      >
+        {buttonContent}
+      </button>
     </aside>
   );
 };

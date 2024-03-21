@@ -1,9 +1,11 @@
+import "./about-style.css";
+
 export const About = () => {
   //padding-top to ensure scrollto doens't cover title with nav bar
   return (
-    <section id='about' className='pt-12 max-w-[650px] mx-auto'>
-      <h2 className='font-heading text-3xl'>About</h2>
-      <p className='mb-2'>
+    <section id='about'>
+      <h2 className='font-heading'>About</h2>
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Vel elit scelerisque
         mauris pellentesque pulvinar pellentesque habitant morbi. Risus nec
@@ -11,8 +13,8 @@ export const About = () => {
         pretium. Volutpat lacus laoreet non curabitur gravida arcu ac tortor
         dignissim. Non odio euismod lacinia at quis risus sed vulputate.{" "}
       </p>
-      <h3 className='font-nav pt-3'>Contact:</h3>
-      <p className='mb-2'>
+      <h3>Contact:</h3>
+      <p>
         Fermentum iaculis eu non diam phasellus vestibulum lorem. Varius morbi
         enim nunc faucibus a pellentesque sit amet porttitor. Est lorem ipsum
         dolor sit amet consectetur adipiscing elit. Auctor urna nunc id cursus

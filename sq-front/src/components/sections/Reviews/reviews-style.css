@@ -1,12 +1,38 @@
+#reviews {
+  padding-top: 3rem;
+  position: relative;
+  max-width: 100vw;
+}
+
+#reviews h2 {
+  margin-bottom: 0.75rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
 /*  reviews carousel */
 .carousel__next-button,
 .carousel__back-button {
   transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 40;
 }
 
 .carousel__next-button:disabled,
 .carousel__back-button:disabled {
   opacity: 0;
+}
+
+.dot-group {
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  width: 75%;
+  margin: 0.5rem auto;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem;
 }
 
 button.carousel__dot--selected {
@@ -51,6 +77,69 @@ div.slide___3-Nqo {
   top: 0;
   bottom: 0;
   margin: auto;
+}
+
+.carouselButton img {
+  height: 3.5rem;
+  z-index: 10;
+  position: relative;
+  color: rgb(64, 64, 64);
+}
+
+.carousel__back-button {
+  left: -1.8rem;
+}
+
+.carousel__back-button .carouselButton::before {
+  right: 10%;
+}
+
+.carousel__next-button .carouselButton::before {
+  left: 10%;
+}
+
+.carousel__next-button {
+  right: -2rem;
+}
+
+#reviews .source-link {
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem;
+  text-align: center;
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  text-decoration: underline;
+  padding-top: 0.75rem;
+}
+
+#reviews .flex {
+  display: flex;
+}
+
+#reviews .relative {
+  position: relative;
+}
+
+.review-card {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: solid 2px rgb(64, 64, 64);
+  margin-left: 1rem;
+}
+
+.review-card h4 {
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.review-card cite {
+  align-self: baseline;
+  display: block;
+  text-align: right;
+  width: 100%;
 }
 
 @media screen and (min-width: 1210px) {

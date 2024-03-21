@@ -15,15 +15,11 @@ export const Navbar = () => {
     "reviews",
     "portfolio",
   ]);
+
   return (
-    <nav className='navbar font-nav flex place-content-between text-xs py-2'>
+    <nav className='navbar font-nav'>
       {links.current.map((section) => (
-        <HashLink
-          key={section}
-          smooth
-          to={"/#" + section}
-          className='nav-link hover:text-teal-800 capitalize'
-        >
+        <HashLink key={section} smooth to={"/#" + section} className='nav-link'>
           {section}
         </HashLink>
       ))}
