@@ -153,9 +153,9 @@ div.slide___3-Nqo {
 }
 
 @media screen and (min-width: 1210px) {
-  .carousel__next-button {
+  /* .carousel__next-button {
     right: -1rem !important;
-  }
+  } */
 
   div.slideInner___2mfX9 {
     width: calc(50vw - 3rem);

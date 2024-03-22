@@ -55,7 +55,6 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
         newColorStrings[0]
       ),
     });
-    console.log("scroll: set nav css ", newColorStrings);
     setColorCSS({
       backgroundColor: newColorStrings[0],
     });
@@ -67,7 +66,6 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
     setNavCSS({
       backgroundImage: buildGradientString(newRotation, colorStrings[0]),
     });
-    console.log("colorStrings changed! reset nav css", colorStrings);
   }, [refContainer, colorStrings]);
 
   useEffect(() => {
@@ -81,7 +79,7 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
         newColorStrings[0]
       ),
     });
-    console.log("themeisdark useffect: set nav css ", newColorStrings);
+
     setColorCSS({
       backgroundColor: newColorStrings[0],
     });

@@ -16,5 +16,6 @@
     width: 500px;
     right: auto;
     left: calc(20% - 250px);
+    position: absolute;
   }
 }

@@ -57,6 +57,11 @@ section {
     overflow-y: scroll;
     padding-left: 1rem;
     overflow-x: hidden;
+    scrollbar-color: #525252 transparent;
+  }
+
+  .dark .scrolling-content {
+    scrollbar-color: white transparent;
   }
 
   header {

@@ -72,6 +72,7 @@ function App() {
         <DarkModeSwitch
           themeIsDark={themeIsDark}
           toggleDarkMode={toggleDarkMode}
+          refContainer={emittingElement}
         />
         <SpinningLogo
           speed={0.5}
