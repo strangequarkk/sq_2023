@@ -51,3 +51,38 @@
 #portfolio .project-skills {
   margin-bottom: 1rem;
 }
+
+.project-card details > summary {
+  list-style-type: none;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.project-card details > summary::after {
+  content: "»";
+  padding-left: 0.4rem;
+  font-size: 1.4em;
+  position: absolute;
+  top: -0.25rem;
+}
+
+.project-card details[open] > summary::after {
+  transform: rotate(90deg);
+  top: -0.5rem;
+  padding-left: 0.7rem;
+}
+
+#portfolio hr {
+  width: 40%;
+  margin: 2rem auto;
+  border: 1px solid black;
+  opacity: 0.8;
+}
+
+.dark #portfolio hr {
+  border-color: white;
+}
+
+#portfolio .project-card:last-child hr {
+  display: none;
+}

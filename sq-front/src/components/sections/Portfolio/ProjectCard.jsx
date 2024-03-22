@@ -36,16 +36,20 @@ export const ProjectCard = ({
   const descriptionObj = { __html: description };
 
   return (
-    <article>
+    <article className='project-card'>
       <figure className='cover-image'>{cover}</figure>
       {video}
       <h3 className='font-nav'>
         <a href={link}>{title}</a>
       </h3>
-      <h4>Built with:</h4>
-      <p className='project-skills'>{skills}</p>
-      <div dangerouslySetInnerHTML={descriptionObj}></div>
-      <div>{gallery}</div>
+      <details>
+        <summary>View project details</summary>
+        <h4>Built with:</h4>
+        <p className='project-skills'>{skills}</p>
+        <div dangerouslySetInnerHTML={descriptionObj}></div>
+        <div>{gallery}</div>
+      </details>
+      <hr />
     </article>
   );
 };
