@@ -15,10 +15,11 @@ import LeftArrow from "../../../assets/arrow-chevron-left.svg";
 import RightArrow from "../../../assets/arrow-chevron-right.svg";
 import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
 import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
+import VisibilitySensor from "react-visibility-sensor";
 import "./reviews-style.css";
 //css file contains style overrides and button styling for the carousel
 
-export const Reviews = ({ containerWidth, themeIsDark }) => {
+export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
   const [reviews, setReviews] = useState({});
 
   //calculate how many cards to show in the viewport, based on viewport width
@@ -48,38 +49,48 @@ export const Reviews = ({ containerWidth, themeIsDark }) => {
       <p>no reviews found</p>
     );
   return (
-    <section id='reviews'>
-      <h2 className='font-heading'>Reviews</h2>
-      <br />
+    <VisibilitySensor
+      onChange={(isVisible) => {
+        console.log("onchange visibility, reviews", isVisible);
+        if (isVisible) {
+          setCurrentSection("reviews");
+        }
+      }}
+    >
+      <section id='reviews'>
+        <h2 className='font-heading'>Reviews</h2>
+        <br />
 
-      <CarouselProvider
-        naturalSlideWidth={0}
-        naturalSlideHeight={0}
-        totalSlides={reviews.length}
-        visibleSlides={visibleCards}
-      >
-        <DotGroup dotNumbers={true} className='dot-group' />
-        <div className='relative'>
-          <ButtonBack>
-            <span className='carouselButton'>
-              <img src={lArrow} alt='Back' />
-            </span>
-          </ButtonBack>
-          <ButtonNext>
-            <span className='carouselButton'>
-              <img src={rArrow} alt='Next' />
-            </span>
-          </ButtonNext>
-          <Slider classNameTray='flex'>{reviewCards}</Slider>
-        </div>
-      </CarouselProvider>
-      <a href='wyzant.com/Tutors/KaeTutorsCS' className='source-link'>
-        Check out my Wyzant profile for more student reviews!
-      </a>
-    </section>
+        <CarouselProvider
+          naturalSlideWidth={0}
+          naturalSlideHeight={0}
+          totalSlides={reviews.length}
+          visibleSlides={visibleCards}
+        >
+          <DotGroup dotNumbers={true} className='dot-group' />
+          <div className='relative'>
+            <ButtonBack>
+              <span className='carouselButton'>
+                <img src={lArrow} alt='Back' />
+              </span>
+            </ButtonBack>
+            <ButtonNext>
+              <span className='carouselButton'>
+                <img src={rArrow} alt='Next' />
+              </span>
+            </ButtonNext>
+            <Slider classNameTray='flex'>{reviewCards}</Slider>
+          </div>
+        </CarouselProvider>
+        <a href='wyzant.com/Tutors/KaeTutorsCS' className='source-link'>
+          Check out my Wyzant profile for more student reviews!
+        </a>
+      </section>
+    </VisibilitySensor>
   );
 };
 Reviews.propTypes = {
   containerWidth: PropTypes.number,
   themeIsDark: PropTypes.bool,
+  setCurrentSection: PropTypes.func,
 };

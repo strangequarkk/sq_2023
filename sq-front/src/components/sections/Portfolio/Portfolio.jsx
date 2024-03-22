@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { retrieveAllProjects } from "../../../services/projects.service";
 import { ProjectCard } from "./ProjectCard";
+import VisibilitySensor from "react-visibility-sensor";
+import PropTypes from "prop-types";
 import "./portfolio-style.css";
 
-export const Portfolio = () => {
+export const Portfolio = ({ setCurrentSection }) => {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     retrieveAllProjects(setProjects);
@@ -24,9 +26,24 @@ export const Portfolio = () => {
     );
 
   return (
-    <section id='portfolio'>
-      <h2 className='font-heading'>Portfolio</h2>
-      {projectCards}
-    </section>
+    <VisibilitySensor
+      partialVisibility={true}
+      minTopValue={400}
+      onChange={(isVisible) => {
+        console.log("portfolio visibilitysensor: change", isVisible);
+        if (isVisible) {
+          console.log("visible:portfolio");
+          setCurrentSection("portfolio");
+        }
+      }}
+    >
+      <section id='portfolio'>
+        <h2 className='font-heading'>Portfolio</h2>
+        {projectCards}
+      </section>
+    </VisibilitySensor>
   );
+};
+Portfolio.propTypes = {
+  setCurrentSection: PropTypes.func,
 };

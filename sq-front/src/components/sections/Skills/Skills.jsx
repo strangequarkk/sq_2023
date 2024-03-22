@@ -1,9 +1,11 @@
 import { SkillItem } from "./SkillItem";
 import { retrieveAllSkills } from "../../../services/skills.service";
 import { useEffect, useState } from "react";
+import VisibilitySensor from "react-visibility-sensor";
+import PropTypes from "prop-types";
 import "./skills-style.css";
 
-export const Skills = () => {
+export const Skills = ({ setCurrentSection }) => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
@@ -29,14 +31,25 @@ export const Skills = () => {
   );
 
   return (
-    <section id='skills' className='pt-12 max-w-[650px] mx-auto'>
-      <h2 className='font-heading text-3xl pb-3'>Skills</h2>
-      <article className='pb-4'>
-        <h3 className='font-nav pb-3'>
-          Languages, libraries, &amp; frameworks:
-        </h3>
-        <ul className='px-4'>{skillItems}</ul>
-      </article>
-    </section>
+    <VisibilitySensor
+      onChange={(isVisible) => {
+        if (isVisible) {
+          setCurrentSection("skills");
+        }
+      }}
+    >
+      <section id='skills' className='pt-12 max-w-[650px] mx-auto'>
+        <h2 className='font-heading text-3xl pb-3'>Skills</h2>
+        <article className='pb-4'>
+          <h3 className='font-nav pb-3'>
+            Languages, libraries, &amp; frameworks:
+          </h3>
+          <ul className='px-4'>{skillItems}</ul>
+        </article>
+      </section>
+    </VisibilitySensor>
   );
+};
+Skills.propTypes = {
+  setCurrentSection: PropTypes.func,
 };

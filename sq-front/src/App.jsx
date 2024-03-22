@@ -27,8 +27,15 @@ const favicon = new URL(
 document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
+  const sections = useRef([
+    "about",
+    "skills",
+    "experience",
+    "reviews",
+    "portfolio",
+  ]);
+  const [currentSection, setCurrentSection] = useState("");
   const scrollableDiv = useRef();
-
   const minDesktopSize = 1210;
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
@@ -66,7 +73,11 @@ function App() {
         themeClass={themeClass}
       />
       <header className={themeClass}>
-        <Navbar />
+        <Navbar
+          sections={sections.current}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+        />
       </header>
       <main className={themeClass}>
         <DarkModeSwitch
@@ -87,14 +98,15 @@ function App() {
               <div className='content-all'>
                 <Intro />
                 <div className='scrolling-content' ref={scrollableDiv}>
-                  <About />
-                  <Skills />
-                  <Experience />
+                  <About setCurrentSection={setCurrentSection} />
+                  <Skills setCurrentSection={setCurrentSection} />
+                  <Experience setCurrentSection={setCurrentSection} />
                   <Reviews
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
+                    setCurrentSection={setCurrentSection}
                   />
-                  <Portfolio />
+                  <Portfolio setCurrentSection={setCurrentSection} />
                 </div>
               </div>
             }

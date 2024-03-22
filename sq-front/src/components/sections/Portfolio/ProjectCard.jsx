@@ -12,6 +12,7 @@ export const ProjectCard = ({
   const cover_path = cover_image.length ? cover_image.split("/src")[1] : "";
 
   const cover = cover_image.length ? <img src={cover_path} /> : "";
+  console.log("project cover:", cover);
 
   const skills = project_skills.length
     ? project_skills.map((skillObj) => {

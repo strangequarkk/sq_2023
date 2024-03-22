@@ -18,6 +18,14 @@
   color: rgb(153, 246, 228);
 }
 
+.nav-link.active {
+  text-shadow: 0 0 13px rgba(239, 156, 235, 1);
+}
+
+.dark .nav-link.active {
+  text-shadow: 0 0 13px rgba(239, 156, 235, 0.6);
+}
+
 @media screen and (max-width: 340px) {
   .navbar a {
     font-size: 0.6rem;

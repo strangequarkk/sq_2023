@@ -14,7 +14,6 @@ export const DarkModeSwitch = ({
 
   useContainerScroll((yPos) => {
     const newScrollDirection = yPos - prevYPosition < 0;
-    console.log("scrolling up?", newScrollDirection, yPos);
     setIsScrollingUp(newScrollDirection);
 
     setPrevYPosition(yPos);
