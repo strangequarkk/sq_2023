@@ -152,7 +152,7 @@ div.slide___3-Nqo {
   width: 100%;
 }
 
-@media screen and (min-width: 1210px) {
+@media screen and (min-width: 1080px) {
   .carousel__next-button {
     right: -1rem !important;
   }

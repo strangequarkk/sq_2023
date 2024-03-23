@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (min-width: 1210px) {
+@media screen and (min-width: 1080px) {
   .navbar a {
     text-align: right;
     font-size: 1rem !important;

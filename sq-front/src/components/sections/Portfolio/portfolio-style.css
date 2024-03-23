@@ -176,7 +176,7 @@ html:has(details[open]) {
   }
 }
 
-@media screen and (min-width: 1210px) {
+@media screen and (min-width: 1080px) {
   .project-card details[open] {
     padding: 3rem;
     box-shadow: 0 0 7rem 5rem white;

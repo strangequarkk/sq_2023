@@ -38,7 +38,7 @@ section {
   margin: 0 auto;
 }
 
-@media screen and (min-width: 1210px) {
+@media screen and (min-width: 1080px) {
   :root {
     --l-col-width: 40%;
     --nav-width: 10%;
@@ -55,7 +55,7 @@ section {
   .scrolling-content {
     max-height: 100vh;
     overflow-y: scroll;
-    padding-left: 1rem;
+    padding: 0 1rem;
     overflow-x: hidden;
     scrollbar-color: #525252 transparent;
   }

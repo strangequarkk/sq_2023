@@ -29,10 +29,9 @@
 
 #main-bg-shifter.dark {
   background-blend-mode: multiply;
-  background-color: #23332f;
 }
 
-@media screen and (min-width: 1210px) {
+@media screen and (min-width: 1080px) {
   #nav-bg-shifter {
     width: 7%;
     height: 100vw;

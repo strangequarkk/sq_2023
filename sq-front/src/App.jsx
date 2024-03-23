@@ -36,7 +36,7 @@ function App() {
   ]);
   const [currentSection, setCurrentSection] = useState("");
   const scrollableDiv = useRef();
-  const minDesktopSize = 1210;
+  const minDesktopSize = 1080;
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
 
