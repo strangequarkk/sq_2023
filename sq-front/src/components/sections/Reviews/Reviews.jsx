@@ -51,7 +51,6 @@ export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
   return (
     <VisibilitySensor
       onChange={(isVisible) => {
-        console.log("onchange visibility, reviews", isVisible);
         if (isVisible) {
           setCurrentSection("reviews");
         }

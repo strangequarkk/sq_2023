@@ -63,6 +63,10 @@
   opacity: 0;
 }
 
+.dark .skill-item .tooltip {
+  background: black;
+}
+
 .tooltip.hidden {
   opacity: 0;
   width: 0;

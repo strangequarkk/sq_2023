@@ -18,7 +18,7 @@ import "./huechange-style.css";
 export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
   const chooseBaseColor = useCallback(() => {
     const lightColor = "#D6F8F1";
-    const darkColor = "#23332f";
+    const darkColor = "#14332b";
     return toHSL(themeIsDark ? darkColor : lightColor);
   }, [themeIsDark]);
 

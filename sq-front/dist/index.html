@@ -1,49 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="max-w-[100vw]">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="" />
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Days+One&family=Monoton&family=Sintony:wght@400;700&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">  -->
-    <meta name="viewport" content="height=device-height, 
+    <meta
+      name="viewport"
+      content="height=device-height, 
     width=device-width, initial-scale=1.0, 
     minimum-scale=1.0, maximum-scale=1.0, 
-    user-scalable=no, target-densitydpi=device-dpi"/>
-  
+    user-scalable=no, target-densitydpi=device-dpi"
+    />
+
     <title>Kae</title>
     <style>
       #root {
-        visibility:hidden;
-      }
-      body {
-        background: #ebfcf8;
+        visibility: hidden;
       }
       .fade {
         -webkit-backdrop-filter: blur(0);
                 backdrop-filter: blur(0);
-        opacity:0;
+        opacity: 0;
         transition: 0.6s all;
       }
     </style>
     <script type="text/javascript">
       const clearLoader = () => {
-        document.querySelector('#loadBlur').remove();
-      }
-      window.onload = () =>{
-        document.querySelector('#root').setAttribute('style', 'visibility:visible');
-        document.querySelector('#loadBlur').classList.add('fade');
-        document.querySelector('body').classList.add('bg-default')
-        let loadTimer = window.setTimeout(clearLoader, 200)
-      }
+        document.querySelector("#loadBlur").remove();
+      };
+
+      const setColor = () => {
+        const preferDarkMode = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          : false;
+        const bodyEl = document.querySelector("body");
+        if (preferDarkMode) {
+          bodyEl.style.backgroundColor = "#23332f";
+        } else {
+          bodyEl.style.backgroundColor = "#14332b";
+        }
+      };
+
+      window.onload = () => {
+        document
+          .querySelector("#root")
+          .setAttribute("style", "visibility:visible");
+        document.querySelector("#loadBlur").classList.add("fade");
+        setColor();
+        //document.querySelector("body").classList.add("bg-default");
+        let loadTimer = window.setTimeout(clearLoader, 200);
+      };
     </script>
     <!-- <script type="text/javascript" src="/scrap.js" ></script> -->
     <script type="module" crossorigin src="/assets/index.js"></script>
     <link rel="stylesheet" href="/assets/index.css">
   </head>
-  <body class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]">
-    <div id="loadBlur" style="backdrop-filter: blur(20px);z-index:100;position:absolute;top:0;bottom:0;left:0;right:0"></div>
-    <div id="root" class="font-sans absolute top-0 max-w-[100vw] "></div>
+  <body
+    style="background: #579386"
+    class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]"
+  >
+    <div
+      id="loadBlur"
+      style="
+        backdrop-filter: blur(20px);
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      "
+    ></div>
+    <div id="root" class="font-sans absolute top-0 max-w-[100vw]"></div>
     
   </body>
 </html>

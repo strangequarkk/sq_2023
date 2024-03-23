@@ -3,9 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="" />
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Days+One&family=Monoton&family=Sintony:wght@400;700&family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">  -->
     <meta
       name="viewport"
       content="height=device-height, 
@@ -19,9 +16,6 @@
       #root {
         visibility: hidden;
       }
-      body {
-        background: "#75968f";
-      }
       .fade {
         backdrop-filter: blur(0);
         opacity: 0;
@@ -34,7 +28,6 @@
       };
 
       const setColor = () => {
-        console.log("setcolor??");
         const preferDarkMode = window.matchMedia
           ? window.matchMedia("(prefers-color-scheme: dark)").matches
           : false;
@@ -42,7 +35,7 @@
         if (preferDarkMode) {
           bodyEl.style.backgroundColor = "#23332f";
         } else {
-          bodyEl.style.backgroundColor = "#D6F8F1";
+          bodyEl.style.backgroundColor = "#14332b";
         }
       };
 
@@ -59,7 +52,7 @@
     <!-- <script type="text/javascript" src="/scrap.js" ></script> -->
   </head>
   <body
-    style="background: #75968f"
+    style="background: #579386"
     class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]"
   >
     <div

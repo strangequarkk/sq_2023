@@ -30,16 +30,14 @@ export const Portfolio = ({ setCurrentSection }) => {
       partialVisibility={true}
       minTopValue={400}
       onChange={(isVisible) => {
-        console.log("portfolio visibilitysensor: change", isVisible);
         if (isVisible) {
-          console.log("visible:portfolio");
           setCurrentSection("portfolio");
         }
       }}
     >
       <section id='portfolio'>
         <h2 className='font-heading'>Portfolio</h2>
-        {projectCards}
+        <div className='project-wrapper'>{projectCards}</div>
       </section>
     </VisibilitySensor>
   );
