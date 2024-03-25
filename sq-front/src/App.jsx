@@ -39,6 +39,9 @@ function App() {
   const minDesktopSize = 1080;
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
+  const motionOkay = window.matchMedia(
+    "(prefers-reduced-motion: no-preference)"
+  ).matches;
 
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
   const [emittingElement, setEmittingElement] = useState(undefined);
@@ -74,6 +77,7 @@ function App() {
       />
       <header className={themeClass}>
         <Navbar
+          motionOkay={motionOkay}
           sections={sections.current}
           currentSection={currentSection}
           setCurrentSection={setCurrentSection}
@@ -99,9 +103,13 @@ function App() {
                 <Intro />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={setCurrentSection} />
-                  <Skills setCurrentSection={setCurrentSection} />
+                  <Skills
+                    motionOkay={motionOkay}
+                    setCurrentSection={setCurrentSection}
+                  />
                   <Experience setCurrentSection={setCurrentSection} />
                   <Reviews
+                    motionOkay={motionOkay}
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
                     setCurrentSection={setCurrentSection}
@@ -116,7 +124,11 @@ function App() {
           <Route exact path='/experience' element={<Experience />} />
           <Route exact path='/portfolio' element={<Portfolio />} /> */}
         </Routes>
-        <HireMe themeIsDark={themeIsDark} refContainer={emittingElement} />
+        <HireMe
+          themeIsDark={themeIsDark}
+          refContainer={emittingElement}
+          motionOkay={motionOkay}
+        />
       </main>
     </>
   );

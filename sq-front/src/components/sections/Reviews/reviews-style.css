@@ -10,10 +10,20 @@
   margin: 0 auto;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .carousel__next-button,
+  .carousel__back-button {
+    transition: all 0.3s;
+  }
+
+  .carousel__dot {
+    transition: all 0.3s;
+  }
+}
+
 /*  reviews carousel */
 .carousel__next-button,
 .carousel__back-button {
-  transition: all 0.3s;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -52,7 +62,6 @@ button.carousel__dot--selected {
   height: 1.5rem;
   padding: 0 0.2rem;
   border-radius: 5em;
-  transition: all 0.3s;
 }
 
 div.slideInner___2mfX9 {

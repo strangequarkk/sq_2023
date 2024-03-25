@@ -45,12 +45,17 @@
   cursor: pointer;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .skill-item .tooltip {
+    transition: all;
+    transition-duration: 200ms;
+  }
+}
+
 .skill-item .tooltip {
   position: absolute;
   top: -66.666667%;
   left: 66.666667%;
-  transition: all;
-  transition-duration: 200ms;
   display: block;
   white-space: nowrap;
   font-size: 0.875rem /* 14px */;

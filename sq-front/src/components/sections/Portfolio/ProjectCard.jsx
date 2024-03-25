@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const ProjectCard = ({
   title,
-  link,
+  // link,
   description,
   cover_image,
   cover_video,
@@ -53,7 +53,8 @@ export const ProjectCard = ({
     <article onClick={toggleDetailsModal} className='project-card'>
       <div className='cover-image' style={imageStyle}>
         <h3 className='font-nav'>
-          <a href={link}>{title}</a>
+          {title}
+          {/* <a href={link}>{title}</a> */}
         </h3>
         <div className='built-with'>
           <h4>Built with:</h4>

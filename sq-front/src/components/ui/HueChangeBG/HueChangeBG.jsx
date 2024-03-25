@@ -17,8 +17,8 @@ import "./huechange-style.css";
  */
 export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
   const chooseBaseColor = useCallback(() => {
-    const lightColor = "#D6F8F1";
-    const darkColor = "#14332b";
+    const lightColor = "#b7f5f2";
+    const darkColor = "#143233";
     return toHSL(themeIsDark ? darkColor : lightColor);
   }, [themeIsDark]);
 
@@ -60,7 +60,7 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
     });
   }, refContainer);
 
-  //check if colors or device width have changed
+  //check if colors or rotation have changed
   useEffect(() => {
     const newRotation = refContainer ? "270deg" : "to bottom";
     setNavCSS({
@@ -68,6 +68,7 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
     });
   }, [refContainer, colorStrings]);
 
+  //when theme switches, or when page switches from 1 to 2 column layout
   useEffect(() => {
     const newHSL = chooseBaseColor();
     setDefaultHSL(newHSL);

@@ -18,7 +18,6 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  transition: all 0.3s ease-in;
   border-radius: 100%;
   position: fixed;
   background-color: white;
@@ -63,10 +62,16 @@
   position: absolute;
 }
 
-.waveActive {
-  animation: wavehand 0.25s;
-  animation-iteration-count: 2;
-  opacity: 1;
+@media (prefers-reduced-motion: no-preference) {
+  #hire {
+    transition: all 0.3s ease-in;
+  }
+
+  .waveActive {
+    animation: wavehand 0.25s;
+    animation-iteration-count: 2;
+    opacity: 1;
+  }
 }
 
 .waveActive-parent {

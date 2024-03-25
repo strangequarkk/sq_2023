@@ -19,7 +19,12 @@ import VisibilitySensor from "react-visibility-sensor";
 import "./reviews-style.css";
 //css file contains style overrides and button styling for the carousel
 
-export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
+export const Reviews = ({
+  containerWidth,
+  themeIsDark,
+  setCurrentSection,
+  motionOkay,
+}) => {
   const [reviews, setReviews] = useState({});
 
   //calculate how many cards to show in the viewport, based on viewport width
@@ -48,11 +53,15 @@ export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
     ) : (
       <p>no reviews found</p>
     );
+  const denyAnimation = motionOkay ? "" : "denyAnimation";
+
   return (
     <VisibilitySensor
       onChange={(isVisible) => {
         if (isVisible) {
           setCurrentSection("reviews");
+          //enable arrow key navigation of slider
+          document.getElementById("review-slider").focus();
         }
       }}
     >
@@ -65,6 +74,7 @@ export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
           naturalSlideHeight={0}
           totalSlides={reviews.length}
           visibleSlides={visibleCards}
+          lockOnWindowScroll={true}
         >
           <DotGroup dotNumbers={true} className='dot-group' />
           <div className='relative'>
@@ -78,7 +88,13 @@ export const Reviews = ({ containerWidth, themeIsDark, setCurrentSection }) => {
                 <img src={rArrow} alt='Next' />
               </span>
             </ButtonNext>
-            <Slider classNameTray='flex'>{reviewCards}</Slider>
+            <Slider
+              id='review-slider'
+              classNameTray='flex'
+              classNameAnimation={denyAnimation}
+            >
+              {reviewCards}
+            </Slider>
           </div>
         </CarouselProvider>
         <a href='wyzant.com/Tutors/KaeTutorsCS' className='source-link'>
@@ -92,4 +108,5 @@ Reviews.propTypes = {
   containerWidth: PropTypes.number,
   themeIsDark: PropTypes.bool,
   setCurrentSection: PropTypes.func,
+  motionOkay: PropTypes.bool,
 };
