@@ -4,13 +4,13 @@ from common.utils import build_and_collect
 # from tinymce.models import HTMLField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-upload_dest = "sq-front/src/assets"
+upload_dest = "./"
 
 
 class Project(models.Model):
     title = models.CharField(max_length=30)
     description = RichTextUploadingField()
-    link = models.CharField(max_length=30)
+    link = models.CharField(max_length=200)
     cover_image = models.ImageField(upload_to=upload_dest, blank=True)
     cover_video = models.FileField(upload_to=upload_dest, blank=True)
 

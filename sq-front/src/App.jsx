@@ -1,59 +1,137 @@
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
 // import { AddResumeItem } from './components/editor/AddResumeItem'
 // import { ResumeList } from './components/editor/ResumeList'
 // import { UpdateResume } from './components/editor/UpdateResume'
-import { Navbar } from './components/ui/Navbar/Navbar'
-import { SpinningLogo } from './components/ui/SpinningLogo'
-import { Intro } from './components/sections/Intro/Intro'
-import { About } from './components/sections/About'
-import { Skills } from './components/sections/Skills/Skills'
-import { Experience } from './components/sections/Experience/Experience'
-import { Portfolio } from './components/sections/Portfolio/Portfolio'
-import { Reviews } from './components/sections/Reviews/Reviews'
-import { ShiftBG } from './components/ui/ShiftBG'
-import { HireMe } from './components/ui/HireMe/HireMe'
-import LogoBright from '../src/assets/strange-quark-logo-blackhole-light.svg'
+import { Navbar } from "./components/ui/Navbar/Navbar";
+import { SpinningLogo } from "./components/ui/SpinningLogo/SpinningLogo";
+import { Intro } from "./components/sections/Intro/Intro";
+import { About } from "./components/sections/About/About";
+import { Skills } from "./components/sections/Skills/Skills";
+import { Experience } from "./components/sections/Experience/Experience";
+import { Portfolio } from "./components/sections/Portfolio/Portfolio";
+import { Reviews } from "./components/sections/Reviews/Reviews";
+import { HueChangeBG } from "./components/ui/HueChangeBG/HueChangeBG";
+import { HireMe } from "./components/ui/HireMe/HireMe";
 
-import './App.css'
+import { useContainerSize } from "./utils/useContainerSize";
+import { useDarkModePrefChange } from "./utils/useDarkModePrefChange";
+import { useRef, useEffect, useState } from "react";
+import { DarkModeSwitch } from "./components/ui/DarkModeSwitch/DarkModeSwitch";
 
-const favicon = new URL('../src/assets/strange-quark-logo-blackhole-dark.svg', import.meta.url).href
+import "./App.css";
+
+const favicon = new URL(
+  "../src/assets/strange-quark-logo-blackhole-dark.svg",
+  import.meta.url
+).href;
 document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
-  
+  const sections = useRef([
+    "about",
+    "skills",
+    "experience",
+    "reviews",
+    "portfolio",
+  ]);
+  const [currentSection, setCurrentSection] = useState("");
+  const scrollableDiv = useRef();
+  const minDesktopSize = 1080;
+  const containerSize = useContainerSize()[0];
+  const [containerWidth, setContainerWidth] = useState(containerSize);
+  const motionOkay = window.matchMedia(
+    "(prefers-reduced-motion: no-preference)"
+  ).matches;
+
+  //scroll and resize effects will refer either to the window or the scrollable div depending on size
+  const [emittingElement, setEmittingElement] = useState(undefined);
+
+  const matchDarkMode = window.matchMedia
+    ? window.matchMedia("(prefers-color-scheme: dark)").matches
+    : false;
+
+  const [themeIsDark, setThemeIsDark] = useState(matchDarkMode);
+
+  const toggleDarkMode = () => {
+    setThemeIsDark(!themeIsDark);
+  };
+  useDarkModePrefChange(toggleDarkMode);
+  const themeClass = themeIsDark ? "dark" : "light";
+
+  //update container and its width if the window resizes
+  useEffect(() => {
+    const container =
+      containerSize >= minDesktopSize ? scrollableDiv.current : undefined;
+
+    const newWidth = container ? container.clientWidth : containerSize;
+    setEmittingElement(container);
+    setContainerWidth(newWidth);
+  }, [containerSize]);
 
   return (
     <>
-      <ShiftBG defaultColor={ "#D6F8F1"} />
-      <header className="fixed w-screen top-0 left-0 z-10 pb-8  px-4">
-        <Navbar />
+      <HueChangeBG
+        themeIsDark={themeIsDark}
+        refContainer={emittingElement}
+        themeClass={themeClass}
+      />
+      <header className={themeClass}>
+        <Navbar
+          motionOkay={motionOkay}
+          sections={sections.current}
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+        />
       </header>
-      <main className="px-4 max-w-100">
-        <SpinningLogo speed={0.5} image={LogoBright} />
-      <Routes>
-          <Route exact path="/" element={
-            <>
-              < Intro />
-              < About />
-              < Skills />
-              < Experience />
-              < Reviews />
-              < Portfolio />
-            </>
-            
-          } />
-          <Route exact path="/about" element={< About />} />
-          <Route exact path="/skills" element={< Skills />} />
-          <Route exact path="/experience" element={<Experience />} />
-          <Route exact path="/portfolio" element={<Portfolio/>}/>
-        {/* <Route exact path="/edit/resume" element={< ResumeList />} />
-        <Route exact path="/edit/resume/add/" element={< AddResumeItem />} />
-        <Route exact path="/edit/resume/:id/update/" element={< UpdateResume/>} /> */}
+      <main className={themeClass}>
+        <DarkModeSwitch
+          themeIsDark={themeIsDark}
+          toggleDarkMode={toggleDarkMode}
+          refContainer={emittingElement}
+        />
+        <SpinningLogo
+          speed={0.5}
+          themeIsDark={themeIsDark}
+          refContainer={emittingElement}
+        />
+        <Routes>
+          <Route
+            exact
+            path='/'
+            element={
+              <div className='content-all'>
+                <Intro />
+                <div className='scrolling-content' ref={scrollableDiv}>
+                  <About setCurrentSection={setCurrentSection} />
+                  <Skills
+                    motionOkay={motionOkay}
+                    setCurrentSection={setCurrentSection}
+                  />
+                  <Experience setCurrentSection={setCurrentSection} />
+                  <Reviews
+                    motionOkay={motionOkay}
+                    containerWidth={containerWidth}
+                    themeIsDark={themeIsDark}
+                    setCurrentSection={setCurrentSection}
+                  />
+                  <Portfolio setCurrentSection={setCurrentSection} />
+                </div>
+              </div>
+            }
+          />
+          {/* <Route exact path='/about' element={<About />} />
+          <Route exact path='/skills' element={<Skills />} />
+          <Route exact path='/experience' element={<Experience />} />
+          <Route exact path='/portfolio' element={<Portfolio />} /> */}
         </Routes>
-        <HireMe />
-        </main>
+        <HireMe
+          themeIsDark={themeIsDark}
+          refContainer={emittingElement}
+          motionOkay={motionOkay}
+        />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

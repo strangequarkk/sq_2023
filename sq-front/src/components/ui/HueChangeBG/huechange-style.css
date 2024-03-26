@@ -1,0 +1,46 @@
+#nav-bg-shifter {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(214, 248, 241) 50%,
+    rgba(214, 248, 241, 0)
+  );
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  height: 4rem;
+  right: 0;
+  left: 0;
+}
+
+#main-bg-shifter {
+  min-height: 100vh;
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-size: cover;
+  background-color: rgb(214, 248, 241);
+  background-image: url("/src/assets/bubble-bg.jpg");
+  background-position: center;
+  background-blend-mode: screen;
+}
+
+#main-bg-shifter.dark {
+  background-blend-mode: multiply;
+}
+
+@media screen and (min-width: 1080px) {
+  #nav-bg-shifter {
+    width: 7%;
+    height: 100vw;
+    margin: 0;
+    left: 43%;
+    background-image: linear-gradient(
+      to left,
+      rgb(214, 248, 241) 50%,
+      rgba(214, 248, 241, 0)
+    );
+  }
+}

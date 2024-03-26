@@ -1,15 +1,73 @@
-body, html {
+body,
+html {
   height: 100vh;
   width: 100vw;
 }
 
-main {
-  z-index: 1;
+header {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 0 1rem 2rem;
 }
 
-.font-heading::first-letter{
+main {
+  z-index: 1;
+  width: 100vw;
+  max-width: 1300px;
+  padding: 0 1rem;
+}
+
+.dark {
+  color: white;
+}
+
+.font-heading::first-letter {
   font-family: "Monoton", Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.scrolling-content section h2.font-heading {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 
+section {
+  max-width: 650px;
+  margin: 0 auto;
+}
 
+@media screen and (min-width: 1080px) {
+  :root {
+    --l-col-width: 40%;
+    --nav-width: 10%;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .content-all {
+    display: grid;
+    grid-template-columns: var(--l-col-width) 50%;
+    gap: var(--nav-width);
+  }
+
+  .scrolling-content {
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding: 0 1rem;
+    overflow-x: hidden;
+    scrollbar-color: #525252 transparent;
+  }
+
+  .dark .scrolling-content {
+    scrollbar-color: white transparent;
+  }
+
+  header {
+    width: var(--nav-width) !important;
+    left: var(--l-col-width) !important;
+    height: 100vh !important;
+    padding: 0 !important;
+  }
+}

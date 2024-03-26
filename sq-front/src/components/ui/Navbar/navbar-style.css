@@ -1,7 +1,66 @@
+.navbar {
+  display: flex;
+  place-content: space-between;
+  font-size: 0.75rem /* 12px */;
+  line-height: 1rem /* 16px */;
+  padding: 0.5rem 0;
+}
 
-/* tailwind does not allow custom breakpoints */
+.nav-link {
+  text-transform: capitalize;
+}
+
+.nav-link:hover {
+  color: rgb(17, 94, 89);
+}
+
+.dark .nav-link:hover {
+  color: rgb(153, 246, 228);
+}
+
+.nav-link.active {
+  text-shadow: 0 0 13px rgba(239, 156, 235, 1);
+}
+
+.dark .nav-link.active {
+  text-shadow: 0 0 13px rgba(239, 156, 235, 0.6);
+}
+
 @media screen and (max-width: 340px) {
-    nav a {
-        font-size: 0.6rem;
-    }
+  .navbar a {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  :root {
+    --vert-tablet-width: 650px;
+  }
+
+  .navbar {
+    max-width: var(--vert-tablet-width);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .navbar a {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .navbar a {
+    text-align: right;
+    font-size: 1rem !important;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: 100%;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    place-content: space-around !important;
+  }
 }

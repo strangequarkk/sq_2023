@@ -1,0 +1,39 @@
+#experience {
+  padding-top: 3rem;
+}
+
+.resume-list-item {
+  padding: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.resume-list-item h3 {
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.resume-list-item h4 {
+  font-weight: bold;
+}
+
+.resume-list-item p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.resume-list-item p.date-span {
+  text-align: right;
+  font-style: italic;
+  margin: auto;
+}
+
+.resume-list-item p.description {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.dark .resume-list-item p.description {
+  background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,16 @@
+#about {
+  padding-top: 3rem;
+}
+
+#about h2 {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem;
+}
+
+#about p {
+  margin-bottom: 0.5rem;
+}
+
+#about h3 {
+  padding-top: 0.75rem;
+}
