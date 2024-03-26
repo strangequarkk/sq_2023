@@ -79,7 +79,10 @@ export const HireMe = ({ refContainer, themeIsDark }) => {
           <p>(509) 308-5094</p>
           <p>
             Bluesky:{" "}
-            <a className='underline' href='bsky.app/untercurrent'>
+            <a
+              className='underline'
+              href='https://bsky.app/profile/untercurrent.bsky.social'
+            >
               @untercurrent
             </a>
           </p>
