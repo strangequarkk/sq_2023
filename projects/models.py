@@ -19,7 +19,7 @@ class Project(models.Model):
 
     def save(self, *args, **kwargs):
         super(Project, self).save(*args, **kwargs)
-        # build_and_collect()
+        build_and_collect()
 
 
 class GalleryImage(models.Model):

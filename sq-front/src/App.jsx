@@ -32,7 +32,7 @@ function App() {
     "skills",
     "experience",
     "reviews",
-    "portfolio",
+    "projects",
   ]);
   const [currentSection, setCurrentSection] = useState("");
   const scrollableDiv = useRef();

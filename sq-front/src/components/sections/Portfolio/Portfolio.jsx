@@ -7,6 +7,8 @@ import "./portfolio-style.css";
 
 export const Portfolio = ({ setCurrentSection }) => {
   const [projects, setProjects] = useState([]);
+  const [hasOpenProject, setHasOpenProject] = useState(false);
+
   useEffect(() => {
     retrieveAllProjects(setProjects);
   }, []);
@@ -19,7 +21,14 @@ export const Portfolio = ({ setCurrentSection }) => {
           defaultProjectProps[prop] = project[prop] ? project[prop] : "";
         });
 
-        return <ProjectCard key={project.title} {...defaultProjectProps} />;
+        return (
+          <ProjectCard
+            key={project.title}
+            preventOpening={hasOpenProject}
+            setPreventOpening={setHasOpenProject}
+            {...defaultProjectProps}
+          />
+        );
       })
     ) : (
       <p>no items to show</p>
@@ -31,12 +40,12 @@ export const Portfolio = ({ setCurrentSection }) => {
       minTopValue={400}
       onChange={(isVisible) => {
         if (isVisible) {
-          setCurrentSection("portfolio");
+          setCurrentSection("projects");
         }
       }}
     >
-      <section id='portfolio'>
-        <h2 className='font-heading'>Portfolio</h2>
+      <section id='projects'>
+        <h2 className='font-heading'>Projects</h2>
         <div className='project-wrapper'>{projectCards}</div>
       </section>
     </VisibilitySensor>

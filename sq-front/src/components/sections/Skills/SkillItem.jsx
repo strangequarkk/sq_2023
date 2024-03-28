@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { detectClickOut } from "../../../utils/detectClickout";
+//import { detectClickOut } from "../../../utils/detectClickout";
+import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 import { shiftElementLeft } from "../../../utils/shiftElementLeft";
 
 const SubItem = ({ skill, builtWith }) => {
@@ -31,6 +32,7 @@ const SubItem = ({ skill, builtWith }) => {
     changeTTipState(showTTip);
     setShowTTip(!showTTip);
   };
+  useDetectClickOut(skillElement.current, handleExit, showTTip);
 
   useEffect(() => {
     if (tTipElement.current && !hasRendered.current) {
@@ -46,7 +48,7 @@ const SubItem = ({ skill, builtWith }) => {
 
       //clicking on the parent element toggles the tooltip visibility;
       //clicking on anything else makes the tooltip go away
-      detectClickOut(skillElement.current, handleExit);
+      //detectClickOut(skillElement.current, handleExit);
 
       //only need to do this once, but react convention does not allow empty dependency array in this case
       hasRendered.current = true;

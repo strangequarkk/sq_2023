@@ -11,14 +11,14 @@
     user-scalable=no, target-densitydpi=device-dpi"
     />
 
-    <title>Kae</title>
+    <title>Kae Unterseher</title>
     <style>
       #root {
         visibility: hidden;
       }
       .fade {
         -webkit-backdrop-filter: blur(0);
-        backdrop-filter: blur(0);
+                backdrop-filter: blur(0);
         opacity: 0;
         transition: 0.6s all;
       }
@@ -34,9 +34,9 @@
           : false;
         const bodyEl = document.querySelector("body");
         if (preferDarkMode) {
-          bodyEl.style.backgroundColor = "#23332f";
-        } else {
           bodyEl.style.backgroundColor = "#14332b";
+        } else {
+          bodyEl.style.backgroundColor = "#b7f5f2";
         }
       };
 
@@ -52,10 +52,10 @@
     </script>
     <!-- <script type="text/javascript" src="/scrap.js" ></script> -->
     <script type="module" crossorigin src="/assets/index.js"></script>
-    <link rel="stylesheet" href="/assets/index.css" />
+    <link rel="stylesheet" href="/assets/index.css">
   </head>
   <body
-    style="background: #579386"
+    style="background: #52a39f"
     class="h-100 overflow-y-scroll overflow-x-clip max-w-[100vw]"
   >
     <div
@@ -71,5 +71,6 @@
       "
     ></div>
     <div id="root" class="font-sans absolute top-0 max-w-[100vw]"></div>
+    
   </body>
 </html>

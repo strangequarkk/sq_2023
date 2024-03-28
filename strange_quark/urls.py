@@ -14,15 +14,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include, re_path
 from routers import router
 from django.views.generic import TemplateView
+from strange_quark import views
 
 urlpatterns = [
     path("tinkering/", admin.site.urls),
     path("", TemplateView.as_view(template_name="index.html")),
     path("api/", include((router.urls, "strange_quark"), namespace="strange_quark")),
-    # path("tinymce/", include("tinymce.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
+    path("/whep", views.gitWebHook, name="git"),  # webhook endpoint
 ]

@@ -4,12 +4,9 @@ export const useContainerScroll = (handleScroll, container = window) => {
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
   ).matches;
-  console.log("useContainerscroll setup: motionOkay", motionOkay);
   useEffect(() => {
-    console.log("use container scroll useffect: motionOkay?", motionOkay);
     if (motionOkay) {
       // don't bother if user doesn't want motion
-      console.log("usecontainerscroll: motion is okay");
       const onScroll = () => {
         const yPosition =
           container.scrollY || container.scrollY === 0 //non-window els dont have scrolly

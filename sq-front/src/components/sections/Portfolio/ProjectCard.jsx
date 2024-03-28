@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 
 export const ProjectCard = ({
   title,
@@ -9,8 +10,27 @@ export const ProjectCard = ({
   cover_video,
   project_skills,
   gallery_images,
+  preventOpening,
+  setPreventOpening,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const detailsElement = useRef();
+  const cardElement = useRef();
+
+  const handleClickOut = (e) => {
+    if (
+      e.target != cardElement.current &&
+      !cardElement.current.contains(e.target) &&
+      showDetails
+    ) {
+      setPreventOpening(false);
+      setShowDetails(false);
+    }
+  };
+
+  useDetectClickOut(cardElement.current, handleClickOut, showDetails);
+
+  useEffect(() => {}, [showDetails, title]);
 
   const skills = project_skills.length
     ? project_skills.map((skillObj) => {
@@ -37,20 +57,33 @@ export const ProjectCard = ({
   };
 
   const toggleDetailsModal = (e) => {
-    e.preventDefault();
-    // if (showDetails) {
-    //   document.documentElement.style.overflow = 'hidden';
-    //   document.body.scroll = "no";
-    // } else {
+    if (e.target.closest(".project-content")) {
+      if (e.target.href) {
+        e.target.setAttribute("target", "_blank");
+      } else if (e.target.closest("a")) {
+        e.target.closest("a").setAttribute("target", "_blank");
+      }
+    } else {
+      e.preventDefault();
 
-    // }
-    setShowDetails(!showDetails);
+      if (!preventOpening && !showDetails) {
+        setPreventOpening(true);
+        setShowDetails(true);
+      } else if (preventOpening && showDetails) {
+        setPreventOpening(false);
+        setShowDetails(false);
+      }
+    }
   };
 
   const summaryMessage = showDetails ? "Close" : "View project details";
   const detailsOpen = showDetails ? "open" : "";
   return (
-    <article onClick={toggleDetailsModal} className='project-card'>
+    <article
+      ref={cardElement}
+      onClick={toggleDetailsModal}
+      className='project-card'
+    >
       <div className='cover-image' style={imageStyle}>
         <h3 className='font-nav'>
           {title}
@@ -61,16 +94,17 @@ export const ProjectCard = ({
           <p className='project-skills'>{skills}</p>
         </div>
       </div>
-      {/* <figure className='cover-image'>{cover}</figure> */}
       {video}
 
-      <details open={detailsOpen}>
+      <details ref={detailsElement} open={detailsOpen}>
         <summary onClick={toggleDetailsModal}>{summaryMessage}</summary>
 
-        <div dangerouslySetInnerHTML={descriptionObj}></div>
+        <div
+          className='project-content'
+          dangerouslySetInnerHTML={descriptionObj}
+        ></div>
         <div>{gallery}</div>
       </details>
-      {/* <hr /> */}
     </article>
   );
 };
@@ -83,6 +117,8 @@ ProjectCard.propTypes = {
   cover_video: PropTypes.string,
   project_skills: PropTypes.array,
   gallery_images: PropTypes.array,
+  preventOpening: PropTypes.bool,
+  setPreventOpening: PropTypes.func,
 };
 
 ProjectCard.defaultProps = {

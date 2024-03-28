@@ -1,24 +1,24 @@
-#portfolio {
+#projects {
   padding-top: 3rem;
 }
-#portfolio h2 {
+#projects h2 {
   margin-bottom: 1.5rem;
 }
 
-#portfolio .project-wrapper {
+#projects .project-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-#portfolio article {
+#projects article {
   /* padding: 0.5rem; */
   width: 100%;
   margin-top: 0.75rem;
   cursor: pointer;
 }
 
-#portfolio .skill {
+#projects .skill {
   border: 1px solid rgb(153, 246, 228);
   border-radius: 3em;
   background-color: rgba(255, 255, 255, 0.5);
@@ -28,11 +28,11 @@
   margin-right: 0.75rem;
 }
 
-.dark #portfolio .skill {
+.dark #projects .skill {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-#portfolio p {
+#projects p {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
@@ -66,7 +66,7 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-#portfolio h3 {
+#projects h3 {
   font-size: 1.25rem /* 20px */;
   line-height: 1.75rem;
   font-weight: bold;
@@ -78,15 +78,15 @@
   padding: 0.2rem 0.6rem;
 }
 
-.dark #portfolio h3 {
+.dark #projects h3 {
   background: rgba(0, 0, 0, 0.8);
 }
 
-#portfolio h4 {
+#projects h4 {
   font-weight: bold;
 }
 
-#portfolio .project-skills {
+#projects .project-skills {
   margin-top: 0.5rem;
 }
 
@@ -149,29 +149,16 @@ html:has(details[open]) {
   background: rgba(0, 0, 0, 0.9);
 }
 
-/* .project-card details[open] > summary::after {
-  transform: rotate(90deg);
-  top: -0.5rem;
-  padding-left: 0.7rem;
-} */
-
-/* #portfolio hr {
-  width: 40%;
-  margin: 2rem auto;
-  border: 1px solid black;
-  opacity: 0.8;
-} */
-
-/* .dark #portfolio hr {
-  border-color: white;
+.project-content a {
+  text-decoration: underline;
 }
 
-#portfolio .project-card:last-child hr {
-  display: none;
-} */
+.project-content {
+  cursor: default;
+}
 
 @media screen and (min-width: 640px) {
-  #portfolio article {
+  #projects article {
     width: calc(50% - 0.5rem);
   }
 }
