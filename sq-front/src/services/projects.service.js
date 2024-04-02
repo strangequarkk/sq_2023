@@ -1,7 +1,7 @@
 import axios from "axios";
 import DOMPurify from "dompurify";
 
-export const baseURL = "https://strange-quark.com/api";
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const retrieveAllProjects = (callback) => {
   axios
