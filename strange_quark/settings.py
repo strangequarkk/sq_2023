@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import json
+import dj_database_url
 import os
 from dotenv import load_dotenv
 
@@ -30,6 +30,8 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env["SECRET_KEY"]
+
+GITHUB_WEBHOOK_KEY = env["GITHUB_WEBHOOK_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get("DEBUG_STATUS", False)
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     "projects",
+    "up",
 ]
 
 MIDDLEWARE = [
@@ -71,6 +74,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_SCHEME", "https")
 
 ROOT_URLCONF = "strange_quark.urls"
 
@@ -97,10 +102,11 @@ WSGI_APPLICATION = "strange_quark.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
 }
 
 
@@ -139,11 +145,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/src/"
-STATICFILES_DIRS = [FRONTEND_DIR]  # / "assets"
+STATICFILES_DIRS = [FRONTEND_DIR]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = BACKEND_DIR / "static"
-WHITENOISE_ROOT = FRONTEND_DIR  # / "assets"
+WHITENOISE_ROOT = FRONTEND_DIR
 
 CKEDITOR_UPLOAD_PATH = "./"
 # CKEDITOR_STORAGE_BACKEND = str(BASE_DIR / "sq-front/src/assets")
