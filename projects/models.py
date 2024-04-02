@@ -19,9 +19,11 @@ class Project(models.Model):
 
     def save(self, *args, **kwargs):
         super(Project, self).save(*args, **kwargs)
+        # build frontend vite project into sq-front/dist, and then run collectstatic so all uploaded files are available
         build_and_collect()
 
 
+# currently unused- may eventually implement, add a gallery of project screenshots etc
 class GalleryImage(models.Model):
     image = models.ImageField(upload_to=upload_dest)
     parent_project = models.ForeignKey(Project, on_delete=models.CASCADE)

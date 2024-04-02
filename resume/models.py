@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
+# Single entry in "experience" section
 class ResumeItem(models.Model):
     employer = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
