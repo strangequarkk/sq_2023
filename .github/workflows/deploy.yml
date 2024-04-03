@@ -28,11 +28,11 @@ jobs:
           echo "${{ secrets.FRONTEND_ENV_CONTENTS }}" > .env
           cd ../
 
-      - name: Create .env
-        run: |
-          echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" > .env
-        env:
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      # - name: Create .env
+      #   run: |
+      #     echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" > .env
+      #   env:
+      #     DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
       - name: Setup SSH key
         uses: shimataro/ssh-key-action@v2
