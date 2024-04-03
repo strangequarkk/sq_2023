@@ -3,7 +3,6 @@ import VisibilitySensor from "react-visibility-sensor";
 import PropTypes from "prop-types";
 
 export const About = ({ setCurrentSection }) => {
-  //padding-top to ensure scrollto doens't cover title with nav bar
   return (
     <VisibilitySensor
       onChange={(isVisible) => {

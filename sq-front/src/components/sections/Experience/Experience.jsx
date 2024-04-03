@@ -20,7 +20,7 @@ export const Experience = ({ setCurrentSection }) => {
   ) : (
     <p>no items to show</p>
   );
-  //padding-top to ensure scrollto doens't cover title with nav bar
+
   return (
     <VisibilitySensor
       onChange={(isVisible) => {
