@@ -37,6 +37,8 @@ SECRET_KEY = DJANGO_SECRET_KEY = env["DJANGO_SECRET_KEY"]
 DEBUG = True  # env.get("DEBUG_STATUS", False)
 
 # ALLOWED_HOSTS = []
+print("what's in env?")
+print(env)
 
 ALLOWED_HOSTS = env.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
