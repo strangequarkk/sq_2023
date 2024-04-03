@@ -30,10 +30,11 @@ jobs:
 
       - name: Create .env
         run: |
-          echo "${{ secrets.MAIN_ENV_CONTENTS }}" > .env
+          echo "$MAIN_ENV_CONTENTS" > .env
           echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" > .env
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          MAIN_ENV_CONTENTS: ${{ secrets.MAIN_ENV_CONTENTS }}
 
       - name: Setup SSH key
         uses: shimataro/ssh-key-action@v2
