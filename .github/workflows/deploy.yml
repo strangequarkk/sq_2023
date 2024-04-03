@@ -48,7 +48,7 @@ jobs:
 
       - name: Run up
         run: |
-          pipenv run python manage.py up strange-quark.com --email=kae.unterseher@gmail.com
+          pipenv run python manage.py up strange-quark.com --email=kae.unterseher@gmail.com --verbose
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_ORIGINS }}
