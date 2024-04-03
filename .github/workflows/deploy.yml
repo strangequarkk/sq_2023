@@ -48,8 +48,6 @@ jobs:
         run: |
           pipenv run python manage.py up strange-quark.com --email=kae.unterseher@gmail.com
         env:
-          ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
-          DEBUG_STATUS: ${{ secrets.DEBUG_STATUS }}
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
       - name: Remove .env
