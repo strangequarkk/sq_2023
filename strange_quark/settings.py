@@ -33,14 +33,14 @@ print(env)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env["DJANGO_SECRET_KEY"]
 
-GITHUB_WEBHOOK_KEY = env["A_WEBHOOK_KEY"]
+# GITHUB_WEBHOOK_KEY = env["A_WEBHOOK_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get("DEBUG_STATUS", False)
 
 # ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = env.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = env.get("ALLOWED_ORIGINS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
 
 CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
