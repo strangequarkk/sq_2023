@@ -27,6 +27,8 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+print("whats in the env file?")
+print(env)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env["SECRET_KEY"]
