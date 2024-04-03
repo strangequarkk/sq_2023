@@ -42,11 +42,11 @@ DEBUG = env.get("DEBUG_STATUS", False)
 
 ALLOWED_HOSTS = env.get("ALLOWED_ORIGINS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
-
+print("allowed hosts: ")
+print(ALLOWED_HOSTS)
 CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
-
 # Application definition
-
+print("install django apps")
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     "projects",
     "up",
 ]
-
+print("middleware")
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -77,10 +77,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+print("ssl")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_SCHEME", "https")
 
 ROOT_URLCONF = "strange_quark.urls"
-
+print("templates")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -99,7 +100,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "strange_quark.wsgi.application"
 
-
+print("databases")
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -142,7 +143,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+print("static files")
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -162,3 +163,4 @@ MEDIA_URL = "/assets/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+print("MADE IT THROUGH SETTINGS FILE")
