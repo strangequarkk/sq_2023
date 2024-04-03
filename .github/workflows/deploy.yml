@@ -31,8 +31,10 @@ jobs:
       - name: Create .env
         run: |
           echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" > .env
+          echo "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" > .env
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
 
       - name: Setup SSH key
         uses: shimataro/ssh-key-action@v2
