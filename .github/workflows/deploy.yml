@@ -57,6 +57,10 @@ jobs:
           pipenv run python manage.py up strange-quark.com --email=kae.unterseher@gmail.com
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          ALLOWED_ORIGINS: ${{ secrets.ALLOWED_ORIGINS }}
+          DEBUG_STATUS: ${{ secrets.DEBUG_STATUS }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
 
       - name: Remove .env
         run: rm .env
