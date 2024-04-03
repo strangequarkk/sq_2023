@@ -23,11 +23,10 @@ jobs:
           pipenv install
 
       - name: Create frontend .env
-        uses: xom9ikk/dotenv@v2.3.0
-        with:
-          path: ./sq-front
-          mode: production
-          load-mode: strict
+        run: |
+          cd sq-front
+          echo "${{ secrets.FRONTEND_ENV_CONTENTS }}" > .env
+          cd ../
 
       - name: Create .env
         run: |
