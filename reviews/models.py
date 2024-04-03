@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# Generates a review card with the review's heading, message, student name, and number of lessons the student had
 class Review(models.Model):
     title = models.CharField(max_length=30)
     message = models.TextField()
