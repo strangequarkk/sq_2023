@@ -40,7 +40,7 @@ DEBUG = True  # env.get("DEBUG_STATUS", False)
 print("what's in env?")
 print(env)
 
-ALLOWED_HOSTS = env.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = env.get("ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
 
 CORS_ORIGIN_ALLOW_ALL = bool(env.get("ALLOW_CORS", False))
