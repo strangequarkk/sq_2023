@@ -3,10 +3,12 @@ import DOMPurify from "dompurify";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
+/* Get all projects from django API*/
 export const retrieveAllProjects = (callback) => {
   axios
     .get(`${baseURL}/projects/`)
     .then((response) => {
+      //project description must be sanitized because it comes from rich text editor, contains html
       const sanitizedData = response.data.map((project) => {
         return {
           ...project,
