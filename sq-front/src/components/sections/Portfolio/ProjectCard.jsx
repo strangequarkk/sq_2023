@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 
 export const ProjectCard = ({
@@ -30,7 +30,7 @@ export const ProjectCard = ({
 
   useDetectClickOut(cardElement.current, handleClickOut, showDetails);
 
-  useEffect(() => {}, [showDetails, title]);
+  // useEffect(() => {}, [showDetails, title]);
 
   const skills = project_skills.length
     ? project_skills.map((skillObj) => {
@@ -57,6 +57,7 @@ export const ProjectCard = ({
   };
 
   const toggleDetailsModal = (e) => {
+    //href targets in links get stripped out of sanitized portfolio description, so add them back in
     if (e.target.closest(".project-content")) {
       if (e.target.href) {
         e.target.setAttribute("target", "_blank");
@@ -64,6 +65,7 @@ export const ProjectCard = ({
         e.target.closest("a").setAttribute("target", "_blank");
       }
     } else {
+      //only open new project if there isn't a project already open
       e.preventDefault();
 
       if (!preventOpening && !showDetails) {
