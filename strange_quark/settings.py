@@ -24,11 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BACKEND_DIR = BASE_DIR
 FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
 
-
+print("what's in env?")
+print(env)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+print("env secret key?", env["DJANGO_SECRET_KEY"])
 SECRET_KEY = DJANGO_SECRET_KEY = env["DJANGO_SECRET_KEY"]
 
 # GITHUB_WEBHOOK_KEY = env["A_WEBHOOK_KEY"]
@@ -37,8 +39,7 @@ SECRET_KEY = DJANGO_SECRET_KEY = env["DJANGO_SECRET_KEY"]
 DEBUG = True  # env.get("DEBUG_STATUS", False)
 
 # ALLOWED_HOSTS = []
-print("what's in env?")
-print(env)
+
 
 ALLOWED_HOSTS = env.get("ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
