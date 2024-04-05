@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BACKEND_DIR = BASE_DIR
 FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
 
-print("what's in env?")
-print(env)
+print("env length?", len(env))
+# print(env)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
