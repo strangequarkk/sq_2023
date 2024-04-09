@@ -30,8 +30,6 @@ export const ProjectCard = ({
 
   useDetectClickOut(cardElement.current, handleClickOut, showDetails);
 
-  // useEffect(() => {}, [showDetails, title]);
-
   const skills = project_skills.length
     ? project_skills.map((skillObj) => {
         return (
@@ -57,17 +55,13 @@ export const ProjectCard = ({
   };
 
   const toggleDetailsModal = (e) => {
-    //href targets in links get stripped out of sanitized portfolio description, so add them back in
-    if (e.target.closest(".project-content")) {
-      if (e.target.href) {
-        e.target.setAttribute("target", "_blank");
-      } else if (e.target.closest("a")) {
-        e.target.closest("a").setAttribute("target", "_blank");
-      }
-    } else {
-      //only open new project if there isn't a project already open
+    //clicking inside an open project is fine,
+    //but clicking outside risks opening a second project underneath
+    if (!e.target.closest(".project-content")) {
       e.preventDefault();
-
+      //only open new project if there isn't a project already open
+      //preventOpening is true if any project in section is already open
+      //showDetails opens/closes this project only
       if (!preventOpening && !showDetails) {
         setPreventOpening(true);
         setShowDetails(true);

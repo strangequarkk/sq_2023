@@ -1,5 +1,9 @@
 import axios from "axios";
 import DOMPurify from "dompurify";
+import {
+  giveLinksTargetBlank,
+  giveImagesLazyLoad,
+} from "../utils/processRichText";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -10,9 +14,13 @@ export const retrieveAllProjects = (callback) => {
     .then((response) => {
       //project description must be sanitized because it comes from rich text editor, contains html
       const sanitizedData = response.data.map((project) => {
+        //after data has been sanitized, ensure links have target blank and images are set to load lazy
+        const polishedDescription = giveImagesLazyLoad(
+          giveLinksTargetBlank(DOMPurify.sanitize(project.description))
+        );
         return {
           ...project,
-          description: DOMPurify.sanitize(project.description),
+          description: polishedDescription,
         };
       });
       callback(sanitizedData);

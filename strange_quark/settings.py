@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     "projects",
-    "up",
 ]
 
 MIDDLEWARE = [
