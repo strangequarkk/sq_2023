@@ -17,6 +17,7 @@ export const ProjectCard = ({
   const detailsElement = useRef();
   const cardElement = useRef();
 
+  //card should be hidden on clickout
   const handleClickOut = (e) => {
     if (
       e.target != cardElement.current &&
