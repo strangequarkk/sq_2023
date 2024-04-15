@@ -36,9 +36,9 @@
   font-weight: normal;
 }
 
-#root {
+/* #root {
   overflow-x: hidden;
-}
+} */
 
 @media screen and (min-width: 1080px) {
   #root {
