@@ -16,7 +16,6 @@ const changeAllTagetedElements = (
       newHtml = newHtml.replace(match[0], targetedLink);
     }
   }
-  console.log(newHtml);
   return newHtml;
 };
 

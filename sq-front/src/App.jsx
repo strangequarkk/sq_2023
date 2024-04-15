@@ -113,6 +113,7 @@ function App() {
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
                     setCurrentSection={setCurrentSection}
+                    container={emittingElement}
                   />
                   <Portfolio setCurrentSection={setCurrentSection} />
                 </div>

@@ -53,6 +53,7 @@ section {
   }
 
   .scrolling-content {
+    scrollbar-gutter: stable;
     max-height: 100vh;
     overflow-y: scroll;
     padding: 0 1rem;

@@ -24,6 +24,7 @@ export const Reviews = ({
   themeIsDark,
   setCurrentSection,
   motionOkay,
+  container = document.documentElement,
 }) => {
   const [reviews, setReviews] = useState({});
 
@@ -55,6 +56,14 @@ export const Reviews = ({
     );
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
+  const preventContainerScroll = () => {
+    container.style["overflow-y"] = "hidden";
+  };
+
+  const allowContainerScroll = () => {
+    container.style["overflow-y"] = "auto";
+  };
+
   return (
     <VisibilitySensor
       onChange={(isVisible) => {
@@ -68,35 +77,42 @@ export const Reviews = ({
       <section id='reviews'>
         <h2 className='font-heading'>Reviews</h2>
         <br />
-
-        <CarouselProvider
-          naturalSlideWidth={0}
-          naturalSlideHeight={0}
-          totalSlides={reviews.length}
-          visibleSlides={visibleCards}
-          lockOnWindowScroll={true}
+        <div
+          onTouchStart={preventContainerScroll}
+          onMouseDown={preventContainerScroll}
+          onTouchEnd={allowContainerScroll}
+          onMouseUp={allowContainerScroll}
+          onMouseOut={allowContainerScroll}
         >
-          <DotGroup dotNumbers={true} className='dot-group' />
-          <div className='relative'>
-            <ButtonBack>
-              <span className='carouselButton'>
-                <img src={lArrow} alt='Back' />
-              </span>
-            </ButtonBack>
-            <ButtonNext>
-              <span className='carouselButton'>
-                <img src={rArrow} alt='Next' />
-              </span>
-            </ButtonNext>
-            <Slider
-              id='review-slider'
-              classNameTray='flex'
-              classNameAnimation={denyAnimation}
-            >
-              {reviewCards}
-            </Slider>
-          </div>
-        </CarouselProvider>
+          <CarouselProvider
+            naturalSlideWidth={0}
+            naturalSlideHeight={0}
+            totalSlides={reviews.length}
+            visibleSlides={visibleCards}
+            lockOnWindowScroll={true}
+          >
+            <DotGroup dotNumbers={true} className='dot-group' />
+            <div className='relative'>
+              <ButtonBack>
+                <span className='carouselButton'>
+                  <img src={lArrow} alt='Back' />
+                </span>
+              </ButtonBack>
+              <ButtonNext>
+                <span className='carouselButton'>
+                  <img src={rArrow} alt='Next' />
+                </span>
+              </ButtonNext>
+              <Slider
+                id='review-slider'
+                classNameTray='flex'
+                classNameAnimation={denyAnimation}
+              >
+                {reviewCards}
+              </Slider>
+            </div>
+          </CarouselProvider>
+        </div>
         <a href='wyzant.com/Tutors/KaeTutorsCS' className='source-link'>
           Check out my Wyzant profile for more student reviews!
         </a>
@@ -109,4 +125,5 @@ Reviews.propTypes = {
   themeIsDark: PropTypes.bool,
   setCurrentSection: PropTypes.func,
   motionOkay: PropTypes.bool,
+  container: PropTypes.object,
 };

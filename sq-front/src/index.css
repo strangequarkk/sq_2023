@@ -36,6 +36,10 @@
   font-weight: normal;
 }
 
+#root {
+  overflow-x: hidden;
+}
+
 @media screen and (min-width: 1080px) {
   #root {
     max-width: 1300px;

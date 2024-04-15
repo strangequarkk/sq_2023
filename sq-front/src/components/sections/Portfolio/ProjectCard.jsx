@@ -56,17 +56,19 @@ export const ProjectCard = ({
   };
 
   const toggleDetailsModal = (e) => {
-    //clicking inside an open project is fine,
-    //but clicking outside risks opening a second project underneath
+    //clicking outside of an open project risks opening a second project underneath
     if (!e.target.closest(".project-content")) {
       e.preventDefault();
       //only open new project if there isn't a project already open
       //preventOpening is true if any project in section is already open
       //showDetails opens/closes this project only
-      if (!preventOpening && !showDetails) {
+      let noProjectsOpen = !preventOpening && !showDetails;
+      let thisProjectIsOpen = preventOpening && showDetails;
+
+      if (noProjectsOpen) {
         setPreventOpening(true);
         setShowDetails(true);
-      } else if (preventOpening && showDetails) {
+      } else if (thisProjectIsOpen) {
         setPreventOpening(false);
         setShowDetails(false);
       }
