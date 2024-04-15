@@ -38,7 +38,8 @@
 
 #root {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media screen and (min-width: 1080px) {
