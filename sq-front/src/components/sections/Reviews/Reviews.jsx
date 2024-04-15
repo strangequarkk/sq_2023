@@ -24,7 +24,7 @@ export const Reviews = ({
   themeIsDark,
   setCurrentSection,
   motionOkay,
-  container = document.documentElement,
+  //container = document.documentElement,
 }) => {
   const [reviews, setReviews] = useState({});
 
@@ -58,7 +58,7 @@ export const Reviews = ({
 
   const preventContainerScroll = () => {
     console.log("hmm idk how this would be affecting the general scroll");
-    container.style["overflow-y"] = "auto"; //"hidden";
+    //container.style["overflow-y"] = "auto"; //"hidden";
   };
 
   const allowContainerScroll = () => {
@@ -129,5 +129,5 @@ Reviews.propTypes = {
   themeIsDark: PropTypes.bool,
   setCurrentSection: PropTypes.func,
   motionOkay: PropTypes.bool,
-  container: PropTypes.object,
+  //container: PropTypes.object,
 };
