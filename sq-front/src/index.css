@@ -38,6 +38,7 @@
 
 #root {
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 @media screen and (min-width: 1080px) {
