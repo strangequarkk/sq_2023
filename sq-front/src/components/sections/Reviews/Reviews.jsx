@@ -57,11 +57,15 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const preventContainerScroll = () => {
-    container.style["overflow-y"] = "hidden";
+    console.log("hmm idk how this would be affecting the general scroll");
+    container.style["overflow-y"] = "auto"; //"hidden";
   };
 
   const allowContainerScroll = () => {
-    container.style["overflow-y"] = "auto";
+    console.log(
+      "seems like it should only affect the reviews carousel honestly"
+    );
+    //container.style["overflow-y"] = "auto";
   };
 
   return (
