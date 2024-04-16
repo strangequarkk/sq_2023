@@ -24,7 +24,7 @@ export const Reviews = ({
   themeIsDark,
   setCurrentSection,
   motionOkay,
-  container = document.documentElement,
+  container = document.getElementById("root"),
 }) => {
   const [reviews, setReviews] = useState({});
 
