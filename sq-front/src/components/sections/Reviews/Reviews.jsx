@@ -57,8 +57,9 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const preventContainerScroll = () => {
-    console.log("prevent container scroll?");
+    console.log("prevent container scroll?", container.scrollTop);
     container.style["overflow-y"] = "hidden";
+    console.log("prevent jump up?", container.scrollTop);
   };
 
   const allowContainerScroll = () => {
