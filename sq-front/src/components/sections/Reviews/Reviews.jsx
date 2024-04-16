@@ -58,7 +58,7 @@ export const Reviews = ({
 
   const preventContainerScroll = () => {
     console.log("prevent container scroll?", container.scrollTop);
-    container.style["overflow-y"] = "hidden";
+    container.style["overflow-y"] = "clip";
     console.log("prevent jump up?", container.scrollTop);
   };
 
@@ -79,7 +79,12 @@ export const Reviews = ({
         }
       }}
     >
-      <section id='reviews'>
+      <section
+        id='reviews'
+        onScroll={(e) =>
+          console.log("reviews section scrolltop:", e.target.scrollTop)
+        }
+      >
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
