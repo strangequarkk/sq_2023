@@ -20,11 +20,11 @@ import { DarkModeSwitch } from "./components/ui/DarkModeSwitch/DarkModeSwitch";
 
 import "./App.css";
 
-const favicon = new URL(
-  "../src/assets/strange-quark-logo-blackhole-dark.svg",
-  import.meta.url
-).href;
-document.querySelector("link[rel='icon']").href = favicon;
+// const favicon = new URL(
+//   "../src/assets/strange-quark-logo-blackhole-dark.ico",
+//   import.meta.url
+// ).href;
+// document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
   const sections = useRef([

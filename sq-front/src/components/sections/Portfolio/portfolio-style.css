@@ -90,8 +90,13 @@
   margin-top: 0.5rem;
 }
 
+.project-card details > summary::-webkit-details-marker {
+  display: none;
+}
+
 .project-card details > summary {
-  list-style-type: none;
+  /* list-style-type: "»"; */
+  list-style: none;
   position: relative;
   margin: 1rem 0 0;
   cursor: pointer;
