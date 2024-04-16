@@ -24,7 +24,7 @@ export const Reviews = ({
   themeIsDark,
   setCurrentSection,
   motionOkay,
-  //container = document.documentElement,
+  container = document.documentElement,
 }) => {
   const [reviews, setReviews] = useState({});
 
@@ -57,15 +57,15 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const preventContainerScroll = () => {
-    console.log("hmm idk how this would be affecting the general scroll");
-    //container.style["overflow-y"] = "auto"; //"hidden";
+    //console.log("hmm idk how this would be affecting the general scroll");
+    container.style["overflow-y"] = "hidden";
   };
 
   const allowContainerScroll = () => {
     console.log(
       "seems like it should only affect the reviews carousel honestly"
     );
-    //container.style["overflow-y"] = "auto";
+    container.style["overflow-y"] = "auto";
   };
 
   return (
@@ -129,5 +129,5 @@ Reviews.propTypes = {
   themeIsDark: PropTypes.bool,
   setCurrentSection: PropTypes.func,
   motionOkay: PropTypes.bool,
-  //container: PropTypes.object,
+  container: PropTypes.object,
 };
