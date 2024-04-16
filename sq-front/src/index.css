@@ -38,7 +38,7 @@
 
 #root {
   overflow-x: clip;
-  overflow-y: visible;
+  /* overflow-y: visible; */
   -webkit-overflow-scrolling: touch;
 }
 
