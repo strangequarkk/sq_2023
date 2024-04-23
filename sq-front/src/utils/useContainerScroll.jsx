@@ -12,7 +12,7 @@ export const useContainerScroll = (handleScroll, container = window) => {
           container.scrollY || container.scrollY === 0 //non-window els dont have scrolly
             ? container.scrollY
             : -container.firstChild.getBoundingClientRect().top;
-        console.log("container Y position");
+        console.log("container Y position", yPosition);
         handleScroll(yPosition);
       };
       // ensure only one (of this type) of event listener attached at a time

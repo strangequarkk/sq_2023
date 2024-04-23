@@ -57,8 +57,10 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const preventContainerScroll = () => {
+    console.log(container.scrollTop);
     console.log("prevent container scroll?", container.scrollTop);
-    container.style["overflow-y"] = "clip";
+    container.style["height"] = "100vh";
+    container.style["overflow-y"] = "hidden";
     console.log("prevent jump up?", container.scrollTop);
   };
 
@@ -67,6 +69,7 @@ export const Reviews = ({
       "possibly no longer working because root overflow scroll set to visible?"
     );
     container.style["overflow-y"] = "auto";
+    container.style["height"] = "auto";
   };
 
   return (
