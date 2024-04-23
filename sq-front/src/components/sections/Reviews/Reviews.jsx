@@ -16,6 +16,7 @@ import RightArrow from "../../../assets/arrow-chevron-right.svg";
 import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
 import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
 import VisibilitySensor from "react-visibility-sensor";
+import { useContainerScroll } from "../../../utils/useContainerScroll";
 import "./reviews-style.css";
 //css file contains style overrides and button styling for the carousel
 
@@ -41,6 +42,12 @@ export const Reviews = ({
   useEffect(() => {
     setVisibleCards(numCards);
   }, [containerWidth, numCards]);
+
+  const handleScroll = (ypos) => {
+    console.log("root element ypos:", ypos);
+  };
+
+  useContainerScroll(handleScroll, container);
 
   const reviewCards =
     reviews.length > 0 ? (
