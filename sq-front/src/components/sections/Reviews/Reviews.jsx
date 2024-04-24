@@ -71,6 +71,10 @@ export const Reviews = ({
     e.stopPropagation();
   };
 
+  const freezeMomentum = (e) => {
+    e.preventDefault();
+  };
+
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
     root.style["overflow-y"] = "auto";
@@ -96,7 +100,7 @@ export const Reviews = ({
           }}
           onTouchMove={(e) => {
             console.log("touch move");
-            preventContainerScroll(e);
+            freezeMomentum(e);
           }}
           onMouseDown={(e) => {
             console.log("mouse down");
