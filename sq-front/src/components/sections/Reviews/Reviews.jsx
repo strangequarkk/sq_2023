@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { retrieveAllReviews } from "../../../services/review.service";
 import { ReviewCard } from "./ReviewCard";
@@ -16,6 +16,7 @@ import RightArrow from "../../../assets/arrow-chevron-right.svg";
 import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
 import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
 import VisibilitySensor from "react-visibility-sensor";
+import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 import "./reviews-style.css";
 
 export const Reviews = ({
@@ -26,6 +27,7 @@ export const Reviews = ({
   container,
 }) => {
   const [reviews, setReviews] = useState({});
+  const sectionRef = useRef();
 
   //calculate how many cards to show in the viewport, based on viewport width
   const numCards = containerWidth / 400 < 1 ? 1 : containerWidth / 400;
@@ -43,6 +45,8 @@ export const Reviews = ({
   useEffect(() => {
     setVisibleCards(numCards);
   }, [containerWidth, numCards]);
+
+  useDetectClickOut(sectionRef, allowContainerScroll, true);
 
   const reviewCards =
     reviews.length > 0 ? (
@@ -73,10 +77,12 @@ export const Reviews = ({
 
   const freezeMomentum = (e) => {
     e.preventDefault();
+    e.stopPropagation();
   };
 
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
+    console.log("resume scroll behavior");
     root.style["overflow-y"] = "auto";
   };
 
@@ -94,12 +100,13 @@ export const Reviews = ({
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
+          ref={sectionRef}
           onTouchStart={(e) => {
             console.log("touch start");
             preventContainerScroll(e);
           }}
           onTouchMove={(e) => {
-            console.log("touch move");
+            console.log("touch move:freeze");
             freezeMomentum(e);
           }}
           onMouseDown={(e) => {
