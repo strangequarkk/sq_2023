@@ -46,7 +46,7 @@ export const Reviews = ({
     setVisibleCards(numCards);
   }, [containerWidth, numCards]);
 
-  useDetectClickOut(sectionRef, allowContainerScroll, true);
+  useDetectClickOut(sectionRef.current, allowContainerScroll, true);
 
   const reviewCards =
     reviews.length > 0 ? (
