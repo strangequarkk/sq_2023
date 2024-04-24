@@ -90,14 +90,38 @@ export const Reviews = ({
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
-          onTouchStart={preventContainerScroll}
-          onTouchMove={preventContainerScroll}
-          onMouseDown={preventContainerScroll}
-          onMouseMove={preventContainerScroll}
-          onTouchEnd={allowContainerScroll}
-          onTouchCancel={allowContainerScroll}
-          onMouseUp={allowContainerScroll}
-          onMouseOut={allowContainerScroll}
+          onTouchStart={(e) => {
+            console.log("touch start");
+            preventContainerScroll(e);
+          }}
+          onTouchMove={(e) => {
+            console.log("touch move");
+            preventContainerScroll(e);
+          }}
+          onMouseDown={(e) => {
+            console.log("mouse down");
+            preventContainerScroll(e);
+          }}
+          onMouseMove={(e) => {
+            console.log("mouse move");
+            preventContainerScroll(e);
+          }}
+          onTouchEnd={(e) => {
+            console.log("touch end");
+            allowContainerScroll(e);
+          }}
+          onTouchCancel={(e) => {
+            console.log("touch cancel");
+            allowContainerScroll(e);
+          }}
+          onMouseUp={(e) => {
+            console.log("mouse up");
+            allowContainerScroll(e);
+          }}
+          onMouseOut={(e) => {
+            console.log("mouse out");
+            allowContainerScroll(e);
+          }}
         >
           <CarouselProvider
             naturalSlideWidth={0}

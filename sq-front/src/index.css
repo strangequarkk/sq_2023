@@ -39,7 +39,7 @@
 #root {
   overflow-x: clip;
   height: 100vh;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 @media screen and (min-width: 1080px) {
