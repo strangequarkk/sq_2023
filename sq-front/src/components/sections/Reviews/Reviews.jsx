@@ -66,8 +66,9 @@ export const Reviews = ({
     //hiding overflow-y disables the buttons for some reason, so
     //don't do it if the user is trying to click on one
     if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
-      root.style["overflow-y"] = "clip";
+      root.style["overflow-y"] = "hidden";
     }
+    e.stopPropagation();
   };
 
   //resume normal behavior once swipe/drag event has ended
@@ -90,8 +91,11 @@ export const Reviews = ({
         <br />
         <div
           onTouchStart={preventContainerScroll}
+          onTouchMove={preventContainerScroll}
           onMouseDown={preventContainerScroll}
+          onMouseMove={preventContainerScroll}
           onTouchEnd={allowContainerScroll}
+          onTouchCancel={allowContainerScroll}
           onMouseUp={allowContainerScroll}
           onMouseOut={allowContainerScroll}
         >
