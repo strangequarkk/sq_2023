@@ -46,8 +46,6 @@ export const Reviews = ({
     setVisibleCards(numCards);
   }, [containerWidth, numCards]);
 
-  useDetectClickOut(sectionRef.current, allowContainerScroll, true);
-
   const reviewCards =
     reviews.length > 0 ? (
       reviews.map((review) => {
@@ -85,6 +83,8 @@ export const Reviews = ({
     console.log("resume scroll behavior");
     root.style["overflow-y"] = "auto";
   };
+
+  useDetectClickOut(sectionRef.current, allowContainerScroll, true);
 
   return (
     <VisibilitySensor
