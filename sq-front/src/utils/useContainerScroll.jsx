@@ -5,17 +5,17 @@ export const useContainerScroll = (handleScroll, container = window) => {
     "(prefers-reduced-motion: no-preference)"
   ).matches;
   useEffect(() => {
+    // don't bother if user doesn't want motion
     if (motionOkay) {
-      // don't bother if user doesn't want motion
       const onScroll = () => {
         const yPosition =
-          container.scrollY || container.scrollY === 0 //non-window els dont have scrolly
+          //non-window els dont have scrolly
+          container.scrollY || container.scrollY === 0
             ? container.scrollY
             : -container.firstChild.getBoundingClientRect().top;
-        console.log("container Y position", yPosition);
         handleScroll(yPosition);
       };
-      // ensure only one (of this type) of event listener attached at a time
+      // ensure only one (of this) event listener attached at a time
       container.removeEventListener("scroll", onScroll);
       container.addEventListener("scroll", onScroll);
       return () => container.removeEventListener("scroll", onScroll);

@@ -16,38 +16,33 @@ import RightArrow from "../../../assets/arrow-chevron-right.svg";
 import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
 import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
 import VisibilitySensor from "react-visibility-sensor";
-import { useContainerScroll } from "../../../utils/useContainerScroll";
 import "./reviews-style.css";
-//css file contains style overrides and button styling for the carousel
 
 export const Reviews = ({
   containerWidth,
   themeIsDark,
   setCurrentSection,
   motionOkay,
-  container = document.getElementById("root"),
+  container,
 }) => {
   const [reviews, setReviews] = useState({});
 
   //calculate how many cards to show in the viewport, based on viewport width
   const numCards = containerWidth / 400 < 1 ? 1 : containerWidth / 400;
   const [visibleCards, setVisibleCards] = useState(numCards);
+
   const lArrow = themeIsDark ? LeftArrowLight : LeftArrow;
   const rArrow = themeIsDark ? RightArrowLight : RightArrow;
+  const root = container || document.getElementById("root");
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
   }, []);
 
+  //number of visible cards changes if the width of the container changes
   useEffect(() => {
     setVisibleCards(numCards);
   }, [containerWidth, numCards]);
-
-  const handleScroll = (ypos) => {
-    console.log("root element ypos:", ypos);
-  };
-
-  useContainerScroll(handleScroll, container);
 
   const reviewCards =
     reviews.length > 0 ? (
@@ -63,20 +58,21 @@ export const Reviews = ({
     );
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
-  const preventContainerScroll = () => {
-    console.log(container.scrollTop);
-    console.log("prevent container scroll?", container.scrollTop);
-    container.style["height"] = "100vh";
-    container.style["overflow-y"] = "hidden";
-    console.log("prevent jump up?", container.scrollTop);
+  //without this, page scrolls vertically whenever the user tries to
+  //horizontally swipe a review card
+  const preventContainerScroll = (e) => {
+    //without height:auto, hiding overflow causes jump to top of the page
+    root.style["height"] = "auto";
+    //hiding overflow-y disables the buttons for some reason, so
+    //don't do it if the user is trying to click on one
+    if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
+      root.style["overflow-y"] = "clip";
+    }
   };
 
+  //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
-    console.log(
-      "possibly no longer working because root overflow scroll set to visible?"
-    );
-    container.style["overflow-y"] = "auto";
-    container.style["height"] = "auto";
+    root.style["overflow-y"] = "auto";
   };
 
   return (
@@ -89,12 +85,7 @@ export const Reviews = ({
         }
       }}
     >
-      <section
-        id='reviews'
-        onScroll={(e) =>
-          console.log("reviews section scrolltop:", e.target.scrollTop)
-        }
-      >
+      <section id='reviews'>
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
