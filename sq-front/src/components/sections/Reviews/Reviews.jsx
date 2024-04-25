@@ -25,7 +25,6 @@ export const Reviews = ({
   setCurrentSection,
   motionOkay,
   container,
-  //wrapper,
   setPauseAnimations,
   pauseAnimations,
 }) => {
@@ -39,7 +38,7 @@ export const Reviews = ({
 
   const lArrow = themeIsDark ? LeftArrowLight : LeftArrow;
   const rArrow = themeIsDark ? RightArrowLight : RightArrow;
-  const root = container || document.getElementById("root");
+  //const root = container || document.getElementById("root");
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
@@ -68,37 +67,27 @@ export const Reviews = ({
   //horizontally swipe a review card
   const preventContainerScroll = (e) => {
     //collect original y position
-    const oldWindowY = window.scrollY;
+    const oldWindowY = container ? container.scrollTop : window.scrollY;
     setContainerScrollTop(oldWindowY);
-    console.log("prevent container scroll: orig window y", oldWindowY);
 
-    //hiding overflow-y disables the buttons for some reason, so
-    //don't do it if the user is trying to click on one
     if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
+      //don't trigger color shift etc during a scroll that's about to be negated
       setPauseAnimations(true);
-
-      //get rid of scrolling (and auto-jump to the top of the page oh no)
-      // root.style["height"] = "auto";
-      //root.style["overflow-y"] = "hidden";
-      window.scrollTo({ top: oldWindowY, behavior: "instant" });
-
-      //window scrollto doesn't work while scroll is disabled,
-      //so use css transform to fake being in the right place on the page
-      //wrapper.current.style["transform"] = "translateY(-" + oldWindowY + "px)";
+      freezeYPos(oldWindowY);
     }
   };
 
-  const freezeYPos = (origYPause) => {
-    window.scrollTo({ top: origYPause, behavior: "instant" });
+  const freezeYPos = (originalYPos) => {
+    if (container) {
+      container.scrollTop = originalYPos;
+    } else {
+      window.scrollTo({ top: originalYPos, behavior: "instant" });
+    }
   };
 
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
     if (pauseAnimations) {
-      // root.style["height"] = "";
-      root.style["overflow-y"] = "";
-      // wrapper.current.style["transform"] = "";
-      //pretend you didn't just jump to the top of the page
       window.scrollTo({ top: containerScrollTop, behavior: "instant" });
       setPauseAnimations(false);
     }

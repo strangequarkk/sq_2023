@@ -64,6 +64,7 @@ export const HueChangeBG = ({
       setColorCSS({
         backgroundColor: newColorStrings[0],
       });
+      document.querySelector("body").backgroundColor = newColorStrings[0];
     }
   }, refContainer);
 
@@ -87,7 +88,7 @@ export const HueChangeBG = ({
         newColorStrings[0]
       ),
     });
-
+    document.querySelector("body").backgroundColor = newColorStrings[0];
     setColorCSS({
       backgroundColor: newColorStrings[0],
     });

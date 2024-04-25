@@ -118,7 +118,6 @@ function App() {
                     themeIsDark={themeIsDark}
                     setCurrentSection={setCurrentSection}
                     container={emittingElement}
-                    wrapper={contentWrapper}
                     setPauseAnimations={setPauseAnimations}
                     pauseAnimations={pauseAnimations}
                   />
