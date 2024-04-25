@@ -120,6 +120,7 @@ function App() {
                     container={emittingElement}
                     wrapper={contentWrapper}
                     setPauseAnimations={setPauseAnimations}
+                    pauseAnimations={pauseAnimations}
                   />
                   <Portfolio setCurrentSection={setCurrentSection} />
                 </div>

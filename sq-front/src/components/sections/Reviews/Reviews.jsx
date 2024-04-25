@@ -25,8 +25,9 @@ export const Reviews = ({
   setCurrentSection,
   motionOkay,
   container,
-  wrapper,
+  //wrapper,
   setPauseAnimations,
+  pauseAnimations,
 }) => {
   const [reviews, setReviews] = useState({});
   const [containerScrollTop, setContainerScrollTop] = useState(0);
@@ -69,6 +70,7 @@ export const Reviews = ({
     //collect original y position
     const oldWindowY = window.scrollY;
     setContainerScrollTop(oldWindowY);
+    console.log("prevent container scroll: orig window y", oldWindowY);
 
     //hiding overflow-y disables the buttons for some reason, so
     //don't do it if the user is trying to click on one
@@ -76,23 +78,30 @@ export const Reviews = ({
       setPauseAnimations(true);
 
       //get rid of scrolling (and auto-jump to the top of the page oh no)
-      root.style["height"] = "100vh";
-      root.style["overflow-y"] = "hidden";
+      // root.style["height"] = "auto";
+      //root.style["overflow-y"] = "hidden";
+      window.scrollTo({ top: oldWindowY, behavior: "instant" });
 
       //window scrollto doesn't work while scroll is disabled,
       //so use css transform to fake being in the right place on the page
-      wrapper.current.style["transform"] = "translateY(-" + oldWindowY + "px)";
+      //wrapper.current.style["transform"] = "translateY(-" + oldWindowY + "px)";
     }
+  };
+
+  const freezeYPos = (origYPause) => {
+    window.scrollTo({ top: origYPause, behavior: "instant" });
   };
 
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
-    root.style["height"] = "";
-    root.style["overflow-y"] = "";
-    wrapper.current.style["transform"] = "";
-    //pretend you didn't just jump to the top of the page
-    window.scrollTo({ top: containerScrollTop, behavior: "instant" });
-    setPauseAnimations(false);
+    if (pauseAnimations) {
+      // root.style["height"] = "";
+      root.style["overflow-y"] = "";
+      // wrapper.current.style["transform"] = "";
+      //pretend you didn't just jump to the top of the page
+      window.scrollTo({ top: containerScrollTop, behavior: "instant" });
+      setPauseAnimations(false);
+    }
   };
 
   //make sure the page scrolls normally the next time the user
@@ -114,7 +123,9 @@ export const Reviews = ({
         <br />
         <div
           onTouchStart={preventContainerScroll}
+          onTouchMove={() => freezeYPos(containerScrollTop)}
           onMouseDown={preventContainerScroll}
+          onMouseMove={() => freezeYPos(containerScrollTop)}
           onTouchEnd={allowContainerScroll}
           onTouchCancel={allowContainerScroll}
           onMouseUp={allowContainerScroll}
@@ -164,4 +175,5 @@ Reviews.propTypes = {
   container: PropTypes.object,
   wrapper: PropTypes.object,
   setPauseAnimations: PropTypes.func,
+  pauseAnimations: PropTypes.bool,
 };
