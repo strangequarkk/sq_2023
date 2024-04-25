@@ -7,7 +7,12 @@ import closeIcon from "../../../assets/icon-close-circle.svg";
 import closeIconLight from "../../../assets/icon-close-circle-light.svg";
 import "./hireMe-style.css";
 
-export const HireMe = ({ refContainer, themeIsDark }) => {
+export const HireMe = ({
+  refContainer,
+  themeIsDark,
+  motionOkay,
+  pauseWave,
+}) => {
   const [openAttr, setOpen] = useState("open");
   const [wave, setWave] = useState("");
   const [isClosing, setIsClosing] = useState(false);
@@ -46,7 +51,7 @@ export const HireMe = ({ refContainer, themeIsDark }) => {
         refContainer.firstChild.getBoundingClientRect().top
       : document.documentElement.scrollHeight - document.body.scrollHeight;
 
-    if (scrollY >= pageEndHeight - 5) {
+    if (scrollY >= pageEndHeight - 5 && !pauseWave && motionOkay) {
       setWave("waveActive");
     } else if (wave) {
       setWave("");
@@ -117,4 +122,6 @@ export const HireMe = ({ refContainer, themeIsDark }) => {
 HireMe.propTypes = {
   refContainer: PropTypes.object,
   themeIsDark: PropTypes.bool,
+  motionOkay: PropTypes.bool,
+  pauseWave: PropTypes.bool,
 };

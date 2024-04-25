@@ -15,7 +15,12 @@ import "./huechange-style.css";
  *   defaultHSL - object with numeric h,s,l values
  *   colorCSS - rgb string formatted for CSS
  */
-export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
+export const HueChangeBG = ({
+  themeIsDark,
+  refContainer,
+  themeClass,
+  pauseColors,
+}) => {
   const chooseBaseColor = useCallback(() => {
     const lightColor = "#b7f5f2";
     const darkColor = "#143233";
@@ -45,19 +50,21 @@ export const HueChangeBG = ({ themeIsDark, refContainer, themeClass }) => {
 
   //base shift on distance from original hue; h value constrained to range 0-360
   useContainerScroll((scrollY) => {
-    const newColorStrings = positionToRGBStrings(scrollY, defaultHSL);
-    setColorStrings(newColorStrings);
+    if (!pauseColors) {
+      const newColorStrings = positionToRGBStrings(scrollY, defaultHSL);
+      setColorStrings(newColorStrings);
 
-    //solid color fade behind navigation, so nav items don't get cluttered while scrolling
-    setNavCSS({
-      backgroundImage: buildGradientString(
-        gradientRotation,
-        newColorStrings[0]
-      ),
-    });
-    setColorCSS({
-      backgroundColor: newColorStrings[0],
-    });
+      //solid color fade behind navigation, so nav items don't get cluttered while scrolling
+      setNavCSS({
+        backgroundImage: buildGradientString(
+          gradientRotation,
+          newColorStrings[0]
+        ),
+      });
+      setColorCSS({
+        backgroundColor: newColorStrings[0],
+      });
+    }
   }, refContainer);
 
   //check if colors or rotation have changed
@@ -100,4 +107,5 @@ HueChangeBG.propTypes = {
   themeIsDark: PropTypes.bool,
   refContainer: PropTypes.object,
   themeClass: PropTypes.string,
+  pauseColors: PropTypes.bool,
 };

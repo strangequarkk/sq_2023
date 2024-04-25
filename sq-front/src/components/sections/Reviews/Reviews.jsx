@@ -25,8 +25,11 @@ export const Reviews = ({
   setCurrentSection,
   motionOkay,
   container,
+  wrapper,
+  setPauseAnimations,
 }) => {
   const [reviews, setReviews] = useState({});
+  const [containerScrollTop, setContainerScrollTop] = useState(0);
   const sectionRef = useRef();
 
   //calculate how many cards to show in the viewport, based on viewport width
@@ -63,27 +66,37 @@ export const Reviews = ({
   //without this, page scrolls vertically whenever the user tries to
   //horizontally swipe a review card
   const preventContainerScroll = (e) => {
-    //without height:auto, hiding overflow causes jump to top of the page
-    root.style["height"] = "auto";
+    //collect original y position
+    const oldWindowY = window.scrollY;
+    setContainerScrollTop(oldWindowY);
+
     //hiding overflow-y disables the buttons for some reason, so
     //don't do it if the user is trying to click on one
     if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
-      root.style["overflow-y"] = "hidden";
-    }
-    e.stopPropagation();
-  };
+      setPauseAnimations(true);
 
-  const freezeMomentum = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+      //get rid of scrolling (and auto-jump to the top of the page oh no)
+      root.style["height"] = "100vh";
+      root.style["overflow-y"] = "hidden";
+
+      //window scrollto doesn't work while scroll is disabled,
+      //so use css transform to fake being in the right place on the page
+      wrapper.current.style["transform"] = "translateY(-" + oldWindowY + "px)";
+    }
   };
 
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
-    console.log("resume scroll behavior");
-    root.style["overflow-y"] = "auto";
+    root.style["height"] = "";
+    root.style["overflow-y"] = "";
+    wrapper.current.style["transform"] = "";
+    //pretend you didn't just jump to the top of the page
+    window.scrollTo({ top: containerScrollTop, behavior: "instant" });
+    setPauseAnimations(false);
   };
 
+  //make sure the page scrolls normally the next time the user
+  //interacts with anything but the review slider
   useDetectClickOut(sectionRef.current, allowContainerScroll, true);
 
   return (
@@ -96,43 +109,16 @@ export const Reviews = ({
         }
       }}
     >
-      <section id='reviews'>
+      <section id='reviews' ref={sectionRef}>
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
-          ref={sectionRef}
-          onTouchStart={(e) => {
-            console.log("touch start");
-            preventContainerScroll(e);
-          }}
-          onTouchMove={(e) => {
-            console.log("touch move:freeze");
-            freezeMomentum(e);
-          }}
-          onMouseDown={(e) => {
-            console.log("mouse down");
-            preventContainerScroll(e);
-          }}
-          onMouseMove={(e) => {
-            console.log("mouse move");
-            preventContainerScroll(e);
-          }}
-          onTouchEnd={(e) => {
-            console.log("touch end");
-            allowContainerScroll(e);
-          }}
-          onTouchCancel={(e) => {
-            console.log("touch cancel");
-            allowContainerScroll(e);
-          }}
-          onMouseUp={(e) => {
-            console.log("mouse up");
-            allowContainerScroll(e);
-          }}
-          onMouseOut={(e) => {
-            console.log("mouse out");
-            allowContainerScroll(e);
-          }}
+          onTouchStart={preventContainerScroll}
+          onMouseDown={preventContainerScroll}
+          onTouchEnd={allowContainerScroll}
+          onTouchCancel={allowContainerScroll}
+          onMouseUp={allowContainerScroll}
+          onMouseOut={allowContainerScroll}
         >
           <CarouselProvider
             naturalSlideWidth={0}
@@ -176,4 +162,6 @@ Reviews.propTypes = {
   setCurrentSection: PropTypes.func,
   motionOkay: PropTypes.bool,
   container: PropTypes.object,
+  wrapper: PropTypes.object,
+  setPauseAnimations: PropTypes.func,
 };

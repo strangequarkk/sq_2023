@@ -8,13 +8,16 @@ export const DarkModeSwitch = ({
   themeIsDark,
   toggleDarkMode,
   refContainer,
+  pauseAppearance,
 }) => {
   const [prevYPosition, setPrevYPosition] = useState(0);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
 
   useContainerScroll((yPos) => {
-    const newScrollDirection = yPos - prevYPosition < 0;
-    setIsScrollingUp(newScrollDirection);
+    if (!pauseAppearance) {
+      const newScrollDirection = yPos - prevYPosition < 0;
+      setIsScrollingUp(newScrollDirection);
+    }
 
     setPrevYPosition(yPos);
   }, refContainer);
@@ -38,4 +41,5 @@ DarkModeSwitch.propTypes = {
   toggleDarkMode: PropTypes.func,
   themeIsDark: PropTypes.bool,
   refContainer: PropTypes.object,
+  pauseAppearance: PropTypes.bool,
 };

@@ -36,9 +36,11 @@ function App() {
   ]);
   const [currentSection, setCurrentSection] = useState("");
   const scrollableDiv = useRef();
+  const contentWrapper = useRef();
   const minDesktopSize = 1080;
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
+  const [pauseAnimations, setPauseAnimations] = useState(false);
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
   ).matches;
@@ -74,6 +76,7 @@ function App() {
         themeIsDark={themeIsDark}
         refContainer={emittingElement}
         themeClass={themeClass}
+        pauseColors={pauseAnimations}
       />
       <header className={themeClass}>
         <Navbar
@@ -88,6 +91,7 @@ function App() {
           themeIsDark={themeIsDark}
           toggleDarkMode={toggleDarkMode}
           refContainer={emittingElement}
+          pauseAppearance={pauseAnimations}
         />
         <SpinningLogo
           speed={0.5}
@@ -99,7 +103,7 @@ function App() {
             exact
             path='/'
             element={
-              <div className='content-all'>
+              <div className='content-all' ref={contentWrapper}>
                 <Intro />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={setCurrentSection} />
@@ -114,6 +118,8 @@ function App() {
                     themeIsDark={themeIsDark}
                     setCurrentSection={setCurrentSection}
                     container={emittingElement}
+                    wrapper={contentWrapper}
+                    setPauseAnimations={setPauseAnimations}
                   />
                   <Portfolio setCurrentSection={setCurrentSection} />
                 </div>
@@ -129,6 +135,7 @@ function App() {
           themeIsDark={themeIsDark}
           refContainer={emittingElement}
           motionOkay={motionOkay}
+          pauseWave={pauseAnimations}
         />
       </main>
     </>
