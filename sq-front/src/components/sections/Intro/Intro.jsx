@@ -15,31 +15,28 @@ export const Intro = (motionOkay) => {
   //const rem = parseInt(getComputedStyle(document.documentElement).fontSize);
 
   const animateFadeOut = (yPos, fadeElement, triggerPoint) => {
-    //const triggerPoint = fadeElement.current.getBoundingClientRect().top - 80;
-
     if (yPos >= triggerPoint && yPos <= frameHeight) {
       const elBottom = fadeElement.current.getBoundingClientRect().bottom;
       const opacity = 1 - (yPos - triggerPoint) / elBottom;
-      //console.log(
-      //   "trigger:",
-      //   triggerPoint,
-      //   "ypos:",
-      //   yPos,
-      //   "element bottom",
-      //   elBottom,
-      //   "opacity:",
-      //   opacity
-      // );
-      // console.log("y - trigger =", yPos - triggerPoint);
+      console.log(
+        "trigger:",
+        triggerPoint,
+        "ypos:",
+        yPos,
+        "element bottom",
+        elBottom,
+        "opacity:",
+        opacity
+      );
+      console.log("y - trigger =", yPos - triggerPoint);
       fadeElement.current.style["opacity"] = opacity;
       //console.log("subt opacity:", triggerPoint / (yPos * 3));
       const yDiff = yPos - triggerPoint;
       fadeElement.current.style["transform"] = `translate(0, -${yDiff}px)`;
     } else if (yPos < triggerPoint) {
-      //console.log("reset styles");
+      console.log("reset styles");
       fadeElement.current.style["opacity"] = 1;
       fadeElement.current.style["transform"] = "";
-      // console.log(fadeElement.current.style);
     }
   };
 
