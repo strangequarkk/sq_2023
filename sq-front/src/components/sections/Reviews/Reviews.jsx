@@ -38,7 +38,6 @@ export const Reviews = ({
 
   const lArrow = themeIsDark ? LeftArrowLight : LeftArrow;
   const rArrow = themeIsDark ? RightArrowLight : RightArrow;
-  //const root = container || document.getElementById("root");
 
   useEffect(() => {
     retrieveAllReviews(setReviews);
@@ -83,6 +82,12 @@ export const Reviews = ({
     if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
       //don't trigger color shift etc during a scroll that's about to be negated
       setPauseAnimations(true);
+      //turn off scroll snapping of immediate siblings
+      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
+        "normal";
+      document.querySelector("section:has( + #reviews").style[
+        "scroll-snap-stop"
+      ] = "normal";
       freezeYPos(oldWindowY);
     }
   };
@@ -92,6 +97,11 @@ export const Reviews = ({
     if (pauseAnimations) {
       window.scrollTo({ top: containerScrollTop, behavior: "instant" });
       setPauseAnimations(false);
+      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
+        "always";
+      document.querySelector("section:has( + #reviews").style[
+        "scroll-snap-stop"
+      ] = "always";
     }
   };
 
@@ -117,10 +127,10 @@ export const Reviews = ({
           onTouchMove={() => freezeYPos(containerScrollTop)}
           onMouseDown={preventContainerScroll}
           onMouseMove={() => freezeYPos(containerScrollTop)}
-          onTouchEnd={allowContainerScroll}
-          onTouchCancel={allowContainerScroll}
-          onMouseUp={allowContainerScroll}
-          onMouseOut={allowContainerScroll}
+          // onTouchEnd={allowContainerScroll}
+          // onTouchCancel={allowContainerScroll}
+          // onMouseUp={allowContainerScroll}
+          // onMouseOut={allowContainerScroll}
         >
           <CarouselProvider
             naturalSlideWidth={0}

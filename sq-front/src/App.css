@@ -32,7 +32,8 @@ main {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-html {
+html,
+.scrolling-content {
   scroll-snap-type: y proximity;
 }
 section {
