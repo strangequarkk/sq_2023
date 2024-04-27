@@ -44,11 +44,22 @@
   line-height: 1.2rem;
 }
 
-/* @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   .fadeable {
-
+    transition: all 0.3s;
+    opacity: 1;
+    transform: translateX(0);
   }
-} */
+  .fadeOut {
+    opacity: 0;
+  }
+  h1.fadeOut {
+    transform: translateX(-2em);
+  }
+  h2.fadeOut {
+    transform: translateX(2em);
+  }
+}
 
 @media screen and (max-width: 340px) {
   #intro h1 {

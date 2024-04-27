@@ -32,10 +32,14 @@ main {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-
+html {
+  scroll-snap-type: y proximity;
+}
 section {
   max-width: 650px;
   margin: 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 @media screen and (min-width: 1080px) {

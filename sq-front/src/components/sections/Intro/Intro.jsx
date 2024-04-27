@@ -12,31 +12,12 @@ export const Intro = (motionOkay) => {
     : 0;
   const [nameTriggerPoint, setNameTriggerPoint] = useState(0);
   const [subtitleTriggerPoint, setSubtitleTriggerPoint] = useState(0);
-  //const rem = parseInt(getComputedStyle(document.documentElement).fontSize);
 
   const animateFadeOut = (yPos, fadeElement, triggerPoint) => {
     if (yPos >= triggerPoint && yPos <= frameHeight) {
-      const elBottom = fadeElement.current.getBoundingClientRect().bottom;
-      const opacity = 1 - (yPos - triggerPoint) / elBottom;
-      console.log(
-        "trigger:",
-        triggerPoint,
-        "ypos:",
-        yPos,
-        "element bottom",
-        elBottom,
-        "opacity:",
-        opacity
-      );
-      console.log("y - trigger =", yPos - triggerPoint);
-      fadeElement.current.style["opacity"] = opacity;
-      //console.log("subt opacity:", triggerPoint / (yPos * 3));
-      const yDiff = yPos - triggerPoint;
-      fadeElement.current.style["transform"] = `translate(0, -${yDiff}px)`;
+      fadeElement.current.classList.add("fadeOut");
     } else if (yPos < triggerPoint) {
-      console.log("reset styles");
-      fadeElement.current.style["opacity"] = 1;
-      fadeElement.current.style["transform"] = "";
+      fadeElement.current.classList.remove("fadeOut");
     }
   };
 
@@ -46,7 +27,7 @@ export const Intro = (motionOkay) => {
     );
 
     setSubtitleTriggerPoint(
-      subtitleElement.current.getBoundingClientRect().top - frameHeight / 10
+      subtitleElement.current.getBoundingClientRect().top - frameHeight / 8
     );
   }, [frameHeight]);
 
@@ -60,13 +41,13 @@ export const Intro = (motionOkay) => {
   return (
     <section id='intro' ref={frameElement}>
       <div className='title-wrap'>
-        <h1 className='font-heading' ref={nameElement}>
+        <h1 className='font-heading fadeable' ref={nameElement}>
           Kae
           <br />
           <span className='font-heading'>Unterseher</span>
         </h1>
       </div>
-      <h2 className='font-heading' ref={subtitleElement}>
+      <h2 className='font-heading fadeable' ref={subtitleElement}>
         Full-Stack
         <br />
         <span className='font-heading line-2'>Developer</span>
