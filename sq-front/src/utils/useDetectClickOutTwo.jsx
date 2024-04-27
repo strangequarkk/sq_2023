@@ -9,14 +9,14 @@ export const useDetectClickOut = (
     if (enabled) {
       const onClickOut = (event) => {
         if (event.target != clickableElement) {
-          event.preventDefault();
+          //event.preventDefault();
           handleClickOut(event);
         }
       };
       window.removeEventListener("touchstart", onClickOut);
-      window.removeEventListener("click", onClickOut);
+      window.removeEventListener("mousedown", onClickOut);
       window.addEventListener("touchstart", onClickOut);
-      window.addEventListener("click", onClickOut);
+      window.addEventListener("mousedown", onClickOut);
       const remove = () => window.removeEventListener("click", onClickOut);
       return remove;
     }
