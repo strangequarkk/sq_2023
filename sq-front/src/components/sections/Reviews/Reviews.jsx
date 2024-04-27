@@ -95,6 +95,7 @@ export const Reviews = ({
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
     if (pauseAnimations) {
+      console.log("resume normal scrolling");
       window.scrollTo({ top: containerScrollTop, behavior: "instant" });
       setPauseAnimations(false);
       document.querySelector("#reviews + section").style["scroll-snap-stop"] =
