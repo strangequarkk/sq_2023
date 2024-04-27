@@ -63,6 +63,16 @@ export const Reviews = ({
     );
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
+  const freezeYPos = (originalYPos) => {
+    if (pauseAnimations) {
+      if (container) {
+        container.scrollTop = originalYPos;
+      } else {
+        window.scrollTo({ top: originalYPos, behavior: "instant" });
+      }
+    }
+  };
+
   //without this, page scrolls vertically whenever the user tries to
   //horizontally swipe a review card
   const preventContainerScroll = (e) => {
@@ -74,14 +84,6 @@ export const Reviews = ({
       //don't trigger color shift etc during a scroll that's about to be negated
       setPauseAnimations(true);
       freezeYPos(oldWindowY);
-    }
-  };
-
-  const freezeYPos = (originalYPos) => {
-    if (container) {
-      container.scrollTop = originalYPos;
-    } else {
-      window.scrollTo({ top: originalYPos, behavior: "instant" });
     }
   };
 

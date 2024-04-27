@@ -18,7 +18,6 @@
   position: fixed;
   z-index: 15;
   top: 10vh;
-  /* right: 1rem; */
   right: 0;
   display: flex;
   flex-direction: column;
@@ -101,11 +100,12 @@
   margin: 0;
 }
 
-@media screen and (min-width: 745px) {
+@media screen and (min-width: 650px) {
   #darkModeSwitch {
-    right: 1vw;
-    bottom: 10rem;
-    top: auto;
+    right: 1rem;
+    top: 15vh;
+    /* bottom: 10rem;
+    top: auto; */
   }
 }
 

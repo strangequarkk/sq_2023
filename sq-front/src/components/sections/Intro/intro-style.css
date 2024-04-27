@@ -44,12 +44,35 @@
   line-height: 1.2rem;
 }
 
+/* @media (prefers-reduced-motion: no-preference) {
+  .fadeable {
+
+  }
+} */
+
 @media screen and (max-width: 340px) {
   #intro h1 {
     font-size: 2.5rem;
   }
   #intro h2 {
     font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  #intro h1 {
+    font-size: 3.5rem;
+  }
+  #intro .title-wrap {
+    height: calc(100vh - 50vw - 2rem);
+  }
+  #intro h2 {
+    bottom: calc(50vw - 6rem);
+    font-size: 2.4rem;
+  }
+  #intro .font-fancy.ampersand {
+    transform: translate(0, -0.4rem);
+    display: inline-block;
   }
 }
 
@@ -62,8 +85,12 @@
     margin: 0 !important;
     padding: 0 3rem;
   }
+  #intro .title-wrap {
+    height: calc(100vh - 22rem);
+  }
 
   #intro h2 {
     right: 3rem;
+    bottom: 10rem;
   }
 }

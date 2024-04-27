@@ -104,7 +104,7 @@ function App() {
             path='/'
             element={
               <div className='content-all' ref={contentWrapper}>
-                <Intro />
+                <Intro motionOkay={motionOkay} />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={setCurrentSection} />
                   <Skills

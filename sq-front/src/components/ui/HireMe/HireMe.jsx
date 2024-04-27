@@ -71,7 +71,7 @@ export const HireMe = ({
   return (
     <aside id='hire' className={openAttr + " " + wave + "-parent"}>
       {openAttr ? (
-        <>
+        <div>
           <h2>Hire me!</h2>
           <p>
             <a
@@ -91,7 +91,7 @@ export const HireMe = ({
               @untercurrent
             </a>
           </p>
-        </>
+        </div>
       ) : (
         <>
           <button
