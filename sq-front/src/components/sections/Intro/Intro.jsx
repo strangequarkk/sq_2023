@@ -18,13 +18,25 @@ export const Intro = (motionOkay) => {
     //const triggerPoint = fadeElement.current.getBoundingClientRect().top - 80;
 
     if (yPos >= triggerPoint && yPos <= frameHeight) {
-      console.log(yPos, triggerPoint, yPos - triggerPoint);
-      fadeElement.current.style["opacity"] = triggerPoint / (yPos * 3);
-      console.log("subt opacity:", triggerPoint / (yPos * 3));
+      const elBottom = fadeElement.current.getBoundingClientRect().bottom;
+      const opacity = 1 - (yPos - triggerPoint) / elBottom;
+      //console.log(
+      //   "trigger:",
+      //   triggerPoint,
+      //   "ypos:",
+      //   yPos,
+      //   "element bottom",
+      //   elBottom,
+      //   "opacity:",
+      //   opacity
+      // );
+      // console.log("y - trigger =", yPos - triggerPoint);
+      fadeElement.current.style["opacity"] = opacity;
+      //console.log("subt opacity:", triggerPoint / (yPos * 3));
       const yDiff = yPos - triggerPoint;
       fadeElement.current.style["transform"] = `translate(0, -${yDiff}px)`;
     } else if (yPos < triggerPoint) {
-      console.log("reset styles");
+      //console.log("reset styles");
       fadeElement.current.style["opacity"] = 1;
       fadeElement.current.style["transform"] = "";
       // console.log(fadeElement.current.style);
@@ -35,11 +47,11 @@ export const Intro = (motionOkay) => {
     setNameTriggerPoint(
       nameElement.current.getBoundingClientRect().top - frameHeight / 10
     );
-    //setNameTriggerPoint(nameElement.current.getBoundingClientRect().top - 80);
+
     setSubtitleTriggerPoint(
-      subtitleElement.current.getBoundingClientRect().top - 200
+      subtitleElement.current.getBoundingClientRect().top - frameHeight / 10
     );
-  }, []);
+  }, [frameHeight]);
 
   useContainerScroll((yPos) => {
     if (motionOkay) {
