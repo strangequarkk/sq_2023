@@ -64,10 +64,14 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const freezeYPos = (originalYPos) => {
+    console.log("freeze Y");
     if (pauseAnimations) {
+      console.log("animations paused, do freeze");
       if (container) {
+        console.log("freeze container");
         container.scrollTop = originalYPos;
       } else {
+        console.log("freeze window");
         window.scrollTo({ top: originalYPos, behavior: "instant" });
       }
     }
@@ -76,6 +80,7 @@ export const Reviews = ({
   //without this, page scrolls vertically whenever the user tries to
   //horizontally swipe a review card
   const preventContainerScroll = (e) => {
+    console.log("stop scroll, snap to", window.scrollY);
     //collect original y position
     const oldWindowY = container ? container.scrollTop : window.scrollY;
     setContainerScrollTop(oldWindowY);
