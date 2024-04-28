@@ -40,6 +40,13 @@ export const Intro = (motionOkay) => {
   };
 
   useEffect(() => {
+    console.log("frame element");
+    console.log(frameElement.current);
+    console.log("new frame height", frameHeight);
+    console.log(
+      "frame height accurate?",
+      frameElement.current.getBoundingClientRect().height
+    );
     console.log(
       "set name trigger point; name top bound:",
       nameElement.current.getBoundingClientRect().top
