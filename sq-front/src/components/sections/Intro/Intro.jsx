@@ -48,6 +48,10 @@ export const Intro = (motionOkay) => {
       frameElement.current.getBoundingClientRect().height
     );
     console.log(
+      "frame top bound?",
+      frameElement.current.getBoundingClientRect().top
+    );
+    console.log(
       "set name trigger point; name top bound:",
       nameElement.current.getBoundingClientRect().top
     );
@@ -61,6 +65,7 @@ export const Intro = (motionOkay) => {
     );
 
     const subTitleBounding = subtitleElement.current.getBoundingClientRect();
+    console.log("subtitle boundings", subTitleBounding);
     console.log("set sttrigger point; st top bound:", subTitleBounding.top);
     console.log("subtitle half height:", subTitleBounding.height / 2);
     console.log(
