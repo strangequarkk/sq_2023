@@ -15,8 +15,26 @@ export const Intro = (motionOkay) => {
 
   const animateFadeOut = (yPos, fadeElement, triggerPoint) => {
     if (yPos >= triggerPoint && yPos <= frameHeight) {
+      console.log(
+        "fade out",
+        "trigger point:",
+        triggerPoint,
+        "ypos",
+        yPos,
+        "frameheight",
+        frameHeight
+      );
       fadeElement.current.classList.add("fadeOut");
     } else {
+      console.log(
+        "make visible",
+        "trigger point:",
+        triggerPoint,
+        "ypos",
+        yPos,
+        "frameheight",
+        frameHeight
+      );
       fadeElement.current.classList.remove("fadeOut");
     }
   };
