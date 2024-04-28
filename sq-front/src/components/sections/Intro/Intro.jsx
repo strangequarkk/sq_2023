@@ -37,12 +37,12 @@ export const Intro = (motionOkay) => {
 
     console.log(
       "set sttrigger point; st top bound:",
-      nameElement.current.getBoundingClientRect().top
+      subtitleElement.current.getBoundingClientRect().top
     );
     console.log("frame height /8:", frameHeight / 8);
     console.log(
       "final st tp",
-      nameElement.current.getBoundingClientRect().top - frameHeight / 8
+      subtitleElement.current.getBoundingClientRect().top - frameHeight / 8
     );
 
     setSubtitleTriggerPoint(
