@@ -43,6 +43,16 @@ export const Intro = (motionOkay) => {
   };
 
   useEffect(() => {
+    console.log(
+      "set name trigger point; name top:",
+      nameElement.current.getBoundingClientRect().top
+    );
+    console.log("frame element:", frameElement);
+    console.log("frame height:", frameHeight);
+    console.log(
+      "final tp",
+      nameElement.current.getBoundingClientRect().top - frameHeight / 10
+    );
     setNameTriggerPoint(
       nameElement.current.getBoundingClientRect().top - frameHeight / 10
     );
