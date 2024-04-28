@@ -27,6 +27,7 @@ export const Reviews = ({
   container,
   setPauseAnimations,
   pauseAnimations,
+  usingTouch,
 }) => {
   const [reviews, setReviews] = useState({});
   const [containerScrollTop, setContainerScrollTop] = useState(0);
@@ -78,16 +79,11 @@ export const Reviews = ({
     //collect original y position
     const oldWindowY = container ? container.scrollTop : window.scrollY;
     setContainerScrollTop(oldWindowY);
-
     if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
       //don't trigger color shift etc during a scroll that's about to be negated
       setPauseAnimations(true);
       //turn off scroll snapping of immediate siblings
-      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
-        "normal";
-      document.querySelector("section:has( + #reviews").style[
-        "scroll-snap-stop"
-      ] = "normal";
+
       freezeYPos(oldWindowY);
     }
   };
@@ -96,19 +92,14 @@ export const Reviews = ({
   const allowContainerScroll = () => {
     if (pauseAnimations) {
       console.log("resume normal scrolling");
-      window.scrollTo({ top: containerScrollTop, behavior: "instant" });
+      //window.scrollTo({ top: containerScrollTop, behavior: "instant" });
       setPauseAnimations(false);
-      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
-        "always";
-      document.querySelector("section:has( + #reviews").style[
-        "scroll-snap-stop"
-      ] = "always";
     }
   };
 
   //make sure the page scrolls normally the next time the user
   //interacts with anything but the review slider
-  useDetectClickOut(sectionRef.current, allowContainerScroll, true);
+  useDetectClickOut(sectionRef.current, allowContainerScroll, true, usingTouch);
 
   return (
     <VisibilitySensor
@@ -117,6 +108,23 @@ export const Reviews = ({
           setCurrentSection("reviews");
           //enable arrow key navigation of slider
           document.getElementById("review-slider").focus();
+
+          //disable scroll snapping of neighbors
+          //to prevent interference with forced scroll control
+          document.querySelector("#reviews + section").style[
+            "scroll-snap-stop"
+          ] = "normal";
+          document.querySelector("section:has( + #reviews").style[
+            "scroll-snap-stop"
+          ] = "normal";
+        } else {
+          //re-enable scroll snapping of neighbors if reviews section is not on screen
+          document.querySelector("#reviews + section").style[
+            "scroll-snap-stop"
+          ] = "always";
+          document.querySelector("section:has( + #reviews").style[
+            "scroll-snap-stop"
+          ] = "always";
         }
       }}
     >
@@ -178,4 +186,5 @@ Reviews.propTypes = {
   wrapper: PropTypes.object,
   setPauseAnimations: PropTypes.func,
   pauseAnimations: PropTypes.bool,
+  usingTouch: PropTypes.bool,
 };

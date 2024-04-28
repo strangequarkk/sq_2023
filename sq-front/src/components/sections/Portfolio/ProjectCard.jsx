@@ -19,11 +19,18 @@ export const ProjectCard = ({
 
   //card should be hidden on clickout
   const handleClickOut = (e) => {
+    console.log("target is open element?", e.target == cardElement.current);
+    console.log(
+      "target is inside open element?",
+      cardElement.current.contains(e.target)
+    );
+    console.log("show details?", showDetails);
     if (
       e.target != cardElement.current &&
       !cardElement.current.contains(e.target) &&
       showDetails
     ) {
+      console.log("click out of project card");
       setPreventOpening(false);
       setShowDetails(false);
     }

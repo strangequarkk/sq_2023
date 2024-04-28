@@ -46,6 +46,10 @@
   cursor: pointer;
 }
 
+.disappear .base-Switch-root {
+  cursor: default;
+}
+
 .base-Switch-track {
   box-sizing: border-box;
   /* background: #f3f6f9; */

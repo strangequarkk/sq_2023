@@ -41,6 +41,7 @@ function App() {
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
   const [pauseAnimations, setPauseAnimations] = useState(false);
+  const [usingTouch, setUsingTouch] = useState(false);
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
   ).matches;
@@ -55,7 +56,9 @@ function App() {
   const [themeIsDark, setThemeIsDark] = useState(matchDarkMode);
 
   const toggleDarkMode = () => {
-    setThemeIsDark(!themeIsDark);
+    if (!document.querySelector("#darkModeSwitch.disappear")) {
+      setThemeIsDark(!themeIsDark);
+    }
   };
   useDarkModePrefChange(toggleDarkMode);
   const themeClass = themeIsDark ? "dark" : "light";
@@ -70,6 +73,11 @@ function App() {
     setContainerWidth(newWidth);
   }, [containerSize]);
 
+  useEffect(() => {
+    window.addEventListener("touchstart", () => {
+      setUsingTouch(true);
+    });
+  }, []);
   return (
     <>
       <HueChangeBG
@@ -113,6 +121,7 @@ function App() {
                   />
                   <Experience setCurrentSection={setCurrentSection} />
                   <Reviews
+                    usingTouch={usingTouch}
                     motionOkay={motionOkay}
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
