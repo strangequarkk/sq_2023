@@ -83,7 +83,12 @@ export const Reviews = ({
       //don't trigger color shift etc during a scroll that's about to be negated
       setPauseAnimations(true);
       //turn off scroll snapping of immediate siblings
-
+      //to prevent interference with forced scroll control
+      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
+        "normal";
+      document.querySelector("section:has( + #reviews").style[
+        "scroll-snap-stop"
+      ] = "normal";
       freezeYPos(oldWindowY);
     }
   };
