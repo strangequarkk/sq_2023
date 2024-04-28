@@ -35,18 +35,17 @@ export const Intro = (motionOkay) => {
       nameElement.current.getBoundingClientRect().top - frameHeight / 10
     );
 
-    console.log(
-      "set sttrigger point; st top bound:",
-      subtitleElement.current.getBoundingClientRect().top
-    );
-    console.log("frame height /8:", frameHeight / 8);
+    const subTitleBounding = subtitleElement.current.getBoundingClientRect();
+    console.log("set sttrigger point; st top bound:", subTitleBounding.top);
+    console.log("subtitle half height:", subTitleBounding.height / 2);
     console.log(
       "final st tp",
-      subtitleElement.current.getBoundingClientRect().top - frameHeight / 8
+      subTitleBounding.top - subTitleBounding.height / 2
     );
 
     setSubtitleTriggerPoint(
-      subtitleElement.current.getBoundingClientRect().top - frameHeight / 8
+      subtitleElement.current.getBoundingClientRect().top -
+        subTitleBounding.height / 2
     );
   }, [frameHeight]);
 
