@@ -40,6 +40,8 @@ export const Intro = (motionOkay) => {
   };
 
   useEffect(() => {
+    const frameBounds = frameElement.current.getBoundingClientRect();
+    const nameBounds = nameElement.current.getBoundingClientRect();
     console.log("frame element");
     console.log(frameElement.current);
     console.log("new frame height", frameHeight);
@@ -55,28 +57,21 @@ export const Intro = (motionOkay) => {
       "set name trigger point; name top bound:",
       nameElement.current.getBoundingClientRect().top
     );
+    const nameDiff = nameBounds.top - frameBounds.top;
+    console.log("name - frame top diff", nameDiff);
     console.log("frame height / 10:", frameHeight / 10);
-    console.log(
-      "final tp",
-      nameElement.current.getBoundingClientRect().top - frameHeight / 10
-    );
-    setNameTriggerPoint(
-      nameElement.current.getBoundingClientRect().top - frameHeight / 10
-    );
+    console.log("final tp", nameDiff - frameHeight / 10);
+    setNameTriggerPoint(nameDiff - frameHeight / 10);
 
     const subTitleBounding = subtitleElement.current.getBoundingClientRect();
     console.log("subtitle boundings", subTitleBounding);
     console.log("set sttrigger point; st top bound:", subTitleBounding.top);
+    const stDiff = subTitleBounding.top - frameBounds.top;
+    console.log("st upper bound diff", stDiff);
     console.log("subtitle half height:", subTitleBounding.height / 2);
-    console.log(
-      "final st tp",
-      subTitleBounding.top - subTitleBounding.height / 2
-    );
+    console.log("final st tp", stDiff - subTitleBounding.height / 2);
 
-    setSubtitleTriggerPoint(
-      subtitleElement.current.getBoundingClientRect().top -
-        subTitleBounding.height / 2
-    );
+    setSubtitleTriggerPoint(stDiff - subTitleBounding.height / 2);
   }, [frameHeight]);
 
   useContainerScroll((yPos) => {
