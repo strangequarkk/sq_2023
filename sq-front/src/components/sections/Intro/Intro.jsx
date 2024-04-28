@@ -16,45 +16,33 @@ export const Intro = (motionOkay) => {
   const animateFadeOut = (yPos, fadeElement, triggerPoint) => {
     if (yPos >= triggerPoint && yPos <= frameHeight) {
       fadeElement.current.classList.add("fadeOut");
-      console.log(
-        "fade out element, trigger pt",
-        triggerPoint,
-        "ypos",
-        yPos,
-        "frameheight",
-        frameHeight
-      );
-      console.log(fadeElement.current);
-      console.log(fadeElement.current.classList);
     } else {
-      //if (yPos < triggerPoint) {
       fadeElement.current.classList.remove("fadeOut");
-      console.log(
-        "bring back element, trigger pt",
-        triggerPoint,
-        "ypos",
-        yPos,
-        "frameheight",
-        frameHeight
-      );
-      console.log(fadeElement.current);
-      console.log(fadeElement.current.classList);
     }
   };
 
   useEffect(() => {
     console.log(
-      "set name trigger point; name top:",
+      "set name trigger point; name top bound:",
       nameElement.current.getBoundingClientRect().top
     );
-    console.log("frame element:", frameElement);
-    console.log("frame height:", frameHeight);
+    console.log("frame height / 10:", frameHeight / 10);
     console.log(
       "final tp",
       nameElement.current.getBoundingClientRect().top - frameHeight / 10
     );
     setNameTriggerPoint(
       nameElement.current.getBoundingClientRect().top - frameHeight / 10
+    );
+
+    console.log(
+      "set sttrigger point; st top bound:",
+      nameElement.current.getBoundingClientRect().top
+    );
+    console.log("frame height /8:", frameHeight / 8);
+    console.log(
+      "final st tp",
+      nameElement.current.getBoundingClientRect().top - frameHeight / 8
     );
 
     setSubtitleTriggerPoint(
