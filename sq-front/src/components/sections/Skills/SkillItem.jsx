@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 //import { detectClickOut } from "../../../utils/detectClickout";
 import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 import { shiftElementLeft } from "../../../utils/shiftElementLeft";
@@ -12,26 +12,31 @@ const SubItem = ({ skill, builtWith }) => {
   const skillElement = useRef();
   const [toolTipClasses, setToolTipClasses] = useState("");
 
-  const changeTTipState = useCallback(
+  const changeTTipState = //useCallback(
     (tTipVisibility) => {
       const toggledWidth = tTipVisibility ? "0px" : tTipFullWidth.current;
       const toggledStyle = tTipVisibility ? "hidden" : "shown";
       //have to handle width style manually bc it's calculated dynamically on first render
       tTipElement.current.style.width = toggledWidth;
       setToolTipClasses(toggledStyle);
-    },
-    [tTipFullWidth, tTipElement]
-  );
+    };
+  //   [tTipFullWidth, tTipElement]
+  // );
 
-  const handleExit = useCallback(() => {
-    changeTTipState(true);
-    setShowTTip(false);
-  }, [changeTTipState]);
+  const handleExit = //useCallback(
+    () => {
+      changeTTipState(true);
+      setShowTTip(false);
+    };
+  //, [changeTTipState]);
 
   const handleOpen = () => {
     changeTTipState(showTTip);
     setShowTTip(!showTTip);
   };
+
+  //clicking on the parent element toggles the tooltip visibility;
+  //clicking on anything else makes the tooltip go away
   useDetectClickOut(skillElement.current, handleExit, showTTip);
 
   useEffect(() => {
@@ -46,21 +51,17 @@ const SubItem = ({ skill, builtWith }) => {
       //reset tooltip width to 0 for animation
       setToolTipClasses("hidden");
 
-      //clicking on the parent element toggles the tooltip visibility;
-      //clicking on anything else makes the tooltip go away
-      //detectClickOut(skillElement.current, handleExit);
-
       //only need to do this once, but react convention does not allow empty dependency array in this case
       hasRendered.current = true;
     }
   }, [
     tTipElement,
-    skillElement,
+    //skillElement,
     hasRendered,
     toolTipClasses,
-    changeTTipState,
+    //changeTTipState,
     showTTip,
-    handleExit,
+    //handleExit,
   ]);
 
   const defaultItem = (
@@ -73,7 +74,8 @@ const SubItem = ({ skill, builtWith }) => {
     <li className='skill-item special'>
       <p
         ref={skillElement}
-        onClick={handleOpen}
+        onMouseDown={handleOpen}
+        onTouchStart={handleOpen}
         onMouseEnter={handleOpen}
         onMouseLeave={handleExit}
       >
