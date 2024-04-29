@@ -14,63 +14,26 @@ export const Intro = (motionOkay) => {
   const [subtitleTriggerPoint, setSubtitleTriggerPoint] = useState(0);
 
   const animateFadeOut = (yPos, fadeElement, triggerPoint) => {
+    //activate fadeout at trigger point, but bring element back if we're below the intro frame
     if (yPos >= triggerPoint && yPos <= frameHeight) {
-      console.log(
-        "fade out",
-        "trigger point:",
-        triggerPoint,
-        "ypos",
-        yPos,
-        "frameheight",
-        frameHeight
-      );
       fadeElement.current.classList.add("fadeOut");
     } else {
-      console.log(
-        "make visible",
-        "trigger point:",
-        triggerPoint,
-        "ypos",
-        yPos,
-        "frameheight",
-        frameHeight
-      );
       fadeElement.current.classList.remove("fadeOut");
     }
   };
 
   useEffect(() => {
     const frameBounds = frameElement.current.getBoundingClientRect();
+
     const nameBounds = nameElement.current.getBoundingClientRect();
-    console.log("frame element");
-    console.log(frameElement.current);
-    console.log("new frame height", frameHeight);
-    console.log(
-      "frame height accurate?",
-      frameElement.current.getBoundingClientRect().height
-    );
-    console.log(
-      "frame top bound?",
-      frameElement.current.getBoundingClientRect().top
-    );
-    console.log(
-      "set name trigger point; name top bound:",
-      nameElement.current.getBoundingClientRect().top
-    );
+    //use difference between element top bound and frame top bound
+    //instead of just element top bound
+    //bc crazy preload stuff happens sometimes
     const nameDiff = nameBounds.top - frameBounds.top;
-    console.log("name - frame top diff", nameDiff);
-    console.log("frame height / 10:", frameHeight / 10);
-    console.log("final tp", nameDiff - frameHeight / 10);
     setNameTriggerPoint(nameDiff - frameHeight / 10);
 
     const subTitleBounding = subtitleElement.current.getBoundingClientRect();
-    console.log("subtitle boundings", subTitleBounding);
-    console.log("set sttrigger point; st top bound:", subTitleBounding.top);
     const stDiff = subTitleBounding.top - frameBounds.top;
-    console.log("st upper bound diff", stDiff);
-    console.log("subtitle half height:", subTitleBounding.height / 2);
-    console.log("final st tp", stDiff - subTitleBounding.height / 2);
-
     setSubtitleTriggerPoint(stDiff - subTitleBounding.height / 2);
   }, [frameHeight]);
 

@@ -17,6 +17,7 @@ import LeftArrowLight from "../../../assets/arrow-chevron-left-light.svg";
 import RightArrowLight from "../../../assets/arrow-chevron-right-light.svg";
 import VisibilitySensor from "react-visibility-sensor";
 import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
+import { useContainerScroll } from "../../../utils/useContainerScroll";
 import "./reviews-style.css";
 
 export const Reviews = ({
@@ -96,9 +97,13 @@ export const Reviews = ({
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
     if (pauseAnimations) {
+      console.log("resume normal scroll behavior");
       setPauseAnimations(false);
     }
   };
+
+  //resume animations when desktop user scrolls away
+  useContainerScroll(allowContainerScroll, container, true);
 
   //make sure the page scrolls normally the next time the user
   //interacts with anything but the review slider
@@ -130,6 +135,7 @@ export const Reviews = ({
           ] = "always";
         }
       }}
+      partialVisibility={true}
     >
       <section id='reviews' ref={sectionRef}>
         <h2 className='font-heading'>Reviews</h2>
