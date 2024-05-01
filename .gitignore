@@ -8,3 +8,4 @@ strange_quark_env/
 __pycache__/
 /__pycache__
 __pycache__
+db.sqlite3

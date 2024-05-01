@@ -7,7 +7,7 @@ export const ResumeItem = ({
   end_date,
 }) => {
   const start = start_date.split("-")[0];
-  const end = end_date.split("-")[0];
+  const end = end_date ? end_date.split("-")[0] : "Present";
   return (
     <div className='resume-list-item'>
       <h3>{employer}</h3>
