@@ -102,7 +102,7 @@ export const Reviews = ({
     }
   };
 
-  //resume animations when desktop user scrolls away
+  //resume animations when desktop user scrolls away with mouse wheel
   useContainerScroll(allowContainerScroll, container, true);
 
   //make sure the page scrolls normally the next time the user

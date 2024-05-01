@@ -147,10 +147,36 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = BACKEND_DIR / "static"
 WHITENOISE_ROOT = FRONTEND_DIR
 
-CKEDITOR_UPLOAD_PATH = "./"
+
 # CKEDITOR_STORAGE_BACKEND = str(BASE_DIR / "sq-front/src/assets")
 MEDIA_ROOT = "./sq-front/public/assets"
 MEDIA_URL = "/assets/"
+
+CKEDITOR_UPLOAD_PATH = "./"
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "Custom",
+        "toolbar_Custom": [
+            ["Bold", "Italic", "Underline"],
+            [
+                "NumberedList",
+                "BulletedList",
+                "-",
+                "Outdent",
+                "Indent",
+                "-",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
+            ],
+            ["Link", "Unlink"],
+            ["RemoveFormat", "Source"],
+            ["Image"],
+        ],
+    }
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

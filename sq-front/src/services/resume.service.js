@@ -6,7 +6,20 @@ export const retrieveAllResumeItems = (callback) => {
   axios
     .get(`${baseURL}/resume/`)
     .then((response) => {
-      callback(response.data);
+      const orderedByEndDate = response.data.sort((a, b) => {
+        let orderResult = b.end_date == null ? true : b.end_date > a.end_date;
+
+        console.log(
+          "date sorting: b end date",
+          b.end_date,
+          "a end date",
+          a.end_date,
+          "result",
+          orderResult
+        );
+        return orderResult;
+      });
+      callback(orderedByEndDate);
     })
     .catch((e) => {
       console.error(e);
