@@ -36,7 +36,7 @@
     width: 7%;
     height: 100vw;
     margin: 0;
-    left: 43%;
+    left: calc(var(--l-col-width) + 3%);
     background-image: linear-gradient(
       to left,
       rgb(214, 248, 241) 50%,

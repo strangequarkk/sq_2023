@@ -45,7 +45,7 @@ section {
 
 @media screen and (min-width: 1080px) {
   :root {
-    --l-col-width: 40%;
+    --l-col-width: 35%;
     --nav-width: 10%;
   }
   main {
