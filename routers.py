@@ -3,9 +3,11 @@ from resume.viewsets import ResumeViewSet
 from skills.viewsets import SkillViewSet, SubSkillViewSet
 from reviews.viewsets import ReviewViewSet
 from projects.viewsets import ProjectViewSet, ProjectSkillViewSet, GalleryImageViewSet
+from about.viewsets import AboutViewSet
 
 router = routers.SimpleRouter()
 router.register("resume", ResumeViewSet, basename="resume")
+router.register("about", AboutViewSet, basename="about")
 router.register("skills", SkillViewSet, basename="skills")
 router.register("subskills", SubSkillViewSet, basename="subskills")
 router.register("reviews", ReviewViewSet, basename="skills")
