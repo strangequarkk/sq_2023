@@ -66,48 +66,79 @@
 }
 
 @media screen and (min-width: 650px) {
-  #hire {
+  :root {
+    --bubble-size-normal: 45vh;
+    --bubble-size-hi-res: 45vw;
+  }
+
+  .hi-res #hire {
     bottom: 3.2rem;
     right: 3.2rem;
     width: 5rem;
     height: 5rem;
   }
 
-  #hire button svg {
+  .hi-res #hire button svg {
     width: 4rem;
   }
 
+  .hi-res #hire.open {
+    width: var(--bubble-size-hi-res);
+    height: var(--bubble-size-hi-res);
+  }
+  .hi-res #hire.open div {
+    height: calc(var(--bubble-size-hi-res) - 2rem);
+    width: calc(var(--bubble-size-hi-res) - 8rem);
+  }
+
   #hire.open {
-    width: 45vw;
-    height: 45vw;
+    width: var(--bubble-size-normal);
+    height: var(--bubble-size-normal);
   }
   #hire.open div {
-    height: calc(45vw - 2rem);
-    width: calc(45vw - 8rem);
+    height: calc(var(--bubble-size-normal) - 2rem);
+    width: calc(var(--bubble-size-normal) - 8rem);
   }
 
   #hire.open h2 {
-    margin-top: 1rem;
     text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hi-res #hire.open h2 {
+    margin-top: 1rem;
     font-size: 2.1rem;
     margin-bottom: 1.7rem;
   }
+
   #hire.open p {
+    font-size: 0.9rem;
+    line-height: 1.8rem;
+  }
+
+  .hi-res #hire.open p {
     font-size: 1.5rem;
     line-height: 3rem;
   }
 
   #hire.open button.close {
+    top: 2rem;
+    left: 3.3rem;
+  }
+
+  .hi-res #hire.open button.close {
     top: 1.8rem;
     left: 5rem;
   }
-  #hire.open button.close svg {
+
+  .hi-res #hire.open button.close svg {
     width: 2.5rem;
   }
 }
 
 @media screen and (min-width: 1080px) {
-  #hire {
+  /* #hire {
     bottom: 0.5rem;
     right: 0.5rem;
     width: 3.8rem;
@@ -143,7 +174,7 @@
   }
 
   #hire.open h2 {
-    font-size: 1.125rem /* 18px */;
+    font-size: 1.125rem;
     line-height: 1.75rem;
     text-align: left;
     margin-bottom: 0;
@@ -152,7 +183,7 @@
   #hire.open button.close {
     top: 1.5rem;
     left: 3.2rem;
-  }
+  } */
 }
 
 @media (prefers-reduced-motion: no-preference) {

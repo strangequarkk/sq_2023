@@ -71,17 +71,20 @@
 }
 
 @media screen and (min-width: 650px) {
-  #intro h1 {
+  .hi-res #intro h1 {
     font-size: 4rem;
   }
-  #intro .title-wrap {
+  .hi-res #intro .title-wrap {
     height: calc(100vh - 50vw - 2rem);
   }
   #intro h2 {
+    bottom: calc(var(--bubble-size-normal) - 7rem);
+  }
+  .hi-res #intro h2 {
     bottom: calc(50vw - 6rem);
     font-size: 2.8rem;
   }
-  #intro .font-fancy.ampersand {
+  .hi-res #intro .font-fancy.ampersand {
     transform: translate(0, -0.4rem);
     display: inline-block;
   }

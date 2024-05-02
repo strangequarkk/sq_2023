@@ -10,7 +10,9 @@
 .resume-list-item h3 {
   font-style: italic;
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
 }
 
 .resume-list-item h4 {

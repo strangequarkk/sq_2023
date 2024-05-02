@@ -1,7 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-// import { AddResumeItem } from './components/editor/AddResumeItem'
-// import { ResumeList } from './components/editor/ResumeList'
-// import { UpdateResume } from './components/editor/UpdateResume'
 import { Navbar } from "./components/ui/Navbar/Navbar";
 import { SpinningLogo } from "./components/ui/SpinningLogo/SpinningLogo";
 import { Intro } from "./components/sections/Intro/Intro";
@@ -19,12 +16,6 @@ import { useRef, useEffect, useState } from "react";
 import { DarkModeSwitch } from "./components/ui/DarkModeSwitch/DarkModeSwitch";
 
 import "./App.css";
-
-// const favicon = new URL(
-//   "../src/assets/strange-quark-logo-blackhole-dark.ico",
-//   import.meta.url
-// ).href;
-// document.querySelector("link[rel='icon']").href = favicon;
 
 function App() {
   const sections = useRef([
@@ -45,24 +36,14 @@ function App() {
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
   ).matches;
+  //hi-res devices with small rem have different styling needs
   const windowResWidth = window.devicePixelRatio * window.screen.width;
-  const windowResHeight = window.devicePixelRatio * window.screen.width;
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const remRatio = rem / windowResWidth;
-  console.log(
-    "device pixel ratio:",
-    window.devicePixelRatio,
-    "resolution is",
-    windowResWidth,
-    "x",
-    windowResHeight,
-    "rem size",
-    rem,
-    "rem ratio",
-    remRatio
-  );
+  const hiResClass = remRatio >= 0.009 ? "" : "hi-res";
+
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
-  const [emittingElement, setEmittingElement] = useState(undefined);
+  const [scrollContainer, setScrollContainer] = useState(undefined);
 
   const matchDarkMode = window.matchMedia
     ? window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -84,7 +65,7 @@ function App() {
       containerSize >= minDesktopSize ? scrollableDiv.current : undefined;
 
     const newWidth = container ? container.clientWidth : containerSize;
-    setEmittingElement(container);
+    setScrollContainer(container);
     setContainerWidth(newWidth);
   }, [containerSize]);
 
@@ -97,7 +78,7 @@ function App() {
     <>
       <HueChangeBG
         themeIsDark={themeIsDark}
-        refContainer={emittingElement}
+        refContainer={scrollContainer}
         themeClass={themeClass}
         pauseColors={pauseAnimations}
       />
@@ -109,17 +90,17 @@ function App() {
           setCurrentSection={setCurrentSection}
         />
       </header>
-      <main className={themeClass}>
+      <main className={themeClass + " " + hiResClass}>
         <DarkModeSwitch
           themeIsDark={themeIsDark}
           toggleDarkMode={toggleDarkMode}
-          refContainer={emittingElement}
+          refContainer={scrollContainer}
           pauseAppearance={pauseAnimations}
         />
         <SpinningLogo
           speed={0.5}
           themeIsDark={themeIsDark}
-          refContainer={emittingElement}
+          refContainer={scrollContainer}
         />
         <Routes>
           <Route
@@ -141,7 +122,7 @@ function App() {
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
                     setCurrentSection={setCurrentSection}
-                    container={emittingElement}
+                    container={scrollContainer}
                     setPauseAnimations={setPauseAnimations}
                     pauseAnimations={pauseAnimations}
                   />
@@ -157,7 +138,7 @@ function App() {
         </Routes>
         <HireMe
           themeIsDark={themeIsDark}
-          refContainer={emittingElement}
+          refContainer={scrollContainer}
           motionOkay={motionOkay}
           pauseWave={pauseAnimations}
         />
