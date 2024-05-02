@@ -45,6 +45,7 @@
 
 #hire p {
   font-size: 0.7rem;
+  white-space: nowrap;
 }
 
 #hire h2 {
@@ -93,17 +94,22 @@
 
   #hire.open {
     width: var(--bubble-size-normal);
+    min-width: 18rem;
     height: var(--bubble-size-normal);
+    min-height: 18rem;
   }
   #hire.open div {
     height: calc(var(--bubble-size-normal) - 2rem);
+    min-height: calc(18rem - 2rem);
     width: calc(var(--bubble-size-normal) - 8rem);
+    min-width: calc(18rem - 8rem);
+    padding-right: 2rem;
   }
 
   #hire.open h2 {
     text-align: center;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1vh;
   }
 
   .hi-res #hire.open h2 {
@@ -113,8 +119,8 @@
   }
 
   #hire.open p {
-    font-size: 0.9rem;
-    line-height: 1.8rem;
+    font-size: 0.75rem;
+    line-height: 1.6rem;
   }
 
   .hi-res #hire.open p {
@@ -137,7 +143,16 @@
   }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1500px) {
+  #hire.open p {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  #hire.open h2 {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+  }
   /* #hire {
     bottom: 0.5rem;
     right: 0.5rem;
@@ -148,6 +163,7 @@
   #hire button svg {
     width: 50px;
   }
+  
 
   #hire.open {
     width: 17.5rem;
