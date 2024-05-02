@@ -45,7 +45,22 @@ function App() {
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
   ).matches;
-
+  const windowResWidth = window.devicePixelRatio * window.screen.width;
+  const windowResHeight = window.devicePixelRatio * window.screen.width;
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const remRatio = rem / windowResWidth;
+  console.log(
+    "device pixel ratio:",
+    window.devicePixelRatio,
+    "resolution is",
+    windowResWidth,
+    "x",
+    windowResHeight,
+    "rem size",
+    rem,
+    "rem ratio",
+    remRatio
+  );
   //scroll and resize effects will refer either to the window or the scrollable div depending on size
   const [emittingElement, setEmittingElement] = useState(undefined);
 
