@@ -3,7 +3,7 @@ import { useContainerScroll } from "../../../utils/useContainerScroll";
 import { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-export const Intro = (motionOkay) => {
+export const Intro = (motionOkay, splitLayoutIsActive) => {
   const nameElement = useRef();
   const subtitleElement = useRef();
   const frameElement = useRef();
@@ -38,7 +38,7 @@ export const Intro = (motionOkay) => {
   }, [frameHeight]);
 
   useContainerScroll((yPos) => {
-    if (motionOkay) {
+    if (motionOkay && !splitLayoutIsActive) {
       animateFadeOut(yPos, nameElement, nameTriggerPoint);
       animateFadeOut(yPos, subtitleElement, subtitleTriggerPoint);
     }
@@ -65,4 +65,5 @@ export const Intro = (motionOkay) => {
 };
 Intro.propTypes = {
   motionOkay: PropTypes.bool,
+  splitLayoutIsActive: PropTypes.bool,
 };
