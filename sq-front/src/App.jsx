@@ -111,7 +111,7 @@ function App() {
                 {/* scrollContainer element is falsey in 1-col layout and truthy in 2-col */}
                 <Intro
                   motionOkay={motionOkay}
-                  splitLayoutIsActive={!!scrollContainer}
+                  splitLayoutIsActive={Boolean(scrollContainer)}
                 />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={setCurrentSection} />
