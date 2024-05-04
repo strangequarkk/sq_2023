@@ -86,6 +86,8 @@
   .hi-res #hire.open {
     width: var(--bubble-size-hi-res);
     height: var(--bubble-size-hi-res);
+    bottom: -8.5rem;
+    right: -4rem;
   }
   .hi-res #hire.open div {
     height: calc(var(--bubble-size-hi-res) - 2rem);
@@ -158,8 +160,8 @@
   }
 
   .hi-res #hire.open button.close {
-    top: 3rem;
-    left: 6rem;
+    top: 3.5rem;
+    left: 6.5rem;
   }
 }
 

@@ -38,6 +38,10 @@ export const Intro = (motionOkay, splitLayoutIsActive) => {
   }, [frameHeight]);
 
   useContainerScroll((yPos) => {
+    console.log(
+      "activate intro fadeout? is split layout active?",
+      splitLayoutIsActive
+    );
     if (motionOkay && !splitLayoutIsActive) {
       animateFadeOut(yPos, nameElement, nameTriggerPoint);
       animateFadeOut(yPos, subtitleElement, subtitleTriggerPoint);
