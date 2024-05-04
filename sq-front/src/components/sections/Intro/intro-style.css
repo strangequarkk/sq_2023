@@ -100,8 +100,21 @@
     margin: 0 !important;
     padding: 0 3rem;
   }
+  .hi-res section#intro {
+    padding: 0 0 0 3rem;
+  }
+
   #intro .title-wrap {
     height: calc(100vh - 22rem);
+  }
+
+  .hi-res #intro h1 {
+    font-size: 4rem;
+  }
+
+  .hi-res #intro h2 {
+    right: 0;
+    bottom: 18rem;
   }
 
   #intro h2 {

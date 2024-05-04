@@ -86,8 +86,6 @@
   .hi-res #hire.open {
     width: var(--bubble-size-hi-res);
     height: var(--bubble-size-hi-res);
-    bottom: -16rem;
-    right: -9rem;
   }
   .hi-res #hire.open div {
     height: calc(var(--bubble-size-hi-res) - 2rem);
@@ -117,7 +115,7 @@
   .hi-res #hire.open h2 {
     margin-top: 1rem;
     font-size: 2.1rem;
-    margin-bottom: 2.8rem;
+    margin-bottom: 1.7rem;
   }
 
   #hire.open p {
@@ -128,7 +126,6 @@
   .hi-res #hire.open p {
     font-size: 1.5rem;
     line-height: 3rem;
-    padding-left: 2rem;
   }
 
   #hire.open button.close {
@@ -143,6 +140,26 @@
 
   .hi-res #hire.open button.close svg {
     width: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .hi-res #hire.open {
+    bottom: -16rem;
+    right: -9rem;
+  }
+
+  .hi-res #hire.open h2 {
+    margin-bottom: 2.8rem;
+  }
+
+  .hi-res #hire.open p {
+    padding-left: 2rem;
+  }
+
+  .hi-res #hire.open button.close {
+    top: 3rem;
+    left: 6rem;
   }
 }
 
@@ -168,6 +185,9 @@
     width: calc(var(--bubble-size-normal) - 8rem);
     min-width: calc(20rem - 8rem);
     padding-right: 2rem;
+  }
+  .hi-res #hire.open button.close svg {
+    width: 3rem;
   }
 }
 
