@@ -74,6 +74,8 @@ function App() {
       setUsingTouch(true);
     });
   }, []);
+  const splitLayoutIsActive = !!scrollContainer;
+
   return (
     <>
       <HueChangeBG
@@ -108,10 +110,9 @@ function App() {
             path='/'
             element={
               <div className='content-all' ref={contentWrapper}>
-                {/* scrollContainer element is falsey in 1-col layout and truthy in 2-col */}
                 <Intro
                   motionOkay={motionOkay}
-                  splitLayoutIsActive={Boolean(scrollContainer)}
+                  splitLayoutIsActive={splitLayoutIsActive}
                 />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={setCurrentSection} />

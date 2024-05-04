@@ -97,7 +97,6 @@ export const Reviews = ({
   //resume normal behavior once swipe/drag event has ended
   const allowContainerScroll = () => {
     if (pauseAnimations) {
-      console.log("resume normal scroll behavior");
       setPauseAnimations(false);
     }
   };
