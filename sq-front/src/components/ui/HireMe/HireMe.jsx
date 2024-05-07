@@ -69,7 +69,7 @@ export const HireMe = ({
   const buttonClass = openAttr ? "close" : "cta";
 
   return (
-    <aside id='hire' className={openAttr + " " + wave + "-parent"}>
+    <aside id='hire' className={openAttr + " " + wave + "-parent"} tabIndex='7'>
       {openAttr ? (
         <div>
           <h2>Hire me!</h2>

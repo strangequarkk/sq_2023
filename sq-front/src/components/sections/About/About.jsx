@@ -18,8 +18,9 @@ export const About = ({ setCurrentSection }) => {
           setCurrentSection("about");
         }
       }}
+      partialVisibility={true}
     >
-      <section id='about'>
+      <section id='about' tabIndex='2'>
         <h2 className='font-heading'>About</h2>
         <div
           className='about-content'

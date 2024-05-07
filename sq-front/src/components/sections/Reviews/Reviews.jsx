@@ -29,6 +29,7 @@ export const Reviews = ({
   setPauseAnimations,
   pauseAnimations,
   usingTouch,
+  prevSection,
 }) => {
   const [reviews, setReviews] = useState({});
   const [containerScrollTop, setContainerScrollTop] = useState(0);
@@ -125,6 +126,9 @@ export const Reviews = ({
             "scroll-snap-stop"
           ] = "normal";
         } else {
+          if (prevSection == "about") {
+            setCurrentSection(prevSection);
+          }
           //re-enable scroll snapping of neighbors if reviews section is not on screen
           document.querySelector("#reviews + section").style[
             "scroll-snap-stop"
@@ -136,7 +140,7 @@ export const Reviews = ({
       }}
       partialVisibility={true}
     >
-      <section id='reviews' ref={sectionRef}>
+      <section id='reviews' ref={sectionRef} tabIndex='5'>
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
@@ -191,4 +195,5 @@ Reviews.propTypes = {
   setPauseAnimations: PropTypes.func,
   pauseAnimations: PropTypes.bool,
   usingTouch: PropTypes.bool,
+  prevSection: PropTypes.string,
 };

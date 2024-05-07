@@ -45,7 +45,7 @@ export const Intro = ({ motionOkay, splitLayoutIsActive }) => {
   });
 
   return (
-    <section id='intro' ref={frameElement}>
+    <section id='intro' ref={frameElement} tabIndex='1'>
       <div className='title-wrap'>
         <h1 className='font-heading fadeable' ref={nameElement}>
           Kae

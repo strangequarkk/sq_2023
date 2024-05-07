@@ -25,7 +25,8 @@ function App() {
     "reviews",
     "projects",
   ]);
-  const [currentSection, setCurrentSection] = useState("");
+  const [currentSection, setCurrentSection] = useState("about");
+  const [previousSection, setPreviousSection] = useState("");
   const scrollableDiv = useRef();
   const contentWrapper = useRef();
   const minDesktopSize = 1080;
@@ -51,8 +52,11 @@ function App() {
 
   const [themeIsDark, setThemeIsDark] = useState(matchDarkMode);
 
-  const toggleDarkMode = () => {
-    if (!document.querySelector("#darkModeSwitch.disappear")) {
+  const toggleDarkMode = (e) => {
+    if (
+      !document.querySelector("#darkModeSwitch.disappear") ||
+      e.type === "change"
+    ) {
       setThemeIsDark(!themeIsDark);
     }
   };
@@ -69,9 +73,17 @@ function App() {
     setContainerWidth(newWidth);
   }, [containerSize]);
 
+  const updateSection = (newSection) => {
+    setPreviousSection(currentSection);
+    setCurrentSection(newSection);
+  };
+
+  //the only way to really know if the user is interacting via touch
+  // is to listen for a touch event
   useEffect(() => {
-    window.addEventListener("touchstart", () => {
+    const touchListener = window.addEventListener("touchstart", () => {
       setUsingTouch(true);
+      window.removeEventListener("touchstart", touchListener);
     });
   }, []);
   const splitLayoutIsActive = !!scrollContainer;
@@ -89,7 +101,7 @@ function App() {
           motionOkay={motionOkay}
           sections={sections.current}
           currentSection={currentSection}
-          setCurrentSection={setCurrentSection}
+          setCurrentSection={updateSection}
         />
       </header>
       <main className={themeClass + " " + hiResClass}>
@@ -115,23 +127,24 @@ function App() {
                   splitLayoutIsActive={splitLayoutIsActive}
                 />
                 <div className='scrolling-content' ref={scrollableDiv}>
-                  <About setCurrentSection={setCurrentSection} />
+                  <About setCurrentSection={updateSection} />
                   <Skills
                     motionOkay={motionOkay}
-                    setCurrentSection={setCurrentSection}
+                    setCurrentSection={updateSection}
                   />
-                  <Experience setCurrentSection={setCurrentSection} />
+                  <Experience setCurrentSection={updateSection} />
                   <Reviews
                     usingTouch={usingTouch}
                     motionOkay={motionOkay}
                     containerWidth={containerWidth}
                     themeIsDark={themeIsDark}
-                    setCurrentSection={setCurrentSection}
+                    setCurrentSection={updateSection}
+                    prevSection={previousSection}
                     container={scrollContainer}
                     setPauseAnimations={setPauseAnimations}
                     pauseAnimations={pauseAnimations}
                   />
-                  <Portfolio setCurrentSection={setCurrentSection} />
+                  <Portfolio setCurrentSection={updateSection} />
                 </div>
               </div>
             }

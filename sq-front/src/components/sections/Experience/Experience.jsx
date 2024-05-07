@@ -28,8 +28,9 @@ export const Experience = ({ setCurrentSection }) => {
           setCurrentSection("experience");
         }
       }}
+      partialVisibility={true}
     >
-      <section id='experience'>
+      <section id='experience' tabIndex='4'>
         <h2 className='font-heading'>Experience</h2>
         {resumeEntries}
       </section>

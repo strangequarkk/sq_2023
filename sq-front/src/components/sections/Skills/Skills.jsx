@@ -37,8 +37,9 @@ export const Skills = ({ setCurrentSection }) => {
           setCurrentSection("skills");
         }
       }}
+      partialVisibility={true}
     >
-      <section id='skills' className='pt-12 max-w-[650px] mx-auto'>
+      <section id='skills' tabIndex='3' className='pt-12 max-w-[650px] mx-auto'>
         <h2 className='font-heading text-3xl pb-3'>Skills</h2>
         <article className='pb-4'>
           <h3 className='font-nav pb-3'>

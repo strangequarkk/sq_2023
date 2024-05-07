@@ -44,7 +44,7 @@ export const Portfolio = ({ setCurrentSection }) => {
         }
       }}
     >
-      <section id='projects'>
+      <section id='projects' tabIndex='6'>
         <h2 className='font-heading'>Projects</h2>
         <div className='project-wrapper'>{projectCards}</div>
       </section>
