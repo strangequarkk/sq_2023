@@ -12,27 +12,63 @@
 
 @keyframes expandBubble {
   0% {
-    bottom: 0.5rem;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    right: 0.5rem;
+    padding: var(--closed-padding);
+    bottom: var(--closed-bottom);
+    right: var(--closed-right);
+    width: var(--closed-size);
+    height: var(--closed-size);
   }
-  50% {
-    bottom: -8.5rem;
-    right: -4rem;
+  80% {
+    bottom: var(--open-bottom);
+    right: var(--open-right);
   }
   100% {
-    width: 17.5rem;
-    height: 17.5rem;
+    padding: var(--open-padding);
+    bottom: var(--open-bottom);
+    right: var(--open-right);
+    width: var(--open-size);
+    height: var(--open-size);
   }
 }
 
+@keyframes contractBubble {
+  0% {
+    padding: var(--open-padding);
+    bottom: var(--open-bottom);
+    right: var(--open-right);
+    width: var(--open-size);
+    height: var(--open-size);
+  }
+  10% {
+    bottom: var(--open-bottom);
+    right: var(--open-right);
+  }
+  100% {
+    padding: var(--closed-padding);
+    bottom: var(--closed-bottom);
+    right: var(--closed-right);
+    width: var(--closed-size);
+    height: var(--closed-size);
+  }
+}
+:root {
+  --closed-bottom: 0.5rem;
+  --closed-right: 0.5rem;
+  --closed-size: 3.8rem;
+  --closed-padding: 0;
+
+  --open-size: 17.5rem;
+  --open-bottom: -8.5rem;
+  --open-right: -4rem;
+  --open-padding: 2rem 0 0 4rem;
+}
+
 #hire {
-  bottom: 0.5rem;
-  right: 0.5rem;
-  width: 3.8rem;
-  height: 3.8rem;
-  padding: 0;
+  bottom: var(--closed-bottom);
+  right: var(--closed-right);
+  width: var(--closed-size);
+  height: var(--closed-size);
+  padding: var(--closed-padding);
   display: flex;
   justify-content: center;
   align-content: center;
@@ -42,6 +78,7 @@
   z-index: 50;
   font-size: 0.875rem;
   line-height: 1.4rem;
+  transition: opacity 0.3s;
 }
 
 .dark #hire {
@@ -49,18 +86,15 @@
 }
 
 #hire.open {
-  animation: expandBubble 0.3s;
-  animation-fill-mode: forwards;
-  bottom: -8.5rem;
-  right: -4rem;
-  width: 17.5rem;
-  height: 17.5rem;
-  padding: 2rem 0 0 4rem;
+  bottom: var(--open-bottom);
+  right: var(--open-right);
+  width: var(--open-size);
+  height: var(--open-size);
+  padding: var(--open-padding);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  opacity: 100;
 }
 
 #hire p {
@@ -93,10 +127,14 @@
   }
 
   .hi-res #hire {
-    bottom: 3.2rem;
+    --closed-bottom: 3.2rem;
+    --closed-right: 3.2rem;
+    --closed-width: 5rem;
+    --closed-height: 5rem;
+    /* bottom: 3.2rem;
     right: 3.2rem;
     width: 5rem;
-    height: 5rem;
+    height: 5rem; */
   }
 
   .hi-res #hire button svg {
@@ -104,10 +142,15 @@
   }
 
   .hi-res #hire.open {
-    bottom: -8.5rem;
+    /* --closed-bottom: 0;
+    --closed-right: 0; */
+    --open-bottom: -8.5rem;
+    --open-right: -4rem;
+    --open-size: var(--bubble-size-hi-res);
+    /* bottom: -8.5rem;
     right: -4rem;
     width: var(--bubble-size-hi-res);
-    height: var(--bubble-size-hi-res);
+    height: var(--bubble-size-hi-res); */
   }
   .hi-res #hire.open div {
     height: calc(var(--bubble-size-hi-res) - 2rem);
@@ -115,10 +158,13 @@
   }
 
   #hire.open {
-    width: var(--bubble-size-normal);
-    min-width: 18rem;
-    height: var(--bubble-size-normal);
-    min-height: 18rem;
+    --closed-bottom: -20rem;
+    --closed-right: -15rem;
+    --open-size: var(--bubble-size-normal);
+    /* width: var(--bubble-size-normal); */
+    min-width: 20rem;
+    /* height: var(--bubble-size-normal); */
+    min-height: 20rem;
   }
   #hire.open div {
     height: calc(var(--bubble-size-normal) - 2rem);
@@ -167,8 +213,12 @@
 
 @media screen and (min-width: 1080px) {
   .hi-res #hire.open {
-    bottom: -16rem;
-    right: -9rem;
+    /* --close-bottom: 0;
+    --close-right: 0; */
+    --open-bottom: -16rem;
+    --open-right: -9rem;
+    /* bottom: -16rem;
+    right: -9rem; */
   }
 
   .hi-res #hire.open h2 {
@@ -196,10 +246,10 @@
     font-size: 1.8rem;
   }
 
-  #hire.open {
-    min-width: 20rem;
-    min-height: 20rem;
-  }
+  /* #hire.open {
+    min-width: 24rem;
+    min-height: 24rem;
+  } */
 
   #hire.open div {
     height: calc(var(--bubble-size-normal) - 2rem);
@@ -214,8 +264,13 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  #hire {
-    transition: all 0.3s ease-in;
+  #hire.closed {
+    animation: contractBubble 0.3s;
+    animation-fill-mode: backwards;
+  }
+  #hire.open {
+    animation: expandBubble 0.3s;
+    animation-fill-mode: forwards;
   }
 
   .waveActive {
@@ -225,7 +280,8 @@
   }
 }
 
-.waveActive-parent {
+.waveActive-parent,
+.open.-parent {
   opacity: 1;
 }
 .-parent {

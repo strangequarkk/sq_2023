@@ -29,7 +29,7 @@ export const HireMe = ({
       clearTimeout(preventExtraWave);
     }, 200);
 
-    openAttr ? setOpen("") : setOpen("open");
+    openAttr === "open" ? setOpen("closed") : setOpen("open");
   };
 
   const startWaveAnimation = () => {
@@ -58,19 +58,20 @@ export const HireMe = ({
     }
   }, refContainer);
 
-  const buttonContent = openAttr ? (
-    <svg viewBox='0 0 24 24' width='30px'>
-      <use xlinkHref={closeButton + "#icon"}></use>
-    </svg>
-  ) : (
-    "Let's get in touch!"
-  );
+  const buttonContent =
+    openAttr === "open" ? (
+      <svg viewBox='0 0 24 24' width='30px'>
+        <use xlinkHref={closeButton + "#icon"}></use>
+      </svg>
+    ) : (
+      "Let's get in touch!"
+    );
 
-  const buttonClass = openAttr ? "close" : "cta";
+  const buttonClass = openAttr === "open" ? "close" : "cta";
 
   return (
     <aside id='hire' className={openAttr + " " + wave + "-parent"} tabIndex='7'>
-      {openAttr ? (
+      {openAttr === "open" ? (
         <div>
           <h2>Hire me!</h2>
           <p>
