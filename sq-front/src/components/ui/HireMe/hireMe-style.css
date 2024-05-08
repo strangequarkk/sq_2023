@@ -213,8 +213,8 @@
 
 @media screen and (min-width: 1080px) {
   .hi-res #hire.open {
-    /* --close-bottom: 0;
-    --close-right: 0; */
+    --close-bottom: -5rem;
+    --close-right: -3rem;
     --open-bottom: -16rem;
     --open-right: -9rem;
     /* bottom: -16rem;
