@@ -31,6 +31,27 @@
   }
 }
 
+@keyframes hiResExpandBubble {
+  0% {
+    padding: var(--closed-padding);
+    bottom: var(--closed-bottom);
+    right: var(--closed-right);
+    width: var(--closed-size);
+    height: var(--closed-size);
+  }
+  80% {
+    bottom: var(--open-bottom);
+    right: var(--open-right);
+  }
+  100% {
+    padding: var(--open-padding);
+    bottom: var(--open-bottom);
+    right: var(--open-right);
+    width: var(--open-size);
+    height: var(--open-size);
+  }
+}
+
 @keyframes contractBubble {
   0% {
     padding: var(--open-padding);
@@ -213,8 +234,8 @@
 
 @media screen and (min-width: 1080px) {
   .hi-res #hire.open {
-    --close-bottom: -5rem;
-    --close-right: -3rem;
+    --close-bottom: -10rem;
+    --close-right: -5rem;
     --open-bottom: -16rem;
     --open-right: -9rem;
     /* bottom: -16rem;
