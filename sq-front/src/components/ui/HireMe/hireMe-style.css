@@ -140,16 +140,15 @@
   }
 
   .hi-res #hire.open {
-    /* --closed-bottom: 0;
-    --closed-right: 0; */
     --open-bottom: -8.5rem;
     --open-right: -4rem;
     --open-size: var(--bubble-size-hi-res);
-    /* bottom: -8.5rem;
-    right: -4rem;
-    width: var(--bubble-size-hi-res);
-    height: var(--bubble-size-hi-res); */
   }
+  .hi-res #hire.closed {
+    --open-bottom: 0;
+    --open-right: 0;
+  }
+
   .hi-res #hire.open div {
     height: calc(var(--bubble-size-hi-res) - 2rem);
     width: calc(var(--bubble-size-hi-res) - 8rem);
