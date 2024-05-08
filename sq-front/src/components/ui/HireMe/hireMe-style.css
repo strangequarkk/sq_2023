@@ -31,27 +31,6 @@
   }
 }
 
-@keyframes hiResExpandBubble {
-  0% {
-    padding: var(--closed-padding);
-    bottom: var(--closed-bottom);
-    right: var(--closed-right);
-    width: var(--closed-size);
-    height: var(--closed-size);
-  }
-  80% {
-    bottom: var(--open-bottom);
-    right: var(--open-right);
-  }
-  100% {
-    padding: var(--open-padding);
-    bottom: var(--open-bottom);
-    right: var(--open-right);
-    width: var(--open-size);
-    height: var(--open-size);
-  }
-}
-
 @keyframes contractBubble {
   0% {
     padding: var(--open-padding);
@@ -140,6 +119,9 @@
   left: 3.2rem;
   position: absolute;
 }
+/*  
+* tablet size
+*/
 
 @media screen and (min-width: 650px) {
   :root {
@@ -150,12 +132,7 @@
   .hi-res #hire {
     --closed-bottom: 3.2rem;
     --closed-right: 3.2rem;
-    --closed-width: 5rem;
-    --closed-height: 5rem;
-    /* bottom: 3.2rem;
-    right: 3.2rem;
-    width: 5rem;
-    height: 5rem; */
+    --closed-size: 5rem;
   }
 
   .hi-res #hire button svg {
