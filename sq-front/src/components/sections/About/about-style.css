@@ -15,3 +15,7 @@
 #about h3 {
   padding-top: 0.75rem;
 }
+
+#about a {
+  text-decoration: underline;
+}
