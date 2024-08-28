@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDetectClickOut } from "../../../utils/useDetectClickOutTwo";
 import { shiftElementLeft } from "../../../utils/shiftElementLeft";
 
-const SubItem = ({ skill, builtWith }) => {
+const SubItem = ({ skill, builtWith, container }) => {
   const [showTTip, setShowTTip] = useState(false);
   const tTipFullWidth = useRef("");
   const hasRendered = useRef(false);
@@ -41,7 +41,7 @@ const SubItem = ({ skill, builtWith }) => {
       tTipFullWidth.current = parseInt(boundingRect.width) + "px";
 
       //adjust left position to prevent overflow if needed
-      shiftElementLeft(boundingRect.right, tTipElement.current);
+      shiftElementLeft(boundingRect.right, tTipElement.current, container);
 
       //reset tooltip width to 0 for animation
       setToolTipClasses("hidden");
@@ -49,7 +49,7 @@ const SubItem = ({ skill, builtWith }) => {
       //only need to do this once, but react convention does not allow empty dependency array in this case
       hasRendered.current = true;
     }
-  }, [tTipElement, hasRendered, toolTipClasses, showTTip]);
+  }, [tTipElement, hasRendered, toolTipClasses, showTTip, container]);
 
   const defaultItem = (
     <li className='skill-item'>
@@ -81,15 +81,16 @@ const SubItem = ({ skill, builtWith }) => {
 SubItem.propTypes = {
   skill: PropTypes.string,
   builtWith: PropTypes.bool,
+  container: PropTypes.object,
 };
 
 /*
  * Primary skill (language etc)
  */
-export const SkillItem = ({ skill, subItems }) => {
+export const SkillItem = ({ skill, subItems, container }) => {
   const subComponents = subItems.length
     ? subItems.map((item) => {
-        return <SubItem key={item.skill} {...item} />;
+        return <SubItem key={item.skill} container={container} {...item} />;
       })
     : [];
 
@@ -112,6 +113,7 @@ export const SkillItem = ({ skill, subItems }) => {
 SkillItem.propTypes = {
   skill: PropTypes.string,
   subItems: PropTypes.array,
+  container: PropTypes.object,
 };
 
 SkillItem.defaultProps = {

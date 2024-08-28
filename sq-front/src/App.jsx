@@ -131,6 +131,7 @@ function App() {
                   <Skills
                     motionOkay={motionOkay}
                     setCurrentSection={updateSection}
+                    container={scrollContainer}
                   />
                   <Experience setCurrentSection={updateSection} />
                   <Reviews

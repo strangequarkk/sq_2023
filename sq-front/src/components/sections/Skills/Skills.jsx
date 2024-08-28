@@ -5,7 +5,7 @@ import VisibilitySensor from "react-visibility-sensor";
 import PropTypes from "prop-types";
 import "./skills-style.css";
 
-export const Skills = ({ setCurrentSection }) => {
+export const Skills = ({ setCurrentSection, container }) => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ export const Skills = ({ setCurrentSection }) => {
       <SkillItem
         key={skill.name}
         skill={skill.name}
+        container={container}
         subItems={skill.subskills.map((sub) => {
           return {
             skill: sub.name,
@@ -53,4 +54,5 @@ export const Skills = ({ setCurrentSection }) => {
 };
 Skills.propTypes = {
   setCurrentSection: PropTypes.func,
+  container: PropTypes.object,
 };
