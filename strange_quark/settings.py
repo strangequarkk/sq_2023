@@ -100,9 +100,17 @@ WSGI_APPLICATION = "strange_quark.wsgi.application"
 
 DATABASES = {
     # "default": dj_database_url.config(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "sq_2024",
+        "USER": "hunter01",
+        "PASSWORD": "c0nK!!r33T",
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
 
