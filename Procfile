@@ -1,2 +1,2 @@
 release: ./release-tasks.sh
-web: gunicorn strange_quark.wsgi; cd /sq-front; npm run build;
+web: gunicorn --workers 3 strange_quark.wsgi;
