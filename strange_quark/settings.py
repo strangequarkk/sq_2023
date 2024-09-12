@@ -75,6 +75,8 @@ MIDDLEWARE = [
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_SCHEME", "https")
 
+CSRF_TRUSTED_ORIGINS = ["https://strange-quark.com"]
+
 ROOT_URLCONF = "strange_quark.urls"
 
 TEMPLATES = [
