@@ -116,7 +116,7 @@ DATABASES = {
         "NAME": "sq_2024",
         "USER": env["PG_USER"],
         "PASSWORD": env["PG_PASS"],
-        "HOST": "localhost",
+        "HOST": env["PG_HOST"],
         "PORT": "",
     }
 }
