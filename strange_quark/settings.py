@@ -23,6 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 BACKEND_DIR = BASE_DIR
 FRONTEND_DIR = os.path.join(BASE_DIR, "sq-front/dist")
+CSRF_TRUSTED_ORIGINS = [
+    "https://strange-quark.com",
+    "http://strange-quark.com",
+    "https://154.41.228.185",
+    "http://154.41.228.185",
+]
 
 # print(env)
 # Quick-start development settings - unsuitable for production
@@ -75,7 +81,6 @@ MIDDLEWARE = [
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_SCHEME", "https")
 
-CSRF_TRUSTED_ORIGINS = ["https://strange-quark.com"]
 
 ROOT_URLCONF = "strange_quark.urls"
 
