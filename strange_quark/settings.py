@@ -113,7 +113,7 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "sq_2024",
+        "NAME": env["PG_DB"],
         "USER": env["PG_USER"],
         "PASSWORD": env["PG_PASS"],
         "HOST": env["PG_HOST"],
