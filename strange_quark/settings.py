@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     "reviews",
     "ckeditor",
     "ckeditor_uploader",
-    "npm",
     "projects",
 ]
 
