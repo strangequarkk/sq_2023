@@ -5,6 +5,7 @@ import subprocess
 # builds the vite project and then collects static files for django
 def build_and_collect():
     print("build and collect static")
+    subprocess.run(["nodeenv", "-p"])
     subprocess.run(["node", "-v"])
     subprocess.run(["npm", "-v"])
     # subprocess.run(["nodeenv", "-p", "--with-npm"])
