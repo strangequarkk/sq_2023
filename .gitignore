@@ -1,9 +1,9 @@
 .DS_Store
 strange_quark_env/
 .vscode
-.env
-.env.production
-.env.*
+strange_quark/.env
+strange_quark/.env.production
+strange_quark/.env.*
 *.py[cod]
 __pycache__/
 /__pycache__
