@@ -1,7 +1,9 @@
 #!/bin/bash  
 echo "Release scripts:"  
 python manage.py migrate
-nodeenv -p --with-npm
+#nodeenv -p --with-npm
+nodeenv env
+.env/bin/activate
 cd sq-front
 npm install
 npm audit fix
