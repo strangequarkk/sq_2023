@@ -15,3 +15,7 @@ def build_and_collect():
     subprocess.run(
         ["python3", "manage.py", "collectstatic", "--noinput"], cwd=os.getcwd()
     )
+
+
+def activate_nodeenv():
+    subprocess.run([".", "env/build/activate"])
