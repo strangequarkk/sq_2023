@@ -27,4 +27,5 @@ def activate_nodeenv():
     # subprocess.run(["who"])
 
     # subprocess.run(["source", "env/bin/activate"])
+    print("Run bash to activate node env")
     subprocess.run(["bash", "web-tasks.sh"])
