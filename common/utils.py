@@ -19,7 +19,12 @@ def build_and_collect():
 
 def activate_nodeenv():
     # subprocess.run(["ls"])
-    subprocess.run(["stat", "env/bin/activate"])
-    subprocess.run(["who"])
-    subprocess.run(["chmod", "777", "env/bin/activate"])
-    subprocess.run([".", "env/bin/activate"])
+    # print("chmod on activation file")
+    # subprocess.run(["chmod", "777", "env/bin/activate"])
+    # print("*** ENV ACTIVATION FILE INFO ***")
+    # subprocess.run(["stat", "env/bin/activate"])
+    # print("i'm the one who owns this file, right???")
+    # subprocess.run(["who"])
+
+    # subprocess.run(["source", "env/bin/activate"])
+    subprocess.run(["bash", "web-tasks.sh"])
