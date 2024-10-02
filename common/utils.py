@@ -19,5 +19,7 @@ def build_and_collect():
 
 def activate_nodeenv():
     # subprocess.run(["ls"])
+    subprocess.run(["stat", "env/bin/activate"])
+    subprocess.run(["who"])
     subprocess.run(["chmod", "777", "env/bin/activate"])
     subprocess.run([".", "env/bin/activate"])
