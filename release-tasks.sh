@@ -1,7 +1,6 @@
 #!/bin/bash  
 echo "Release scripts:"  
 python manage.py migrate
-#nodeenv -p --with-npm
 nodeenv env --with-npm
 source env/bin/activate
 cd sq-front
