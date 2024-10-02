@@ -7,8 +7,6 @@ source env/bin/activate
 cd sq-front
 npm install
 npm audit fix
-# nodeenv env --with-npm
-# . env/bin/activate
 npm run build
 cd ../
 python manage.py collectstatic --noinput 
