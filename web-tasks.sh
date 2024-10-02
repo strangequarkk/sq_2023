@@ -1,4 +1,6 @@
 #!/bin/bash  
+echo "-----WHERE ARE WE------"
+ls
 source env/bin/activate
 echo "node env activated?" 
 node -v

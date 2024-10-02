@@ -3,6 +3,7 @@ echo "Release scripts:"
 python manage.py migrate
 nodeenv env --with-npm
 source env/bin/activate
+echo "Release: node/npm installed and active"
 cd sq-front
 npm install
 npm audit fix
