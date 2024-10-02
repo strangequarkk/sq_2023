@@ -15,5 +15,4 @@ from common.utils import activate_nodeenv, build_and_collect
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "strange_quark.settings")
 
 application = get_wsgi_application()
-activate_nodeenv()
 build_and_collect()
