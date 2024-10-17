@@ -9,7 +9,6 @@ COPY release-tasks.sh .
 
 
 COPY . .
-COPY ../../../../.env /strange_quark/.env
 RUN ./release-tasks.sh
 
 EXPOSE 8000
