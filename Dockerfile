@@ -1,14 +1,15 @@
 FROM python:3.11
 
-WORKDIR /strange_quark
+WORKDIR /
 
 
 COPY requirements.txt .
 
 COPY release-tasks.sh .
-RUN ./release-tasks.sh
+
 
 COPY . .
+RUN ./release-tasks.sh
 
 EXPOSE 8000
 

@@ -4,7 +4,9 @@ pip install --no-cache-dir -r requirements.txt
 python manage.py migrate
 nodeenv env --with-npm
 source env/bin/activate
-echo "Release: node/npm installed and active"
+echo "Release: node/npm installed and active?"
+echo "current directory:"
+echo "$PWD"
 ls
 cd sq-front
 npm install
