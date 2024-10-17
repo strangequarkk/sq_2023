@@ -7,7 +7,8 @@ source env/bin/activate
 echo "Release: node/npm installed and active?"
 echo "current directory:"
 echo "$PWD"
-cp ../../../../.env /strange_quark/.env
+echo `dirname $(realpath $0)`
+cp /etc/.env /strange_quark/.env
 cd /strange_quark
 echo "is env file present???"
 ls
