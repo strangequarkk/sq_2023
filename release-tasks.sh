@@ -7,7 +7,10 @@ source env/bin/activate
 echo "Release: node/npm installed and active?"
 echo "current directory:"
 echo "$PWD"
+cd /strange_quark
+echo "is env file present???"
 ls
+cd ../
 cd sq-front
 npm install
 npm audit fix
