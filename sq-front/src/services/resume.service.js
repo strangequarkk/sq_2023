@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL
+  ? import.meta.env.VITE_BASE_URL
+  : "https://strange-quark.com/api";
 
 export const retrieveAllResumeItems = (callback) => {
   axios

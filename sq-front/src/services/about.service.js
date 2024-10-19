@@ -5,7 +5,9 @@ import {
   giveImagesLazyLoad,
 } from "../utils/processRichText";
 
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL
+  ? import.meta.env.VITE_BASE_URL
+  : "https://strange-quark.com/api";
 
 /* Get all projects from django API*/
 export const retrieveAboutContent = (callback) => {
