@@ -1,12 +1,14 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 # Single entry in "experience" section
 class ResumeItem(models.Model):
     employer = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    description = RichTextField()
+    # description = RichTextField()
+    description = CKEditor5Field("Text", config_name="basic")
     start_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 

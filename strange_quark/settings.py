@@ -16,7 +16,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 env = os.environ
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +38,7 @@ SECRET_KEY = DJANGO_SECRET_KEY = env["DJANGO_SECRET_KEY"]
 # GITHUB_WEBHOOK_KEY = env["A_WEBHOOK_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # env.get("DEBUG_STATUS", False)
+DEBUG = env.get("DEBUG_STATUS", False)
 
 ALLOWED_HOSTS = env.get("ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = CORS_ALLOWED_ORIGINS = json.loads(env.get("ALLOWED_ORIGINS"))
@@ -60,10 +59,11 @@ INSTALLED_APPS = [
     "resume",
     "skills",
     "reviews",
-    "ckeditor",
+    "django_ckeditor_5",
     "ckeditor_uploader",
     "projects",
 ]
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -168,30 +168,90 @@ MEDIA_ROOT = "./sq-front/public/assets"
 MEDIA_URL = "/assets/"
 
 CKEDITOR_UPLOAD_PATH = "./"
-CKEDITOR_CONFIGS = {
-    "default": {
-        "toolbar": "Custom",
-        "toolbar_Custom": [
-            ["Bold", "Italic", "Underline"],
-            [
-                "NumberedList",
-                "BulletedList",
-                "-",
-                "Outdent",
-                "Indent",
-                "-",
-                "JustifyLeft",
-                "JustifyCenter",
-                "JustifyRight",
-                "JustifyBlock",
-            ],
-            ["Link", "Unlink"],
-            ["RemoveFormat", "Source"],
-            ["Image"],
-        ],
-    }
-}
 
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "blockToolbar": [
+            "paragraph",
+            "heading1",
+            "heading2",
+            "heading3",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "blockQuote",
+        ],
+        "toolbar": [
+            "heading",
+            "|",
+            "outdent",
+            "indent",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "underline",
+            "strikethrough",
+            "code",
+            "subscript",
+            "superscript",
+            "highlight",
+            "|",
+            "codeBlock",
+            "sourceEditing",
+            "insertImage",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "|",
+            "blockQuote",
+            "imageUpload",
+            "|",
+            "fontSize",
+            "fontFamily",
+            "fontColor",
+            "fontBackgroundColor",
+            "mediaEmbed",
+            "removeFormat",
+            "insertTable",
+        ],
+        "image": {
+            "toolbar": [
+                "imageTextAlternative",
+                "|",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+                "imageStyle:alignCenter",
+                "imageStyle:side",
+                "|",
+            ],
+            "styles": [
+                "full",
+                "side",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+            ],
+        },
+    },
+    "basic": {
+        "toolbar": [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "underline",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+        ],
+    },
+}
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = (
+    "staff"  # Possible values: "staff", "authenticated", "any"
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

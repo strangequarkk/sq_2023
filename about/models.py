@@ -1,5 +1,7 @@
 from django.db import models
-from ckeditor_uploader.fields import RichTextUploadingField
+
+# from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 from common.utils import build_and_collect
 
 upload_dest = "./"
@@ -7,7 +9,8 @@ upload_dest = "./"
 
 # Create your models here.
 class About(models.Model):
-    content = RichTextUploadingField()
+    # content = RichTextUploadingField()
+    content = CKEditor5Field("Text", config_name="default")
 
     def __str__(self):
         return self.content

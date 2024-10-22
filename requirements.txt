@@ -28,6 +28,7 @@ distlib==0.3.7
 dj-database-url==2.1.0
 Django==4.2.7
 django-ckeditor==6.7.1
+django-ckeditor-5==0.2.15
 django-cors-headers==4.3.0
 django-environ==0.11.2
 django-js-asset==2.2.0
@@ -78,7 +79,9 @@ nest-asyncio==1.6.0
 nodeenv==1.9.1
 notebook==7.0.7
 notebook_shim==0.2.3
+npm==0.1.1
 numpy==1.26.3
+optional-django==0.1.0
 overrides==7.6.0
 packaging==23.2
 pandas==2.2.0

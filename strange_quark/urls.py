@@ -25,6 +25,6 @@ urlpatterns = [
     path("tinkering/", admin.site.urls),
     path("", TemplateView.as_view(template_name="index.html")),
     path("api/", include((router.urls, "strange_quark"), namespace="strange_quark")),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
-    # path("whep/", views.gitWebHook, name="git"),  # webhook endpoint
+    # path("ckeditor/", include("ckeditor_uploader.urls")),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
 ]

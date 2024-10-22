@@ -1,15 +1,15 @@
 from django.db import models
 from common.utils import build_and_collect
 
-# from tinymce.models import HTMLField
-from ckeditor_uploader.fields import RichTextUploadingField
+# from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 
 upload_dest = "./"
 
 
 class Project(models.Model):
     title = models.CharField(max_length=30)
-    description = RichTextUploadingField()
+    description = CKEditor5Field("Text", config_name="default")
     link = models.CharField(max_length=200)
     cover_image = models.ImageField(upload_to=upload_dest, blank=True)
     cover_video = models.FileField(upload_to=upload_dest, blank=True)
