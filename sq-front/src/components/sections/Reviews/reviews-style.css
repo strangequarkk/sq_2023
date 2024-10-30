@@ -2,6 +2,8 @@
   padding-top: 3rem;
   position: relative;
   max-width: 100vw;
+}
+.touch-active #reviews {
   scroll-snap-align: center;
 }
 

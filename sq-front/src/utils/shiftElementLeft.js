@@ -9,7 +9,6 @@ export const shiftElementLeft = (rightBound, el, container) => {
     const overflowX = rightBound - containerRightBound + 20;
     // element's current position minus how far it overflowed off the viewport
     const newLeftPos = parseInt(window.getComputedStyle(el).left) - overflowX;
-    console.log("new left position", newLeftPos, "overflow", overflowX);
     el.style.left = `${parseInt(newLeftPos)}px`;
   }
 };

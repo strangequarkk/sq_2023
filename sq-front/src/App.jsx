@@ -25,14 +25,14 @@ function App() {
     "reviews",
     "projects",
   ]);
-  const [currentSection, setCurrentSection] = useState("about");
+  const [currentSection, setCurrentSection] = useState(sections.current[0]);
   const [previousSection, setPreviousSection] = useState("");
   const scrollableDiv = useRef();
   const contentWrapper = useRef();
   const minDesktopSize = 1080;
   const containerSize = useContainerSize()[0];
   const [containerWidth, setContainerWidth] = useState(containerSize);
-  const [pauseAnimations, setPauseAnimations] = useState(false);
+  //const [pauseAnimations, setPauseAnimations] = useState(false);
   const [usingTouch, setUsingTouch] = useState(false);
   const motionOkay = window.matchMedia(
     "(prefers-reduced-motion: no-preference)"
@@ -87,6 +87,7 @@ function App() {
     });
   }, []);
   const splitLayoutIsActive = !!scrollContainer;
+  const touchClass = usingTouch ? "touch-active" : "";
 
   return (
     <>
@@ -94,7 +95,7 @@ function App() {
         themeIsDark={themeIsDark}
         refContainer={scrollContainer}
         themeClass={themeClass}
-        pauseColors={pauseAnimations}
+        // pauseColors={pauseAnimations}
       />
       <header className={themeClass}>
         <Navbar
@@ -104,12 +105,12 @@ function App() {
           setCurrentSection={updateSection}
         />
       </header>
-      <main className={themeClass + " " + hiResClass}>
+      <main className={themeClass + " " + hiResClass + " " + touchClass}>
         <DarkModeSwitch
           themeIsDark={themeIsDark}
           toggleDarkMode={toggleDarkMode}
           refContainer={scrollContainer}
-          pauseAppearance={pauseAnimations}
+          //pauseAppearance={pauseAnimations}
         />
         <SpinningLogo
           speed={0.5}
@@ -128,6 +129,7 @@ function App() {
                 />
                 <div className='scrolling-content' ref={scrollableDiv}>
                   <About setCurrentSection={updateSection} />
+
                   <Skills
                     motionOkay={motionOkay}
                     setCurrentSection={updateSection}
@@ -142,8 +144,8 @@ function App() {
                     setCurrentSection={updateSection}
                     prevSection={previousSection}
                     container={scrollContainer}
-                    setPauseAnimations={setPauseAnimations}
-                    pauseAnimations={pauseAnimations}
+                    // setPauseAnimations={setPauseAnimations}
+                    //pauseAnimations={pauseAnimations}
                   />
                   <Portfolio setCurrentSection={updateSection} />
                 </div>
@@ -159,7 +161,7 @@ function App() {
           themeIsDark={themeIsDark}
           refContainer={scrollContainer}
           motionOkay={motionOkay}
-          pauseWave={pauseAnimations}
+          //pauseWave={pauseAnimations}
         />
       </main>
     </>

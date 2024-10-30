@@ -17,7 +17,6 @@ export const useContainerScroll = (
           container.scrollY || container.scrollY === 0
             ? container.scrollY
             : -container.firstChild.getBoundingClientRect().top;
-
         handleScroll(yPosition);
       };
       if (wheelOnly) {

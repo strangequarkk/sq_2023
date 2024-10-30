@@ -39,6 +39,9 @@ html,
 section {
   max-width: 650px;
   margin: 0 auto;
+}
+
+.touch-active section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }

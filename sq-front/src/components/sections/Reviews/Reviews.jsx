@@ -66,7 +66,7 @@ export const Reviews = ({
   const denyAnimation = motionOkay ? "" : "denyAnimation";
 
   const freezeYPos = (originalYPos) => {
-    if (pauseAnimations) {
+    if (pauseAnimations && usingTouch) {
       if (container) {
         container.scrollTop = originalYPos;
       } else {
@@ -78,20 +78,22 @@ export const Reviews = ({
   //without this, page scrolls vertically whenever the user tries to
   //horizontally swipe a review card
   const preventContainerScroll = (e) => {
-    //collect original y position
-    const oldWindowY = container ? container.scrollTop : window.scrollY;
-    setContainerScrollTop(oldWindowY);
-    if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
-      //don't trigger color shift etc during a scroll that's about to be negated
-      setPauseAnimations(true);
-      //turn off scroll snapping of immediate siblings
-      //to prevent interference with forced scroll control
-      document.querySelector("#reviews + section").style["scroll-snap-stop"] =
-        "normal";
-      document.querySelector("section:has( + #reviews").style[
-        "scroll-snap-stop"
-      ] = "normal";
-      freezeYPos(oldWindowY);
+    if (usingTouch) {
+      //collect original y position
+      const oldWindowY = container ? container.scrollTop : window.scrollY;
+      setContainerScrollTop(oldWindowY);
+      if (!e.target.closest(".carouselButton") && !e.target.closest("button")) {
+        //don't trigger color shift etc during a scroll that's about to be negated
+        setPauseAnimations(true);
+        //turn off scroll snapping of immediate siblings
+        //to prevent interference with forced scroll control
+        document.querySelector("#reviews + section").style["scroll-snap-stop"] =
+          "normal";
+        document.querySelector("section:has( + #reviews").style[
+          "scroll-snap-stop"
+        ] = "normal";
+        freezeYPos(oldWindowY);
+      }
     }
   };
 
@@ -115,39 +117,45 @@ export const Reviews = ({
         if (isVisible) {
           setCurrentSection("reviews");
           //enable arrow key navigation of slider
-          document.getElementById("review-slider").focus();
-
+          document
+            .getElementById("review-slider")
+            .focus({ preventScroll: true });
           //disable scroll snapping of neighbors
           //to prevent interference with forced scroll control
-          document.querySelector("#reviews + section").style[
-            "scroll-snap-stop"
-          ] = "normal";
-          document.querySelector("section:has( + #reviews").style[
-            "scroll-snap-stop"
-          ] = "normal";
+          if (usingTouch) {
+            document.querySelector("#reviews + section").style[
+              "scroll-snap-stop"
+            ] = "normal";
+            document.querySelector("section:has( + #reviews").style[
+              "scroll-snap-stop"
+            ] = "normal";
+          }
         } else {
+          // //TODO: rather than hardcoding "about" string, use id of first section in scrollable area
           if (prevSection == "about") {
             setCurrentSection(prevSection);
           }
           //re-enable scroll snapping of neighbors if reviews section is not on screen
-          document.querySelector("#reviews + section").style[
-            "scroll-snap-stop"
-          ] = "always";
-          document.querySelector("section:has( + #reviews").style[
-            "scroll-snap-stop"
-          ] = "always";
+          if (usingTouch) {
+            document.querySelector("#reviews + section").style[
+              "scroll-snap-stop"
+            ] = "always";
+            document.querySelector("section:has( + #reviews").style[
+              "scroll-snap-stop"
+            ] = "always";
+          }
         }
       }}
       partialVisibility={true}
     >
-      <section id='reviews' ref={sectionRef} tabIndex='5'>
+      <section id='reviews' tabIndex='5' ref={sectionRef}>
         <h2 className='font-heading'>Reviews</h2>
         <br />
         <div
           onTouchStart={preventContainerScroll}
           onTouchMove={() => freezeYPos(containerScrollTop)}
-          onMouseDown={preventContainerScroll}
-          onMouseMove={() => freezeYPos(containerScrollTop)}
+          // onMouseDown={preventContainerScroll}
+          // onMouseMove={() => freezeYPos(containerScrollTop)}
         >
           <CarouselProvider
             naturalSlideWidth={0}
@@ -185,6 +193,7 @@ export const Reviews = ({
     </VisibilitySensor>
   );
 };
+
 Reviews.propTypes = {
   containerWidth: PropTypes.number,
   themeIsDark: PropTypes.bool,
