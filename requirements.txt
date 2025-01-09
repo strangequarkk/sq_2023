@@ -84,7 +84,7 @@ numpy==2.2.1
 optional-django==0.1.0
 overrides==7.6.0
 packaging==23.2
-pandas==2.2.0
+pandas==2.2.3
 pandocfilters==1.5.1
 parso==0.8.3
 pexpect==4.9.0
@@ -115,7 +115,7 @@ resolvelib==1.0.1
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 routers==0.10.1
-rpds-py==0.17.1
+rpds-py==0.22.3
 seaborn==0.13.1
 Send2Trash==1.8.2
 six==1.16.0
